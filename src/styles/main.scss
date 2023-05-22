@@ -1,0 +1,76 @@
+@import 'variables';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Cobane, serif;
+  background: $background-dark;
+  color: #fff;
+  padding-left: 160px;
+}
+
+.container {
+  max-width: 1300px;
+  margin-inline: auto;
+  padding: 0 30px;
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 400;
+  src: url('../assets/fonts/Cobane-Regular.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 300;
+  src: url('../assets/fonts/Cobane-Light.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 200;
+  src: url('../assets/fonts/Cobane-Extralight.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Extralight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 100;
+  src: url('../assets/fonts/Cobane-Thin.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Thin.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 500;
+  src: url('../assets/fonts/Cobane-Medium.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 600;
+  src: url('../assets/fonts/Cobane-Semibold.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Semibold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 700;
+  src: url('../assets/fonts/Cobane-Bold.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Cobane';
+  font-weight: 800;
+  src: url('../assets/fonts/Cobane-Black.woff2') format('woff2'),
+  url('../assets/fonts/Cobane-Black.woff') format('woff');
+}

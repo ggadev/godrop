@@ -1,0 +1,58 @@
+@import '../../styles/variables';
+
+.header-filler {
+  height: 180px;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 0 30px rgba(0,0,0,.5);
+  z-index: 10;
+
+  .header-top {
+    background: $background-light;
+    padding-block: 14px;
+
+    ul {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+
+      li a {
+        color: #ddd;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 0.7rem;
+        transition: color 0.2s ease;
+
+        svg {
+          margin-right: 6px;
+          transition: color 0.2s ease;
+        }
+
+        &:hover {
+          color: #fff;
+
+          svg {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .header-main {
+    background: #0d0c1d;
+
+    .header-main-wrapper {
+      padding-block: 30px;
+    }
+  }
+
+  .logo {
+    height: 46px;
+  }
+}

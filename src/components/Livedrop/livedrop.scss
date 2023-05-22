@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.livedrop-wrapper {
+  position: absolute;
+  width: 160px;
+  left: 0;
+  z-index: 11;
+  background: $background;
+  height: 100vh;
+  height: 100dvh;
+}
