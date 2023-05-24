@@ -1,5 +1,5 @@
 import './header.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faShieldHalved,
@@ -12,6 +12,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
+    const location = useLocation();
+
+    const isActive = (path) => location.pathname === path ? 'active' : '';
+
     return (
         <>
             <div className="header-filler"></div>
@@ -41,29 +45,35 @@ function Header() {
                         </Link>
                     </div>
                     <div className='header-games container'>
-                        <div className="header-game">
+                        <Link to={'/collections'}
+                              className={`header-game game-collections ${isActive('/collections')}`}>
                             <FontAwesomeIcon icon={faKhanda}  /> Collections
-                        </div>
+                        </Link>
                         <div className="separator"></div>
-                        <div className="header-game">
+                        <Link to={'/upgrader'}
+                              className={`header-game game-upgrader ${isActive('/upgrader')}`}>
                             <FontAwesomeIcon icon={faCircleNotch}  /> Upgrader
-                        </div>
+                        </Link>
                         <div className="separator"></div>
-                        <div className="header-game">
+                        <Link to={'/scratch-cards'}
+                              className={`header-game game-scratch-cards ${isActive('/scratch-cards')}`}>
                             <FontAwesomeIcon icon={faCopy}  /> Scratch Cards
-                        </div>
+                        </Link>
                         <div className="separator"></div>
-                        <div className="header-game">
+                        <Link to={'/daily-free'}
+                              className={`header-game game-daily-free ${isActive('/daily-free')}`}>
                             <FontAwesomeIcon icon={faSuitcase}  /> Daily Free
-                        </div>
+                        </Link>
                         <div className="separator"></div>
-                        <div className="header-game">
+                        <Link to={'/giveaways'}
+                              className={`header-game game-giveaways ${isActive('/giveaways')}`}>
                             <FontAwesomeIcon icon={faGift}  /> Giveaways
-                        </div>
+                        </Link>
                         <div className="separator"></div>
-                        <div className="header-game">
+                        <Link to={'/godrop-pass'}
+                              className={`header-game game-godrop-pass ${isActive('/godrop-pass')}`}>
                             <FontAwesomeIcon icon={faGun}  /> GOdrop Pass
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </header>

@@ -3,7 +3,11 @@ import './livedrop.scss';
 
 function Livedrop() {
     return (
-        <div className={'livedrop-wrapper'}></div>
+        <div className={'livedrop'}>
+            <div className="livedrop-wrapper">
+
+            </div>
+        </div>
     );
 }
 

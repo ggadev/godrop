@@ -68,18 +68,36 @@ header {
       justify-content: space-around;
       align-items: center;
       max-width: 1250px;
-      padding-inline: 0 !important;
+      padding-inline: 30px;
 
       .header-game {
         font-weight: 400;
-        color: #ccc;
+        color: #bbb;
         font-size: 0.9rem;
         position: relative;
+        transition: color .3s ease;
 
         svg {
-          color: #43ea80;
           margin-right: 6px;
+          transition: filter 0.3s ease, color 0.3s ease;
         }
+
+        &.active, &:hover, &:focus {
+          color: #fff;
+
+          svg {
+            filter: drop-shadow(0 0 7px currentcolor);
+          }
+        }
+
+        &.game-collections.active svg {
+          color: $collections-color;
+        }
+        &.game-upgrader.active svg { color: $upgrader-color; }
+        &.game-scratch-cards.active svg { color: $scratch-cards-color; }
+        &.game-daily-free.active svg { color: $daily-free-color; }
+        &.game-giveaways.active svg { color: $giveaways-color; }
+        &.game-godrop-pass.active svg { color: $godrop-pass-color; }
       }
 
       .separator {

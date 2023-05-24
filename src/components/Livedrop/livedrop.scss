@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 
-.livedrop-wrapper {
+.livedrop {
   position: fixed;
   width: 160px;
   left: 0;
@@ -8,4 +8,8 @@
   background: $background;
   height: 100dvh;
   box-shadow: 0 0 30px rgba(0,0,0,.5);
+
+  .livedrop-wrapper {
+
+  }
 }
