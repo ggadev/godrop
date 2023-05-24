@@ -1,12 +1,12 @@
 @import '../../styles/variables';
 
 .header-filler {
-  height: 180px;
+  height: 154px;
 }
 
 header {
   position: fixed;
-  width: 100%;
+  width: calc(100% - 150px);
   top: 0;
   box-shadow: 0 0 30px rgba(0,0,0,.5);
   z-index: 10;
@@ -46,9 +46,48 @@ header {
 
   .header-main {
     background: #0d0c1d;
+    position: relative;
+    padding-bottom: 18px;
 
     .header-main-wrapper {
-      padding-block: 30px;
+      padding-block: 32px;
+    }
+
+    .header-games {
+      background: $background-light;
+      width: calc(100% - 100px);
+      height: 44px;
+      border-radius: 10px;
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 1px solid #302f3f;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1250px;
+      padding-inline: 0 !important;
+
+      .header-game {
+        font-weight: 400;
+        color: #ccc;
+        font-size: 0.9rem;
+        position: relative;
+
+        svg {
+          color: #43ea80;
+          margin-right: 6px;
+        }
+      }
+
+      .separator {
+        width: 2px;
+        height: 50%;
+        background: #302f3f;
+        border-radius: 2px;
+      }
     }
   }
 

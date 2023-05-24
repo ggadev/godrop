@@ -6,6 +6,22 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: #070610;
+}
+::-webkit-scrollbar-thumb {
+  background: #302f3f;
+  width: 8px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 3px #070610;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #47455d;
+}
+
 body {
   font-family: Cobane, serif;
   background: $background-dark;
@@ -13,10 +29,23 @@ body {
   padding-left: 160px;
 }
 
+main {
+  background-image: url("/public/bg.jpg");
+  background-size: cover;
+  background-position: center top;
+  background-blend-mode: screen;
+  min-height: 100dvh;
+}
+
 .container {
   max-width: 1300px;
   margin-inline: auto;
-  padding: 0 30px;
+  padding-inline: 50px;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
 }
 
 @font-face {
