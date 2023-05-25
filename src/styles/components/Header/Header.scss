@@ -22,6 +22,11 @@ header {
 
       li:last-child {
         margin-left: auto;
+
+        a {
+          color: #aaa;
+          font-size: 0.6rem;
+        }
       }
 
       li a {
@@ -59,7 +64,31 @@ header {
       justify-content: space-between;
 
       .header-left {
+        display: flex;
+        align-items: center;
+        gap: 40px;
 
+        .search {
+          position: relative;
+
+          input {
+            padding: 8px 28px 8px 12px;
+            background: #1e1d2f;
+            border: 1px solid #302f3f;
+            border-radius: 8px;
+            color: #fff;
+            width: 250px;
+          }
+
+          button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8rem;
+            color: #aaa;
+          }
+        }
       }
 
       .header-right {
@@ -96,6 +125,44 @@ header {
 
         .inventory {
           font-size: 1.2rem;
+          position: relative;
+
+          &:after {
+            content: "11";
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            font-size: 0.6rem;
+            background: $primary;
+            font-weight: 700;
+            padding: 3px 4px 2px 4px;
+            border-radius: 100%;
+            display: block;
+            color: $background;
+          }
+        }
+
+        .account {
+          height: 52px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .avatar {
+            height: 90%;
+            aspect-ratio: 1/1;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 100%;
+            }
+          }
+
+          .actions {
+            color: #fff;
+          }
         }
       }
     }
@@ -144,7 +211,7 @@ header {
         &.game-scratch-cards.active svg { color: $scratch-cards-color; }
         &.game-daily-free.active svg { color: $daily-free-color; }
         &.game-giveaways.active svg { color: $giveaways-color; }
-        &.game-lucky-shot.active svg { color: $godrop-pass-color; }
+        &.game-lucky-shot.active svg { color: $lucky-shot-color; }
       }
 
       .separator {

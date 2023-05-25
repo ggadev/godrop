@@ -33,7 +33,7 @@ main {
   background-size: cover;
   background-position: center top;
   background-blend-mode: screen;
-  min-height: calc(100dvh - 154px);
+  min-height: calc(100dvh - 156px);
 }
 
 .content {
@@ -65,6 +65,16 @@ a {
     color: $primary;
     margin-right: 4px;
   }
+}
+
+button, input[type=submit], input[type=reset] {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 @font-face {

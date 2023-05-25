@@ -1,4 +1,4 @@
-import '../../styles/components/Header/header.scss';
+import '../../styles/components/Header/Header.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -8,7 +8,7 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun, faDatabase, faBoxesStacked
+    faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
@@ -48,8 +48,14 @@ function Header() {
                     <div className='header-main-wrapper container'>
                         <div className="header-left">
                             <Link to={`/`}>
-                                <img className='logo' src={'./logo/logo.png'} alt='godrop logo'/>
+                                <img className='logo' src={'/logo/logo.png'} alt='godrop logo'/>
                             </Link>
+                            <div className="search">
+                                <input type="text" placeholder="Search"/>
+                                <button className="search-button">
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                                </button>
+                            </div>
                         </div>
                         <div className="header-right">
                             <div className="wallet">
@@ -63,6 +69,14 @@ function Header() {
                             </div>
                             <div className="inventory">
                                 <FontAwesomeIcon icon={faBoxesStacked}  />
+                            </div>
+                            <div className="account">
+                                <div className="avatar">
+                                    <img src={'/testavatar.webp'}/>
+                                </div>
+                                <div className="actions">
+                                    <FontAwesomeIcon icon={faCaretDown}  />
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -31,14 +31,14 @@ function LiveDrop() {
                 </div>
                 <div className="livedrop-items">
                     <LiveDropItem item={{
-                        rarity_name: "milspec",
+                        rarity_name: "mil-spec",
                         weapon_name: "Galil AR",
                         skin_name: "Black Sand",
                         wear_abbr: "MW",
                         item_image: "https://data.gadev.pl/godrop/img/galil-ar/galil-ar-black-sand-icon.png"
                     }}/>
                     <LiveDropItem item={{
-                        rarity_name: "milspec",
+                        rarity_name: "mil-spec",
                         weapon_name: "Tec-9",
                         skin_name: "Isaac",
                         wear_abbr: "WW",
@@ -59,7 +59,7 @@ function LiveDrop() {
                         item_image: "https://data.gadev.pl/godrop/img/ak-47/ak-47-wild-lotus-icon.png"
                     }}/>
                     <LiveDropItem item={{
-                        rarity_name: "milspec",
+                        rarity_name: "mil-spec",
                         weapon_name: "Famas",
                         skin_name: "Survivor Z",
                         wear_abbr: "FN",
@@ -73,7 +73,7 @@ function LiveDrop() {
                         item_image: "https://data.gadev.pl/godrop/img/aug/aug-torque-icon.png"
                     }}/>
                     <LiveDropItem item={{
-                        rarity_name: "milspec",
+                        rarity_name: "mil-spec",
                         weapon_name: "Tec-9",
                         skin_name: "Isaac",
                         wear_abbr: "WW",
@@ -87,7 +87,7 @@ function LiveDrop() {
                         item_image: "https://data.gadev.pl/godrop/img/karambit/karambit-marble-fade-icon.png"
                     }}/>
                     <LiveDropItem item={{
-                        rarity_name: "milspec",
+                        rarity_name: "mil-spec",
                         weapon_name: "PP-Bizon",
                         skin_name: "Lumen",
                         wear_abbr: "FT",

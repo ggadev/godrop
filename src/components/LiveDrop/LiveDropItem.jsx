@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../styles/components/LiveDrop/LiveDropItem.scss';
+import '../../styles/rarities.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSuitcase} from "@fortawesome/free-solid-svg-icons";
 
@@ -7,11 +8,16 @@ function LiveDropItem({item}) {
     if(!item) return;
 
     return (
-        <div className={`livedrop-item ${item.rarity_name || ''}`}>
-            <div className="cover"></div>
+        <div className={`livedrop-item rarity-border-color ${item.rarity_name || ''}`}>
+            <div className={`cover rarity-border-left-15 ${item.rarity_name || ''}`}></div>
             <div className="godrop-mark">
                 <img src={'./logo/mark_white.png'}/>
             </div>
+            {/*<div className="shape">*/}
+            {/*    <svg x="0px" y="0px" viewBox="0 0 90.1 78">*/}
+            {/*        <polygon className={`triangle ${item.rarity_name || ''}`} points="45,2 1.7,77 88.3,77 "/>*/}
+            {/*    </svg>*/}
+            {/*</div>*/}
             <div className="image">
                 <img src={item.item_image}/>
             </div>

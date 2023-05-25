@@ -1,0 +1,32 @@
+@import 'variables';
+
+@mixin rarity-gradient($color, $alpha, $deg, $start, $end) {
+  background: linear-gradient($deg, rgba($color, $alpha) $start, rgba(255, 255, 255, 0) $end);
+}
+
+$rarities: (
+        contraband: $rarity-contraband,
+        rare: $rarity-rare,
+        covert: $rarity-covert,
+        classified: $rarity-classified,
+        restricted: $rarity-restricted,
+        mil-spec: $rarity-mil-spec,
+        industrial-grade: $rarity-industrial-grade,
+        consumer-grade: $rarity-consumer-grade
+);
+
+.rarity-border-color {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      border-color: $color;
+    }
+  }
+}
+
+.rarity-border-left-15 {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      @include rarity-gradient($color, 0.15, 90deg, 0%, 100%);
+    }
+  }
+}

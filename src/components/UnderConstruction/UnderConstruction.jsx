@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/components/UnderConstruction/underconstruction.scss';
+import '../../styles/components/UnderConstruction/UnderConstruction.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faPersonDigging} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";

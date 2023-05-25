@@ -18,9 +18,11 @@ function SkinBase() {
                     <h1 className={'page-header'}><FontAwesomeIcon icon={faDatabase} /> SkinBase</h1>
 
                     <div className={'skinbase-wrapper'}>
-                        <div className={'skinbase-nav'}>
+                        <ul className={'skinbase-nav'}>
+                            <li className={'skinbase-nav__item'}>
 
-                        </div>
+                            </li>
+                        </ul>
                         <div className={'skin-list'}>
 
                         </div>

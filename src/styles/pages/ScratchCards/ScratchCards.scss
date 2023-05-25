@@ -1,0 +1,13 @@
+@import '../../variables';
+
+.scratch-cards {
+
+  main {
+    background-image: url('public/backgrounds/m4howl.jpg');
+    position: relative;
+  }
+
+  h1 svg {
+    color: $scratch-cards-color;
+  }
+}
