@@ -1,7 +1,10 @@
-@import '../../styles/variables';
+@import '../../variables';
+
+.provably-fair main {
+  background-image: url("/public/backgrounds/m4howl.jpg");
+}
 
 .provably-fair-wrapper {
-  padding-top: 120px;
 
   .provably-fair-definition {
     margin-top: 30px;

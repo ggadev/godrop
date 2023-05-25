@@ -1,0 +1,25 @@
+@import '../../variables';
+
+footer {
+  background: #040309;
+  padding-block: 40px;
+
+  .footer-wrapper {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: left;
+
+    .footer-disclaimer {
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 12px;
+
+      &.valve {
+        font-size: 0.6rem;
+        margin-top: 8px;
+      }
+    }
+  }
+}

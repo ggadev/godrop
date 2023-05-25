@@ -1,4 +1,4 @@
-@import '../../styles/variables';
+@import '../../variables';
 
 .header-filler {
   height: 154px;
@@ -19,6 +19,10 @@ header {
       display: flex;
       list-style: none;
       gap: 18px;
+
+      li:last-child {
+        margin-left: auto;
+      }
 
       li a {
         color: #ddd;

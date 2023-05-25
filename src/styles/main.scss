@@ -30,11 +30,14 @@ body {
 }
 
 main {
-  background-image: url("/public/bg.jpg");
   background-size: cover;
   background-position: center top;
   background-blend-mode: screen;
   min-height: 100dvh;
+}
+
+.content {
+  padding-top: 110px;
 }
 
 .container {
@@ -51,14 +54,16 @@ a {
 .go-back-link {
   color: #bbb;
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 .page-header {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 2.5rem;
 
   svg {
     color: $primary;
+    margin-right: 4px;
   }
 }
 

@@ -1,15 +1,15 @@
 import Header from "./Header/Header.jsx"
-import Livedrop from "./Livedrop/Livedrop.jsx";
+import Livedrop from "./LiveDrop/Livedrop.jsx";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer/Footer.jsx";
 
 function Layout() {
     return (
         <>
             <Livedrop/>
             <Header/>
-            <main>
-                <Outlet/>
-            </main>
+            <Outlet/>
+            <Footer/>
         </>
     );
 }

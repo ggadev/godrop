@@ -1,4 +1,4 @@
-import './header.scss';
+import '../../styles/components/Header/header.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -8,7 +8,7 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun
+    faGift, faGun, faDatabase
 } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
@@ -33,6 +33,12 @@ function Header() {
                                 <Link to={`/provably-fair`}>
                                     <FontAwesomeIcon icon={faBarcode}  />
                                     Promo Code
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={`/skinbase`}>
+                                    <FontAwesomeIcon icon={faDatabase} />
+                                    SkinBase
                                 </Link>
                             </li>
                         </ul>
@@ -60,6 +66,11 @@ function Header() {
                             <FontAwesomeIcon icon={faCopy}  /> Scratch Cards
                         </Link>
                         <div className="separator"></div>
+                        <Link to={'/godrop-pass'}
+                              className={`header-game game-godrop-pass ${isActive('/godrop-pass')}`}>
+                            <FontAwesomeIcon icon={faGun}  /> Lucky Shot
+                        </Link>
+                        <div className="separator"></div>
                         <Link to={'/daily-free'}
                               className={`header-game game-daily-free ${isActive('/daily-free')}`}>
                             <FontAwesomeIcon icon={faSuitcase}  /> Daily Free
@@ -68,11 +79,6 @@ function Header() {
                         <Link to={'/giveaways'}
                               className={`header-game game-giveaways ${isActive('/giveaways')}`}>
                             <FontAwesomeIcon icon={faGift}  /> Giveaways
-                        </Link>
-                        <div className="separator"></div>
-                        <Link to={'/godrop-pass'}
-                              className={`header-game game-godrop-pass ${isActive('/godrop-pass')}`}>
-                            <FontAwesomeIcon icon={faGun}  /> GOdrop Pass
                         </Link>
                     </div>
                 </div>
