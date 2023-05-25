@@ -18,7 +18,7 @@ function App() {
                 <Route path="/scratch-cards" element={<ProvablyFair/>}></Route>
                 <Route path="/daily-free" element={<ProvablyFair/>}></Route>
                 <Route path="/giveaways" element={<ProvablyFair/>}></Route>
-                <Route path="/godrop-pass" element={<ProvablyFair/>}></Route>
+                <Route path="/lucky-shot" element={<ProvablyFair/>}></Route>
             </Route>
         </Routes>
     </BrowserRouter>

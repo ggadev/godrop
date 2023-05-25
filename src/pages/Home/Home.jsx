@@ -7,7 +7,6 @@ function Home() {
             <Helmet>
                 <title>GOdrop - CS:GO Case Opening Simulator</title>
                 <meta name="description" content="My page description" />
-                {/* Other meta tags, link tags, etc. */}
             </Helmet>
         </>
     );

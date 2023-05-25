@@ -33,7 +33,7 @@ main {
   background-size: cover;
   background-position: center top;
   background-blend-mode: screen;
-  min-height: 100dvh;
+  min-height: calc(100dvh - 154px);
 }
 
 .content {

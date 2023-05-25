@@ -1,0 +1,117 @@
+@import '../../variables';
+
+.livedrop {
+  position: fixed;
+  width: 160px;
+  left: 0;
+  z-index: 11;
+  background: $background;
+  height: 100dvh;
+  box-shadow: 0 0 30px rgba(0,0,0,.5);
+
+  .livedrop-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    padding: 5px;
+
+    &:after {
+      width: 100%;
+      height: 80px;
+      content: '';
+      background: rgb(13,12,29);
+      background: linear-gradient(0deg, rgba(13,12,29,1) 0%, rgba(30,29,47,0) 100%);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .livedrop-header {
+      background: $background-light;
+      text-align: center;
+      padding-block: 7px 12px;
+      border-radius: 5px;
+
+      h4 {
+        color: $primary;
+        margin-top: 4px;
+        font-weight: 700;
+        font-size: 0.9rem;
+
+        > svg {
+          margin-right: 4px;
+        }
+      }
+
+      .online-count {
+        font-size: 1rem;
+        margin-top: 6px;
+        font-weight: 600;
+      }
+
+      .online-text {
+        color: #ddd;
+        text-transform: uppercase;
+        font-size: 0.5rem;
+        margin-top: 2px;
+      }
+    }
+
+    .livedrop-options {
+      display: flex;
+      gap: 5px;
+      margin-top: 5px;
+
+      .livedrop-option {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background: $background-light;
+        opacity: 0.6;
+        color: #aaa;
+        font-size: 0.6rem;
+        padding-block: 12px 10px;
+        border-radius: 5px;
+        height: 36px;
+        justify-content: center;
+        align-items: center;
+        gap: 3px;
+
+        &.selected {
+          opacity: 1;
+          color: $primary;
+        }
+      }
+    }
+
+    .livedrop-items {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    .livedrop-switch {
+      position: absolute;
+      right: -40px;
+      bottom: 20px;
+      width: 40px;
+      height: 40px;
+      background: $background;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0 10px 10px 0;
+      font-size: 1.5rem;
+      padding-right: 4px;
+      color: #aaa;
+      box-shadow: 5px 0 20px -10px rgba(0,0,0,.5);
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}

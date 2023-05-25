@@ -1,0 +1,26 @@
+.skinbase {
+
+  main {
+    background-image: url('public/backgrounds/m4howl.jpg');
+    position: relative;
+  }
+
+  .skinbase-wrapper {
+    display: flex;
+    margin-top: 30px;
+    gap: 30px;
+
+    .skinbase-nav {
+      background: rgba(30, 29, 47, 0.5);
+      border: 1px solid rgba(255,255,255,.2);
+      min-height: 300px;
+      width: 240px;
+      border-radius: 15px;
+    }
+
+    .skin-list {
+      background: blue;
+      flex-grow: 1;
+    }
+  }
+}

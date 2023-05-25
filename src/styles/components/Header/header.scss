@@ -55,6 +55,49 @@ header {
 
     .header-main-wrapper {
       padding-block: 32px;
+      display: flex;
+      justify-content: space-between;
+
+      .header-left {
+
+      }
+
+      .header-right {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        .wallet {
+          background: #1e1d2f;
+          padding: 8px 12px;
+          color: #fff;
+          font-weight: 600;
+          border-radius: 8px;
+          border: 1px solid #302f3f;
+          display: flex;
+          gap: 15px;
+
+          .wallet-text {
+            font-weight: 300;
+            font-size: 0.8rem;
+            color: #ccc;
+          }
+
+          .refil-link {
+            display: block;
+            background: rgba(67, 234, 128, 0.22);
+            color: #43EA80;
+            font-weight: 500;
+            padding: 8px 12px 5px 12px;
+            border-radius: 6px;
+            border: 2px solid #43EA80;
+          }
+        }
+
+        .inventory {
+          font-size: 1.2rem;
+        }
+      }
     }
 
     .header-games {
@@ -101,7 +144,7 @@ header {
         &.game-scratch-cards.active svg { color: $scratch-cards-color; }
         &.game-daily-free.active svg { color: $daily-free-color; }
         &.game-giveaways.active svg { color: $giveaways-color; }
-        &.game-godrop-pass.active svg { color: $godrop-pass-color; }
+        &.game-lucky-shot.active svg { color: $godrop-pass-color; }
       }
 
       .separator {

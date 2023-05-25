@@ -8,7 +8,7 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun, faDatabase
+    faGift, faGun, faDatabase, faBoxesStacked
 } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
@@ -46,9 +46,25 @@ function Header() {
                 </div>
                 <div className='header-main'>
                     <div className='header-main-wrapper container'>
-                        <Link to={`/`}>
-                            <img className='logo' src={'./logo/logo.png'} alt='godrop logo'/>
-                        </Link>
+                        <div className="header-left">
+                            <Link to={`/`}>
+                                <img className='logo' src={'./logo/logo.png'} alt='godrop logo'/>
+                            </Link>
+                        </div>
+                        <div className="header-right">
+                            <div className="wallet">
+                                <div className="col">
+                                    <div className="row wallet-text">Your wallet</div>
+                                    <div className="row wallet-balance">💸 130.72 USD</div>
+                                </div>
+                                <div className="col">
+                                    <Link to={'/'} className={'refil-link'}>Refill</Link>
+                                </div>
+                            </div>
+                            <div className="inventory">
+                                <FontAwesomeIcon icon={faBoxesStacked}  />
+                            </div>
+                        </div>
                     </div>
                     <div className='header-games container'>
                         <Link to={'/collections'}
@@ -66,8 +82,8 @@ function Header() {
                             <FontAwesomeIcon icon={faCopy}  /> Scratch Cards
                         </Link>
                         <div className="separator"></div>
-                        <Link to={'/godrop-pass'}
-                              className={`header-game game-godrop-pass ${isActive('/godrop-pass')}`}>
+                        <Link to={'/lucky-shot'}
+                              className={`header-game game-lucky-shot ${isActive('/lucky-shot')}`}>
                             <FontAwesomeIcon icon={faGun}  /> Lucky Shot
                         </Link>
                         <div className="separator"></div>
