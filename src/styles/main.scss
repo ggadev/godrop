@@ -30,14 +30,16 @@ body {
 }
 
 main {
-  background-size: cover;
-  background-position: center top;
+  background-size: 100%;
+  background-position: top center;
+  background-repeat: no-repeat;
   background-blend-mode: screen;
   min-height: calc(100dvh - 156px);
 }
 
 .content {
   padding-top: 110px;
+  padding-bottom: 80px;
 }
 
 .container {

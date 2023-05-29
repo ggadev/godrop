@@ -23,10 +23,26 @@ $rarities: (
   }
 }
 
+.rarity-background {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      background-color: $color;
+    }
+  }
+}
+
 .rarity-border-left-15 {
   @each $rarity, $color in $rarities {
     &.#{$rarity} {
       @include rarity-gradient($color, 0.15, 90deg, 0%, 100%);
+    }
+  }
+}
+
+.rarity-border-top-10 {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      @include rarity-gradient($color, 0.1, 180deg, 0%, 80%);
     }
   }
 }

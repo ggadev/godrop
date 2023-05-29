@@ -10,6 +10,7 @@ import LuckyShot from "./pages/LuckyShot/LuckyShot.jsx";
 import DailyFree from "./pages/DailyFree/DailyFree.jsx";
 import Giveaways from "./pages/Giveaways/Giveaways.jsx";
 import Collection from "./pages/Collections/Collection.jsx";
+import SkinBaseListing from "./pages/SkinBase/SkinBaseListing.jsx";
 
 function App() {
 
@@ -19,7 +20,11 @@ function App() {
             <Route element={<Layout/>}>
                 <Route path="/" element={<Home/>}></Route>
                 <Route path="/provably-fair" element={<ProvablyFair/>}></Route>
-                <Route path="/skinbase" element={<SkinBase/>}></Route>
+                <Route element={<SkinBase/>}>
+                    <Route path="/skinbase" element={<Collections/>}></Route>
+                    <Route path="/skinbase/weapon/:weapon" element={<SkinBaseListing/>}></Route>
+                    <Route path="/skinbase/skin/:skin" element={<Collections/>}></Route>
+                </Route>
                 <Route path="/collections" element={<Collections/>}></Route>
                 <Route path="/collections/:url" element={<Collection/>}></Route>
                 <Route path="/upgrader" element={<Upgrader/>}></Route>

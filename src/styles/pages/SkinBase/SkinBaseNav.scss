@@ -1,0 +1,89 @@
+@import '../../variables';
+
+.skinbase-nav {
+  border: 1px solid rgba(255,255,255,.2);
+  min-width: 240px;
+  border-radius: 15px;
+  overflow: hidden;
+  list-style-type: none;
+  height: fit-content;
+
+  .item {
+    border-bottom: 1px solid rgba(255,255,255,.2);;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .link {
+      padding: 16px 20px;
+      background: rgba(30, 29, 47);
+      display: block;
+      color: #ddd;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover, &.active {
+        color: #fff;
+      }
+    }
+
+    .submenu-link {
+      padding: 7px 16px;
+      display: flex;
+      color: #ddd;
+      background: rgba(30, 29, 47, 0.4);
+      font-size: 0.8rem;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #fff;
+      }
+
+      .weapon-data {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .weapon-skin-count {
+        font-size: 0.6rem;
+        color: #818181;
+      }
+
+      img {
+        height: 1.4rem;
+      }
+
+      span {
+        display: block;
+        margin-top: 2px;
+      }
+    }
+
+    .nav-submenu {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.5s ease;
+
+      &.active {
+        overflow-y: scroll;
+        max-height: 19.3rem;
+
+        &.Heavy {
+          overflow: hidden;
+          max-height: 14rem;
+        }
+
+        &.SMGs {
+          overflow: hidden;
+          max-height: 16rem;
+        }
+      }
+    }
+  }
+}
