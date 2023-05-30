@@ -15,10 +15,26 @@ $rarities: (
         consumer-grade: $rarity-consumer-grade
 );
 
+$wears: (
+        FN: $wear-fn,
+        MW: $wear-mw,
+        FT: $wear-ft,
+        WW: $wear-ww,
+        BS: $wear-bs
+);
+
+.rarity-color {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      color: $color !important;
+    }
+  }
+}
+
 .rarity-border-color {
   @each $rarity, $color in $rarities {
     &.#{$rarity} {
-      border-color: $color;
+      border-color: $color !important;
     }
   }
 }
@@ -39,10 +55,42 @@ $rarities: (
   }
 }
 
+.rarity-border-left-20 {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      @include rarity-gradient($color, 0.2, 90deg, 0%, 100%);
+    }
+  }
+}
+
 .rarity-border-top-10 {
   @each $rarity, $color in $rarities {
     &.#{$rarity} {
       @include rarity-gradient($color, 0.1, 180deg, 0%, 80%);
+    }
+  }
+}
+
+.rarity-border-top-20 {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      @include rarity-gradient($color, 0.20, 180deg, 0%, 100%);
+    }
+  }
+}
+
+.wear-color {
+  @each $wear, $color in $wears {
+    &.#{$wear} {
+      color: $color !important;
+    }
+  }
+}
+
+.wear-background {
+  @each $wear, $color in $wears {
+    &.#{$wear} {
+      background-color: $color !important;
     }
   }
 }

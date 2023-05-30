@@ -11,6 +11,8 @@ import DailyFree from "./pages/DailyFree/DailyFree.jsx";
 import Giveaways from "./pages/Giveaways/Giveaways.jsx";
 import Collection from "./pages/Collections/Collection.jsx";
 import SkinBaseListing from "./pages/SkinBase/SkinBaseListing.jsx";
+import SkinBaseHome from "./pages/SkinBase/SkinBaseHome.jsx";
+import SkinBaseSkin from "./pages/SkinBase/SkinBaseSkin.jsx";
 
 function App() {
 
@@ -21,9 +23,9 @@ function App() {
                 <Route path="/" element={<Home/>}></Route>
                 <Route path="/provably-fair" element={<ProvablyFair/>}></Route>
                 <Route element={<SkinBase/>}>
-                    <Route path="/skinbase" element={<Collections/>}></Route>
-                    <Route path="/skinbase/weapon/:weapon" element={<SkinBaseListing/>}></Route>
-                    <Route path="/skinbase/skin/:skin" element={<Collections/>}></Route>
+                    <Route path="/skinbase" element={<SkinBaseHome/>}></Route>
+                    <Route path="/skinbase/weapon/:weaponUrl" element={<SkinBaseListing/>}></Route>
+                    <Route path="/skinbase/skin/:skinUrl" element={<SkinBaseSkin/>}></Route>
                 </Route>
                 <Route path="/collections" element={<Collections/>}></Route>
                 <Route path="/collections/:url" element={<Collection/>}></Route>

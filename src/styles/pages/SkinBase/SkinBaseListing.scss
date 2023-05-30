@@ -61,6 +61,7 @@
     flex-grow: 0;
     backdrop-filter: blur(2px);
     position: relative;
+    box-shadow: $box-shadow-1;
 
     .cover {
       width: 100%;
@@ -68,6 +69,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      border-radius: 15px;
     }
 
     .skin-data {
@@ -85,6 +87,7 @@
       margin-top: 16px;
       font-weight: 600;
       font-size: 1rem;
+      color: #fff;
     }
 
     .skin-name {
@@ -106,7 +109,7 @@
 
       img {
         width: 80%;
-        filter: drop-shadow(0 0 15px rgba(0,0,0,.8));
+        filter: drop-shadow(0 0 15px rgba(0,0,0,.3));
       }
     }
 

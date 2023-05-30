@@ -1,0 +1,23 @@
+.skin-base-home {
+  width: 100%;
+
+  .weapon-category {
+    .weapon-category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      h3 {
+        font-size: 1.5rem;
+        color: #fff;
+      }
+
+      .line {
+        flex: 1;
+        height: 2px;
+        background: rgb(170,170,170);
+        background: linear-gradient(135deg, rgba(170,170,170,1) 0%, rgba(170,170,170,0) 90%);
+      }
+    }
+  }
+}

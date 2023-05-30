@@ -7,6 +7,7 @@
   overflow: hidden;
   list-style-type: none;
   height: fit-content;
+  box-shadow: $box-shadow-1;
 
   .item {
     border-bottom: 1px solid rgba(255,255,255,.2);;

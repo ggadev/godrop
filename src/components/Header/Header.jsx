@@ -8,7 +8,7 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass
+    faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass, faGear
 } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
@@ -30,15 +30,14 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/provably-fair`}>
-                                    <FontAwesomeIcon icon={faBarcode}  />
-                                    Promo Code
-                                </Link>
-                            </li>
-                            <li>
                                 <Link to={`/skinbase`}>
                                     <FontAwesomeIcon icon={faDatabase} />
                                     SkinBase
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={`/skinbase`} title={'Settings'}>
+                                    <FontAwesomeIcon icon={faGear} />
                                 </Link>
                             </li>
                         </ul>

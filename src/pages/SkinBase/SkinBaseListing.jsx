@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import '../../styles/pages/SkinBase/SkinBaseListing.scss';
 import {formatPrice} from "../../utils/priceUtils.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -13,17 +13,17 @@ function SkinBaseListing() {
 
     const changeSorting = e => setSorting(e.target.value);
 
-    const { weapon } = useParams();
+    const { weaponUrl } = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/skinbase/skins/${weapon}`)
+        axios.get(`http://localhost:3001/skinbase/skins/${weaponUrl}`)
             .then(res => {
                 setSkins(res.data);
             })
             .catch(err => {
                 console.error(err);
             });
-    }, [weapon]);
+    }, [weaponUrl]);
 
 
 
@@ -58,7 +58,7 @@ function SkinBaseListing() {
             </div>
             <div className={'skin-list'}>
                 {skins.map((skin) => (
-                    <div className="skin" key={skin.skin_id}>
+                    <Link to={`/skinbase/skin/${skin.skin_url}`} className="skin" key={skin.skin_id}>
                         <div className={`cover rarity-border-top-10 ${skin.rarity_code}`}></div>
                         <div className="skin-data">
                             <div className={`skin-rarity rarity-background ${skin.rarity_code}`}></div>
@@ -70,7 +70,7 @@ function SkinBaseListing() {
                             </div>
                             <div className="skin-price">{formatPrice(skin.skin_price_min)} - {formatPrice(skin.skin_price_max)}</div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
