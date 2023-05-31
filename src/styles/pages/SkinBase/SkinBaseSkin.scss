@@ -91,8 +91,18 @@
           width: 100%;
           gap: 4px;
 
+          &:hover {
+            .inspect-button {
+              opacity: 0.5;
+
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+
           .inspect-button {
-            background: $background-light;
+            background: rgba(7, 6, 16, 0.5);
             height: 34px;
             flex-grow: 1;
             position: relative;

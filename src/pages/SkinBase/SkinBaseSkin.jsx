@@ -1,12 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import '../../styles/pages/SkinBase/SkinBaseSkin.scss';
 import {formatPrice} from "../../utils/priceUtils.js";
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {formatDate} from "../../utils/dateUtils.js";
+import {Helmet} from "react-helmet";
 
 function SkinBaseSkin() {
     const [skin, setSkin] = useState(null);
+    const [currentIcon, setCurrentIcon] = useState(null);
 
     const { skinUrl } = useParams();
 
@@ -20,10 +22,19 @@ function SkinBaseSkin() {
             });
     }, [skinUrl])
 
+    function handleIconChange(e, icon) {
+        setCurrentIcon(icon);
+        console.log(icon);
+    }
+
     if(!skin) return;
 
     return (
         <div className={'skin-base-skin'}>
+            <Helmet>
+                <title>SkinBase - {skin.weapon_name} | {skin.skin_name} | GOdrop</title>
+                <meta name="description" content="My page description" />
+            </Helmet>
             <div className="first-row">
                 <div className="skin-name">
                     <div className={`cover rarity-border-left-20 ${skin.rarity_code}`}></div>
@@ -34,10 +45,12 @@ function SkinBaseSkin() {
                                 <h3>{skin.weapon_name}</h3>
                                 <h2>{skin.skin_name}</h2>
                             </div>
-                            <img src={skin.skin_img}/>
-                            <div className="inspect-buttons">
+                            <img src={currentIcon || skin.skin_img}/>
+                            <div className="inspect-buttons" onMouseLeave={e => handleIconChange(e, skin.skin_img)}>
                                 {skin['wears'].map(wear => (
-                                    <div key={wear.item_id} className="inspect-button">
+                                    <div key={wear.item_id}
+                                         className="inspect-button"
+                                         onMouseEnter={e => handleIconChange(e, wear.item_image)}>
                                         <span className={`wear-color ${wear.wear_abbr}`}>{wear.wear_abbr}</span>
                                     </div>
                                 ))}
@@ -69,15 +82,16 @@ function SkinBaseSkin() {
                         <h4>Wears & Prices</h4>
                     </div>
                     <div className="block-content">
-                        <p>The {skin.weapon_name} {skin.skin_name} has a float range of <b>{skin.skin_min_wear}</b>-<b>{skin.skin_max_wear}</b> and comes in all possible wears</p>
+                        <p>
+                            The {skin.weapon_name} {skin.skin_name} has a float range of <b>{skin.skin_min_wear}</b>-<b>{skin.skin_max_wear}</b> and comes in {skin.wears.length === 5 ? 'all' : skin.wears.length} possible wears</p>
                         <div className="float-range">
-                            <div className="indicator float-min" style={{left: '5%'}}>
+                            <div className="indicator float-min" style={{left: `${skin.skin_min_wear*100}%`}}>
                                 <div className="stripe"></div>
-                                <div className="value">0.05</div>
+                                <div className="value">{skin.skin_min_wear}</div>
                             </div>
-                            <div className="indicator float-min" style={{left: '70%'}}>
+                            <div className="indicator float-min" style={{left: `${skin.skin_max_wear*100}%`}}>
                                 <div className="stripe"></div>
-                                <div className="value">0.70</div>
+                                <div className="value">{skin.skin_max_wear}</div>
                             </div>
                             <div className="float-range-stripe-dark">
                                 <div className={'wear-background FN'}></div>
@@ -87,7 +101,9 @@ function SkinBaseSkin() {
                                 <div className={'wear-background BS'}></div>
                             </div>
 
-                            <div className="float-range-stripe" style={{clipPath: 'polygon(5% 0, 70% 0, 70% 100%, 5% 100%)'}}>
+                            <div className="float-range-stripe" style={{
+                                clipPath: `polygon(${skin.skin_min_wear*100}% 0, ${skin.skin_max_wear*100}% 0, ${skin.skin_max_wear*100}% 100%, ${skin.skin_min_wear*100}% 100%)`
+                            }}>
                                 <div className={'wear-background FN'}></div>
                                 <div className={'wear-background MW'}></div>
                                 <div className={'wear-background FT'}></div>
