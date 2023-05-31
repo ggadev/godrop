@@ -36,7 +36,7 @@
 
   .skin-name {
     position: relative;
-    padding: 8px;
+    padding: 12px;
 
     .cover {
       position: absolute;
@@ -53,12 +53,12 @@
 
       .skin-rarity {
         height: 100%;
-        width: 4px;
+        width: 5px;
         border-radius: 3px;
       }
 
       .skin-name-content {
-        padding-inline: 10px;
+        padding-left: 12px;
         display: flex;
         flex-direction: column;
         align-items: center;
