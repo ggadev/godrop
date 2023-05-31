@@ -3,7 +3,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Link} from "react-router-dom";
 import '../../styles/pages/Collections/Collections.scss';
 import {Helmet} from "react-helmet";
-import UnderConstruction from "../../components/UnderConstruction/UnderConstruction.jsx";
+import CollectionCard from "../../components/CollectionCard.jsx";
+import '../../styles/pages/Collections.scss';
 
 function Collections() {
     return (
@@ -16,7 +17,9 @@ function Collections() {
                 <div className={'collections-wrapper container content'}>
                     <Link className={'go-back-link'} to={'/'}><FontAwesomeIcon icon={faAngleLeft} /> Go back</Link>
                     <h1 className={'page-header'}><FontAwesomeIcon icon={faKhanda} /> Collections</h1>
-                    <UnderConstruction pageType={'page'}></UnderConstruction>
+                    <div className="collections-list">
+                        <CollectionCard/>
+                    </div>
                 </div>
             </main>
         </div>

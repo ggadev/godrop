@@ -22,8 +22,8 @@ function App() {
             <Route element={<Layout/>}>
                 <Route path="/" element={<Home/>}></Route>
                 <Route path="/provably-fair" element={<ProvablyFair/>}></Route>
+                <Route path="/skinbase" element={<SkinBaseHome/>}></Route>
                 <Route element={<SkinBase/>}>
-                    <Route path="/skinbase" element={<SkinBaseHome/>}></Route>
                     <Route path="/skinbase/weapon/:weaponUrl" element={<SkinBaseListing/>}></Route>
                     <Route path="/skinbase/skin/:skinUrl" element={<SkinBaseSkin/>}></Route>
                 </Route>

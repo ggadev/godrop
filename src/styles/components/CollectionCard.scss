@@ -1,0 +1,42 @@
+@import '../variables';
+
+.collection-card {
+  width: 236px;
+  border-radius: 15px;
+  position: relative;
+  overflow: visible;
+  box-shadow: $box-shadow-1;
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+  }
+
+  .collection-name {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: $background-light;
+    padding: 8px 14px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid $border-color;
+    border-bottom: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .collection-price {
+    position: absolute;
+    top: 20px;
+    right: -36px;
+    transform: translateX(-50%);
+    background: $background-light;
+    padding: 10px 12px;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid $border-color;
+    border-right: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
