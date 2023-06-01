@@ -66,6 +66,29 @@
 
         .skin-name-weapon {
           align-self: start;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          align-items: center;
+
+          span {
+            font-size: 0.8rem;
+            margin-right: 10px;
+            color: #aaa;
+            animation: skinbase-skin-weapon-wear 0.3s ease forwards;
+            display: block;
+          }
+
+          @keyframes skinbase-skin-weapon-wear {
+            from {
+              transform: translateY(-10px);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
         }
 
         h3 {

@@ -9,10 +9,10 @@ import ScratchCards from "./pages/ScratchCards/ScratchCards.jsx";
 import LuckyShot from "./pages/LuckyShot/LuckyShot.jsx";
 import DailyFree from "./pages/DailyFree/DailyFree.jsx";
 import Giveaways from "./pages/Giveaways/Giveaways.jsx";
-import Collection from "./pages/Collections/Collection.jsx";
 import SkinBaseListing from "./pages/SkinBase/SkinBaseListing.jsx";
 import SkinBaseHome from "./pages/SkinBase/SkinBaseHome.jsx";
 import SkinBaseSkin from "./pages/SkinBase/SkinBaseSkin.jsx";
+import Collection from "./pages/Collection/Collection.jsx";
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
                     <Route path="/skinbase/skin/:skinUrl" element={<SkinBaseSkin/>}></Route>
                 </Route>
                 <Route path="/collections" element={<Collections/>}></Route>
-                <Route path="/collections/:url" element={<Collection/>}></Route>
+                <Route path="/collection/:url" element={<Collection/>}></Route>
                 <Route path="/upgrader" element={<Upgrader/>}></Route>
                 <Route path="/scratch-cards" element={<ScratchCards/>}></Route>
                 <Route path="/lucky-shot" element={<LuckyShot/>}></Route>

@@ -9,6 +9,7 @@ import {Helmet} from "react-helmet";
 function SkinBaseSkin() {
     const [skin, setSkin] = useState(null);
     const [currentIcon, setCurrentIcon] = useState(null);
+    const [currentWear, setCurrentWear] = useState(null);
 
     const { skinUrl } = useParams();
 
@@ -22,9 +23,9 @@ function SkinBaseSkin() {
             });
     }, [skinUrl])
 
-    function handleIconChange(e, icon) {
+    function handleWearChange(e, icon, wear) {
         setCurrentIcon(icon);
-        console.log(icon);
+        setCurrentWear(wear);
     }
 
     if(!skin) return;
@@ -42,15 +43,20 @@ function SkinBaseSkin() {
                         <div className={`skin-rarity ${skin.rarity_code} rarity-background`}></div>
                         <div className={'skin-name-content'}>
                             <div className={'skin-name-weapon'}>
-                                <h3>{skin.weapon_name}</h3>
-                                <h2>{skin.skin_name}</h2>
+                                <div className="col">
+                                    <h3>{skin.weapon_name}</h3>
+                                    <h2>{skin.skin_name}</h2>
+                                </div>
+                                <div className="col">
+                                    { currentWear && <span>{currentWear}</span>}
+                                </div>
                             </div>
                             <img src={currentIcon || skin.skin_img}/>
-                            <div className="inspect-buttons" onMouseLeave={e => handleIconChange(e, skin.skin_img)}>
+                            <div className="inspect-buttons" onMouseLeave={e => handleWearChange(e, skin.skin_img, null)}>
                                 {skin['wears'].map(wear => (
                                     <div key={wear.item_id}
                                          className="inspect-button"
-                                         onMouseEnter={e => handleIconChange(e, wear.item_image)}>
+                                         onMouseEnter={e => handleWearChange(e, wear.item_image, wear.wear_name)}>
                                         <span className={`wear-color ${wear.wear_abbr}`}>{wear.wear_abbr}</span>
                                     </div>
                                 ))}
