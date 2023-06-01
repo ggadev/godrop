@@ -1,5 +1,19 @@
+@import '../../variables';
+
 .skin-base-home {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  > p {
+    color: #ddd;
+    font-weight: 400;
+    font-size: 0.9rem;
+
+    span {
+      color: $primary;
+    }
+  }
 
   .weapon-category {
     .weapon-category-header {
@@ -16,7 +30,49 @@
         flex: 1;
         height: 2px;
         background: rgb(170,170,170);
-        background: linear-gradient(135deg, rgba(170,170,170,1) 0%, rgba(170,170,170,0) 90%);
+        background: linear-gradient(135deg, rgba(170,170,170,0.7) 0%, rgba(170,170,170,0) 90%);
+      }
+    }
+
+    .weapons-list {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-auto-rows: auto;
+      grid-gap: 10px;
+      width: 100%;
+      margin-top: 20px;
+
+      .weapon {
+        background: rgba(30, 29, 47, 0.5);
+        border: 1px solid rgba(255,255,255,.2);
+        border-radius: 15px;
+        padding: 20px 10px;
+        text-align: center;
+        backdrop-filter: blur(2px);
+        position: relative;
+        box-shadow: $box-shadow-1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .weapon-name {
+          font-weight: 600;
+          font-size: 0.9rem;
+          color: #fff;
+        }
+
+        .weapon-skins {
+          color: #ddd;
+          font-weight: 300;
+          margin-top: 3px;
+          font-size: 0.8rem;
+        }
+
+        img {
+          width: 85%;
+          padding-top: 5px;
+          filter: drop-shadow(0 0 15px rgba(0,0,0,.3));
+        }
       }
     }
   }

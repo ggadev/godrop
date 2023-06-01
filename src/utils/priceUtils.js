@@ -5,7 +5,7 @@ let exchangeRates = {
 }
 
 function formatPrice(price) {
-    const currency = localStorage.getItem('currency') || 'PLN';
+    const currency = localStorage.getItem('currency') || 'USD';
 
     price = (price*exchangeRates[currency]).toFixed(2);
     price = parseFloat(price);

@@ -45,7 +45,7 @@ function SkinBaseNav() {
                         {weaponType.weapons.map((weapon) => (
                             <Link to={`/skinbase/weapon/${weapon.weapon_url}`} className="submenu-link" key={weapon.weapon_id}>
                                 <div className={'weapon-data'}>
-                                    <img src={weapon.weapon_image}/>
+                                    <img src={weapon.weapon_icon}/>
                                     <span>{weapon.weapon_name}</span>
                                 </div>
                                 <div className={'weapon-skin-count'}>

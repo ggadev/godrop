@@ -1,9 +1,12 @@
 @import '../../variables';
 
 .collections {
-
   main {
     background-image: url('public/backgrounds/m4howl.jpg');
     position: relative;
+  }
+
+  .collections-list {
+    margin-top: 40px;
   }
 }
