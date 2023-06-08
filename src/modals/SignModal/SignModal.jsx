@@ -6,7 +6,7 @@ import SignIn from "./SignIn.jsx";
 import SignUp from "./SignUp.jsx";
 
 function SignModal({toggleModal}) {
-    const [signContent, setSignContent] = useState('signin');
+    const [signContent, setSignContent] = useState(window.location.hash);
 
     console.log(signContent);
 
@@ -32,8 +32,8 @@ function SignModal({toggleModal}) {
                         <img src={'/godroppromocode.jpg'}/>
                     </div>
                     <div className="content">
-                        {signContent === 'signin' && <SignIn switchSignContent={switchSignContent}/>}
-                        {signContent === 'signup' && <SignUp switchSignContent={switchSignContent}/>}
+                        {signContent === '#signin' && <SignIn switchSignContent={switchSignContent}/>}
+                        {signContent === '#signup' && <SignUp switchSignContent={switchSignContent}/>}
                     </div>
                     <div className="close-modal" onClick={toggleModal}>
                         <FontAwesomeIcon icon={faXmark} />

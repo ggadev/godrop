@@ -1,0 +1,86 @@
+.site-loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  transition: clip-path 2s ease 1s;
+
+  .loader-cover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(13, 12, 29, 1);
+    transition: opacity 1s ease;
+  }
+
+  &.loaded {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+
+    #line {
+      opacity: 0;
+    }
+    #logo {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      transform: scale(1);
+    }
+    .loader-cover {
+      opacity: 0;
+    }
+  }
+
+  .shadow {
+    position: fixed;
+    width: 200px;
+    aspect-ratio: 1/1;
+    background: rgb(13,12,29);
+    background: radial-gradient(circle, rgba(13,12,29,1) 20%, rgba(13,12,29,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .loader-container {
+    width: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #layer {
+    width: 100%;
+    filter: drop-shadow(0 0 8px rgba(61, 241, 171, 0.2));
+    overflow: visible;
+  }
+
+  #logo {
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    transform: scale(1.6);
+    transition: clip-path 0.5s ease, transform 0.5s ease;
+    transform-origin: center center;
+  }
+
+  #line {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: line 1s ease infinite;
+    transition: opacity 0.3s ease;
+  }
+
+  @keyframes line {
+    from {
+      stroke-dashoffset: 320;
+    }
+    to {
+      stroke-dashoffset: -320;
+    }
+  }
+
+  #line:hover {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash, faRightToBracket} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 function SignIn({switchSignContent}) {
 
@@ -38,7 +39,7 @@ function SignIn({switchSignContent}) {
                 <button type={'submit'}>Sign In</button>
             </form>
             <hr/>
-            <p>Not a member? <span onClick={() => {switchSignContent('signup')}}>Sign up now</span></p>
+            <p className={'sign-footer'}>Not a member? <Link to={'#signup'} className={'modal-link'} onClick={() => {switchSignContent('#signup')}}>Sign up now</Link></p>
         </div>
     );
 }

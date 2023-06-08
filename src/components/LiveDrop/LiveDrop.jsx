@@ -1,16 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../styles/components/LiveDrop/LiveDrop.scss';
 import {faAngleLeft, faCrown, faCubesStacked, faSatelliteDish, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import LiveDropItem from "./LiveDropItem.jsx";
 
 function LiveDrop() {
+    const [showLiveDrop, setShowLiveDrop] = useState(localStorage.getItem('showLiveDrop') || true);
+
+    function toggleShowLiveDrop() {
+        setShowLiveDrop(prevState => {
+            const body = document.querySelector('body');
+            if(!prevState)
+                body.classList.remove('live-drop-hidden')
+            else
+                body.classList.add('live-drop-hidden')
+            localStorage.setItem('showLiveDrop', !prevState);
+            return !prevState;
+        })
+    }
 
     return (
-        <div className={'livedrop'}>
+        <div className={'livedrop'} style={!showLiveDrop ? {marginLeft: '-160px'} : undefined}>
             <div className="livedrop-wrapper">
-                <div className="livedrop-switch">
-                    <FontAwesomeIcon icon={faAngleLeft} />
+                <div className="livedrop-switch" onClick={toggleShowLiveDrop}>
+                    <FontAwesomeIcon icon={faAngleLeft} style={!showLiveDrop ? {transform: 'scaleX(-1)'} : undefined}/>
                 </div>
                 <div className="livedrop-header">
                     <h4><FontAwesomeIcon icon={faSatelliteDish} /> LIVEDROP</h4>

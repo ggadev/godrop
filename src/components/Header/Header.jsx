@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faShieldHalved,
-    faBarcode,
     faKhanda,
     faCircleNotch,
     faCopy,
@@ -12,22 +11,39 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import {formatPrice} from "../../utils/priceUtils.js";
 import SignModal from "../../modals/SignModal/SignModal.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function Header() {
-    const [showSignModal, setShowSignModal] = useState(false);
+    const [showSignModal, setShowSignModal] = useState(
+        window.location.hash.includes('signin') || window.location.hash.includes('signup')
+    );
     const location = useLocation();
 
     function toggleShowSignModal() {
+        if(showSignModal)
+            window.location.hash = '';
         setShowSignModal(prevState => !prevState);
     }
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    useEffect(() => {
+        function handleScroll() {
+            const position = window.scrollY > 44 ? 44 : window.scrollY;
+            setScrollPosition(position);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const isActive = (path) => location.pathname === path ? 'active' : '';
 
     return (
         <>
             <div className="header-filler"></div>
-            <header>
+            <header style={{ marginTop: `${scrollPosition*-1}px` }}>
                 <div className='header-top'>
                     <div className='header-top-wrapper container'>
                         <ul>
