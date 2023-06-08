@@ -10,9 +10,17 @@ import {
     faSuitcase,
     faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass, faGear
 } from '@fortawesome/free-solid-svg-icons'
+import {formatPrice} from "../../utils/priceUtils.js";
+import SignModal from "../../modals/SignModal/SignModal.jsx";
+import {useState} from "react";
 
 function Header() {
+    const [showSignModal, setShowSignModal] = useState(false);
     const location = useLocation();
+
+    function toggleShowSignModal() {
+        setShowSignModal(prevState => !prevState);
+    }
 
     const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -36,9 +44,10 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`/skinbase`} title={'Settings'}>
+                                <Link to={`#signin`} title={'Settings'} onClick={toggleShowSignModal}>
                                     <FontAwesomeIcon icon={faGear} />
                                 </Link>
+                                {showSignModal && <SignModal toggleModal={toggleShowSignModal}></SignModal>}
                             </li>
                         </ul>
                     </div>
@@ -60,7 +69,7 @@ function Header() {
                             <div className="wallet">
                                 <div className="col">
                                     <div className="row wallet-text">Your wallet</div>
-                                    <div className="row wallet-balance">💸 130.72 USD</div>
+                                    <div className="row wallet-balance">💸 {formatPrice(130.72)}</div>
                                 </div>
                                 <div className="col">
                                     <Link to={'/'} className={'refil-link'}>Refill</Link>

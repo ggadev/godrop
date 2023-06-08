@@ -27,6 +27,10 @@ body {
   background: $background-dark;
   color: #fff;
   padding-left: 160px;
+
+  &.lock-scroll {
+    overflow: hidden;
+  }
 }
 
 main {

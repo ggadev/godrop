@@ -32,10 +32,10 @@ function ProvablyFair() {
                         </p>
                         <p>The result is calculated based on these values immediately prior to the start of each draw,
                             so the player can check the fairness of the draw immediately after opening a case.</p>
+                        <p>Opening a case uses 2 nonce numbers - first for drawing the skin, second for drawing the skin float.</p>
                         <p>Secret Salt is an additional value used only in encrypting the public hash.</p>
                         <p>You will receive an encrypted server seed hash before opening a case. The initial and final hash
                             values will be identical, which will prove that the website has no influence on the final results of the draw.</p>
-                        <p>More information about the Provably Fair system can be found at <a href={`https://dicesites.com/provably-fair`}>https://dicesites.com/provably-fair</a></p>
                     </div>
                 </div>
             </main>

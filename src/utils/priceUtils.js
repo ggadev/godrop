@@ -10,7 +10,7 @@ function formatPrice(price) {
     price = (price*exchangeRates[currency]).toFixed(2);
     price = parseFloat(price);
 
-    return price.toLocaleString('en-US', {
+    return "v"+price.toLocaleString('en-US', {
         style: 'currency',
         currency,
         currencyDisplay: 'symbol',

@@ -1,11 +1,10 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import '../../styles/pages/SkinBase/SkinBaseHome.scss';
 import axios from "axios";
-import {Link, Outlet} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faDatabase} from "@fortawesome/free-solid-svg-icons";
-import SkinBaseNav from "./SkinBaseNav.jsx";
 
 function SkinBaseHome() {
     const [weaponTypes, setWeaponTypes] = useState(null);
@@ -20,7 +19,6 @@ function SkinBaseHome() {
                 x += weapon.skin_count;
             }
         }
-        console.log(x);
         return x;
     }
 
