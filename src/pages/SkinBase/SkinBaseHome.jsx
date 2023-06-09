@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faDatabase} from "@fortawesome/free-solid-svg-icons";
+import {API_URL} from "../../data/variables.js";
 
 function SkinBaseHome() {
     const [weaponTypes, setWeaponTypes] = useState(null);
@@ -23,7 +24,7 @@ function SkinBaseHome() {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3001/skinbase/weapons')
+        axios.get(`${API_URL}/skinbase/weapons`)
             .then(res => {
                 setWeaponTypes(res.data);
             })

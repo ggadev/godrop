@@ -6,6 +6,7 @@ import {formatPrice} from "../../utils/priceUtils.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import {Helmet} from "react-helmet";
+import {API_URL} from "../../data/variables.js";
 
 function SkinBaseListing() {
     const [skins, setSkins] = useState(null);
@@ -16,7 +17,7 @@ function SkinBaseListing() {
     const { weaponUrl } = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/skinbase/skins/${weaponUrl}`)
+        axios.get(`${API_URL}/skinbase/skins/${weaponUrl}`)
             .then(res => {
                 setSkins(res.data);
             })

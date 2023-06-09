@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {formatDate} from "../../utils/dateUtils.js";
 import {Helmet} from "react-helmet";
+import {API_URL} from "../../data/variables.js";
 
 function SkinBaseSkin() {
     const [skin, setSkin] = useState(null);
@@ -14,7 +15,7 @@ function SkinBaseSkin() {
     const { skinUrl } = useParams();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/skinbase/skin/${skinUrl}`)
+        axios.get(`${API_URL}/skinbase/skin/${skinUrl}`)
             .then(res => {
                 setSkin(res.data);
             })

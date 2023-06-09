@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import '../../styles/pages/SkinBase/SkinBaseNav.scss';
 import axios from 'axios';
+import {API_URL} from "../../data/variables.js";
 
 function SkinBaseNav() {
     const [weaponTypes, setWeaponTypes] = useState(null);
@@ -12,7 +13,7 @@ function SkinBaseNav() {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:3001/skinbase/weapons')
+        axios.get(`${API_URL}/skinbase/weapons`)
             .then(res => {
                 setWeaponTypes(res.data);
             })
