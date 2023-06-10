@@ -1,0 +1,97 @@
+.notification {
+  animation: notification-in-animation 0.5s ease;
+
+  @keyframes notification-in-animation {
+    from {
+      transform: translateY(130px);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  &.success {
+    .icon {
+      background: rgba(67, 234, 128, 0.22);
+      color: #43EA80;
+      border: 2px solid #43EA80;
+    }
+  }
+
+  &.error {
+    .icon {
+      background: rgba(234, 67, 67, 0.22);
+      color: #ea4343;
+      border: 2px solid #ea4343;
+    }
+  }
+
+  .notification-wrapper {
+    background: rgba(7, 6, 16, 0.8);
+    border: 1px solid #1e1d2f;
+    padding: 20px 20px 22px 20px;
+    backdrop-filter: blur(2px);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,.5);
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .icon {
+      width: 55px;
+      aspect-ratio: 1/1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      border-radius: 100%;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 200px;
+
+      .title {
+
+      }
+
+      .desc {
+        font-weight: 300;
+        color: #ccc;
+        font-size: 0.8rem;
+      }
+    }
+
+    .close {
+      color: #aaa;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .indicator {
+      position: absolute;
+      left: 0;
+      margin-inline: 10px;
+      bottom: 4px;
+      height: 2px;
+      background: rgba(255,255,255,.2);
+      border-radius: 2px;
+      width: 0;
+      animation: notification-indicator 8s linear;
+    }
+
+    @keyframes notification-indicator {
+      from {
+        width: 0;
+      }
+      to {
+        width: calc(100% - 20px);
+      }
+    }
+  }
+}

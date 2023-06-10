@@ -13,30 +13,33 @@ import SkinBaseListing from "./pages/SkinBase/SkinBaseListing.jsx";
 import SkinBaseHome from "./pages/SkinBase/SkinBaseHome.jsx";
 import SkinBaseSkin from "./pages/SkinBase/SkinBaseSkin.jsx";
 import Collection from "./pages/Collection/Collection.jsx";
+import {NotificationProvider} from "./contexts/NotificationContext.jsx";
 
 function App() {
 
   return (
-    <BrowserRouter>
-        <Routes>
-            <Route element={<Layout/>}>
-                <Route path="/" element={<Home/>}></Route>
-                <Route path="/provably-fair" element={<ProvablyFair/>}></Route>
-                <Route path="/skinbase" element={<SkinBaseHome/>}></Route>
-                <Route element={<SkinBase/>}>
-                    <Route path="/skinbase/weapon/:weaponUrl" element={<SkinBaseListing/>}></Route>
-                    <Route path="/skinbase/skin/:skinUrl" element={<SkinBaseSkin/>}></Route>
-                </Route>
-                <Route path="/collections" element={<Collections/>}></Route>
-                <Route path="/collection/:url" element={<Collection/>}></Route>
-                <Route path="/upgrader" element={<Upgrader/>}></Route>
-                <Route path="/scratch-cards" element={<ScratchCards/>}></Route>
-                <Route path="/lucky-shot" element={<LuckyShot/>}></Route>
-                <Route path="/daily-free" element={<DailyFree/>}></Route>
-                <Route path="/giveaways" element={<Giveaways/>}></Route>
-            </Route>
-        </Routes>
-    </BrowserRouter>
+      <NotificationProvider>
+          <BrowserRouter>
+              <Routes>
+                  <Route element={<Layout/>}>
+                      <Route path="/" element={<Home/>}></Route>
+                      <Route path="/provably-fair" element={<ProvablyFair/>}></Route>
+                      <Route path="/skinbase" element={<SkinBaseHome/>}></Route>
+                      <Route element={<SkinBase/>}>
+                          <Route path="/skinbase/weapon/:weaponUrl" element={<SkinBaseListing/>}></Route>
+                          <Route path="/skinbase/skin/:skinUrl" element={<SkinBaseSkin/>}></Route>
+                      </Route>
+                      <Route path="/collections" element={<Collections/>}></Route>
+                      <Route path="/collection/:url" element={<Collection/>}></Route>
+                      <Route path="/upgrader" element={<Upgrader/>}></Route>
+                      <Route path="/scratch-cards" element={<ScratchCards/>}></Route>
+                      <Route path="/lucky-shot" element={<LuckyShot/>}></Route>
+                      <Route path="/daily-free" element={<DailyFree/>}></Route>
+                      <Route path="/giveaways" element={<Giveaways/>}></Route>
+                  </Route>
+              </Routes>
+          </BrowserRouter>
+      </NotificationProvider>
   )
 }
 

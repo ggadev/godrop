@@ -1,10 +1,14 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faRightToBracket} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import {API_URL} from "../../data/variables.js";
+import axios from "axios";
+import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 
 function SignUp({switchSignContent}) {
     const searchParams = new URLSearchParams(location.search);
+    const [error, setError] = useState(null);
 
     const [formData, setFormData] = useState({
         bak: searchParams.get('bak') || '',
@@ -14,6 +18,29 @@ function SignUp({switchSignContent}) {
         repeatPassword: ''
     })
 
+    const addNotification = useAddNotification();
+
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        axios.post(`${API_URL}/auth/signup`, formData)
+            .then(res => {
+                console.log(res.data);
+                addNotification({title: 'Signed Up', desc: 'Check your email to activate your account.', status: 'success'});
+                setFormData({
+                    bak: '',
+                    username: '',
+                    email: '',
+                    password: '',
+                    repeatPassword: ''
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                const errorMessage = err.response.data.error;
+                addNotification({title: 'Error', desc: errorMessage, status: 'error'});
+            });
+    }
 
     function handleInputChange(e) {
         const { name, value } = e.target;
@@ -31,7 +58,7 @@ function SignUp({switchSignContent}) {
                     <p>Closed beta! Sign up only with beta access key.</p>
                 </div>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="input-group">
                     <input name={'bak'}
                            className={'input-field'}
@@ -39,7 +66,7 @@ function SignUp({switchSignContent}) {
                            id={'input-beta-access-key'}
                            placeholder={'Username / Email'}
                            value={formData.bak}
-                           onChange={handleInputChange}/>
+                           onChange={handleInputChange} required/>
                     <label htmlFor={'input-beta-access-key'} className={'input-label'}>Beta Access Key</label>
                     <div className="input-hint right">
                         Individual BAK provided by the site owner
@@ -53,7 +80,7 @@ function SignUp({switchSignContent}) {
                                id={'input-username'}
                                placeholder={'Username / Email'}
                                value={formData.username}
-                               onChange={handleInputChange}/>
+                               onChange={handleInputChange} required/>
                         <label htmlFor={'input-username'} className={'input-label'}>Username</label>
                         <div className="input-hint left">
                             Consists only of letters and numbers (3-15)
@@ -66,7 +93,7 @@ function SignUp({switchSignContent}) {
                                id={'input-username'}
                                placeholder={'Email'}
                                value={formData.email}
-                               onChange={handleInputChange}/>
+                               onChange={handleInputChange} required/>
                         <label htmlFor={'input-username'} className={'input-label'}>Email</label>
                         <div className="input-hint right">
                             Your valid e-mail address
@@ -79,7 +106,7 @@ function SignUp({switchSignContent}) {
                                id={'input-password'}
                                placeholder={'Password'}
                                value={formData.password}
-                               onChange={handleInputChange}/>
+                               onChange={handleInputChange} required/>
                         <label htmlFor={'input-password'} className={'input-label'}>Password</label>
                         <div className="input-hint left">
                             Consists of letters, numbers and special characters (8-40)
@@ -92,7 +119,7 @@ function SignUp({switchSignContent}) {
                                id={'input-repeat-password'}
                                placeholder={'Repeat Password'}
                                value={formData.repeatPassword}
-                               onChange={handleInputChange}/>
+                               onChange={handleInputChange} required/>
                         <label htmlFor={'input-repeat-password'} className={'input-label'}>Repeat Password</label>
                         <div className="input-hint right">
                             Repeat your password
