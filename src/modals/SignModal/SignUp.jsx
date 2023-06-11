@@ -54,7 +54,7 @@ function SignUp({switchSignContent}) {
         <div className={'content-wrapper'}>
             <div className="content-header">
                 <div className="col">
-                    <h2>Sign Up <FontAwesomeIcon icon={faRightToBracket}/></h2>
+                    <h2><FontAwesomeIcon icon={faRightToBracket}/> Sign Up</h2>
                     <p>Closed beta! Sign up only with beta access key.</p>
                 </div>
             </div>
@@ -126,10 +126,10 @@ function SignUp({switchSignContent}) {
                         </div>
                     </div>
                 </div>
-                <button type={'submit'}>Sign In</button>
+                <button type={'submit'}>Sign Up</button>
             </form>
             <hr/>
-            <p className={'sign-footer'}>Already a member? <Link to={'#signin'} className={'modal-link'} onClick={() => {switchSignContent('#signin')}}>Sign in</Link></p>
+            <p className={'sign-footer'}>Already a member? <Link to={'#login'} className={'modal-link'} onClick={() => {switchSignContent('#login')}}>Login</Link></p>
         </div>
     );
 }

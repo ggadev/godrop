@@ -21,6 +21,10 @@ function Notifications() {
         setNotifications(prevState => prevState ? [...prevState, notData] : [notData]);
     }
 
+    useEffect(() => {
+        addNotification({title:'Hint',desc:'You can change your avatar in your account settings.',status:'alert'});
+    }, [])
+
     return (
         <div className={'notifications'}>
             {notifications && notifications.map(not => (

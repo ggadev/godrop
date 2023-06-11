@@ -9,7 +9,7 @@ function ProvablyFair() {
         <div className={'provably-fair'}>
             <main>
                 <Helmet>
-                    <title>GOdrop - Provably Fair Algorithm</title>
+                    <title>Provably Fair Algorithm | GOdrop</title>
                     <meta name="description" content="My page description" />
                 </Helmet>
                 <div className={'provably-fair-wrapper container content'}>

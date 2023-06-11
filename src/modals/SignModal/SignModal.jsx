@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../../styles/modals/SignModal/SignInModal.scss';
 import {faEye, faEyeSlash, faRightToBracket, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import SignIn from "./SignIn.jsx";
+import Login from "./Login.jsx";
 import SignUp from "./SignUp.jsx";
 
 function SignModal({toggleModal}) {
@@ -32,7 +32,7 @@ function SignModal({toggleModal}) {
                         <img src={'/godroppromocode.jpg'}/>
                     </div>
                     <div className="content">
-                        {signContent === '#signin' && <SignIn switchSignContent={switchSignContent}/>}
+                        {signContent === '#login' && <Login switchSignContent={switchSignContent}/>}
                         {signContent === '#signup' && <SignUp switchSignContent={switchSignContent}/>}
                     </div>
                     <div className="close-modal" onClick={toggleModal}>

@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye, faEyeSlash, faRightToBracket} from "@fortawesome/free-solid-svg-icons";
+import {faEye, faEyeSlash, faRightToBracket, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 
-function SignIn({switchSignContent}) {
+function Login({switchSignContent}) {
     const searchParams = new URLSearchParams(location.search);
     const verifyCode = searchParams.get('verify');
     const addNotification = useAddNotification();
@@ -60,7 +60,7 @@ function SignIn({switchSignContent}) {
         <div className={'content-wrapper'}>
             <div className="content-header">
                 <div className="col">
-                    <h2>Sign In <FontAwesomeIcon icon={faRightToBracket}/></h2>
+                    <h2><FontAwesomeIcon icon={faUser}/> Login</h2>
                     <p>Welcome back! You've been missed.</p>
                 </div>
             </div>
@@ -89,7 +89,7 @@ function SignIn({switchSignContent}) {
                         <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
                     </div>
                 </div>
-                <button type={'submit'}>Sign In</button>
+                <button type={'submit'}>Login</button>
             </form>
             <hr/>
             <p className={'sign-footer'}>Not a member? <Link to={'#signup'} className={'modal-link'} onClick={() => {switchSignContent('#signup')}}>Sign up now</Link></p>
@@ -97,4 +97,4 @@ function SignIn({switchSignContent}) {
     );
 }
 
-export default SignIn;
+export default Login;

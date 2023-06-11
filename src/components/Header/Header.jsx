@@ -7,15 +7,19 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass, faGear
+    faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass, faGear, faUser, faRightToBracket
 } from '@fortawesome/free-solid-svg-icons'
 import {formatPrice} from "../../utils/priceUtils.js";
 import SignModal from "../../modals/SignModal/SignModal.jsx";
 import {useEffect, useState} from "react";
+import SettingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
 
 function Header() {
     const [showSignModal, setShowSignModal] = useState(
-        window.location.hash.includes('signin') || window.location.hash.includes('signup')
+        window.location.hash.includes('login') || window.location.hash.includes('signup')
+    );
+    const [showSettingsModal, setShowSettingsModal] = useState(
+        window.location.hash.includes('settings')
     );
     const location = useLocation();
 
@@ -23,6 +27,11 @@ function Header() {
         if(showSignModal)
             window.location.hash = '';
         setShowSignModal(prevState => !prevState);
+    }
+    function toggleShowSettingsModal() {
+        if(showSettingsModal)
+            window.location.hash = '';
+        setShowSettingsModal(prevState => !prevState);
     }
 
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -42,6 +51,8 @@ function Header() {
 
     return (
         <>
+            {showSignModal && <SignModal toggleModal={toggleShowSignModal}></SignModal>}
+            {showSettingsModal && <SettingsModal toggleModal={toggleShowSettingsModal}></SettingsModal>}
             <div className="header-filler"></div>
             <header style={{ marginTop: `${scrollPosition*-1}px` }}>
                 <div className='header-top'>
@@ -60,10 +71,9 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`#signin`} title={'Settings'} onClick={toggleShowSignModal}>
+                                <Link to={`#settings`} title={'Settings'} onClick={toggleShowSettingsModal}>
                                     <FontAwesomeIcon icon={faGear} />
                                 </Link>
-                                {showSignModal && <SignModal toggleModal={toggleShowSignModal}></SignModal>}
                             </li>
                         </ul>
                     </div>
@@ -82,26 +92,12 @@ function Header() {
                             </div>
                         </div>
                         <div className="header-right">
-                            <div className="wallet">
-                                <div className="col">
-                                    <div className="row wallet-text">Your wallet</div>
-                                    <div className="row wallet-balance">💸 {formatPrice(130.72)}</div>
-                                </div>
-                                <div className="col">
-                                    <Link to={'/'} className={'refil-link'}>Refill</Link>
-                                </div>
-                            </div>
-                            <div className="inventory">
-                                <FontAwesomeIcon icon={faBoxesStacked}  />
-                            </div>
-                            <div className="account">
-                                <div className="avatar">
-                                    <img src={'/testavatar.webp'}/>
-                                </div>
-                                <div className="actions">
-                                    <FontAwesomeIcon icon={faCaretDown}  />
-                                </div>
-                            </div>
+                            <Link to={`#login`} className="login-button" onClick={toggleShowSignModal}>
+                                <FontAwesomeIcon icon={faUser} /> Login
+                            </Link>
+                            <Link to={`#signup`} className="sign-up-button" onClick={toggleShowSignModal}>
+                                <FontAwesomeIcon icon={faRightToBracket} /> Sign Up
+                            </Link>
                         </div>
                     </div>
                     <div className='header-games container'>

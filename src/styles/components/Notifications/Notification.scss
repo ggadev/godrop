@@ -26,6 +26,14 @@
     }
   }
 
+  &.alert {
+    .icon {
+      background: rgba(234, 181, 67, 0.22);
+      color: #eab543;
+      border: 2px solid #eab543;
+    }
+  }
+
   .notification-wrapper {
     background: rgba(7, 6, 16, 0.8);
     border: 1px solid #1e1d2f;

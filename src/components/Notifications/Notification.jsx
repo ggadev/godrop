@@ -1,11 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faExclamation, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faBell, faCheck, faExclamation, faLightbulb, faXmark} from "@fortawesome/free-solid-svg-icons";
 import '../../styles/components/Notifications/Notification.scss';
 
 function Notification(props) {
     const [isActive, setIsActive] = useState(true);
     const {title, desc, status} = props;
+
+    let icon;
+    switch (status) {
+        case 'success':
+            icon = faCheck;
+            break;
+        case 'error':
+            icon = faExclamation;
+            break;
+        case 'alert':
+            icon = faLightbulb;
+            break;
+    }
 
     function setInactive() {
         setIsActive(false);
@@ -25,7 +38,7 @@ function Notification(props) {
         <div className={`notification ${status}`}>
             <div className="notification-wrapper">
                 <div className="icon">
-                    <FontAwesomeIcon icon={status === 'success' ? faCheck : faExclamation} />
+                    <FontAwesomeIcon icon={icon} />
                 </div>
                 <div className="details">
                     <div className="title">{title}</div>
