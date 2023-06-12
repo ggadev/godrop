@@ -1,0 +1,159 @@
+.home-banner {
+  width: 100%;
+  height: 650px;
+  background: url("/howling-fury-background.jpg") center center;
+  background-size: cover;
+  position: relative;
+
+  .cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 6, 16, 0.6);
+    z-index: 1;
+  }
+
+  .separator {
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    background: rgb(7,6,16);
+    background: linear-gradient(0deg, rgba(7,6,16,1) 0%, rgba(7,6,16,0) 100%);
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .home-banner-content {
+    padding-top: 70px;
+    display: flex;
+    position: relative;
+    z-index: 2;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+
+    .details {
+      .title {
+        font-size: 1.8rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      .name {
+        font-size: 4rem;
+        font-weight: 700;
+      }
+
+      .possible-items {
+        margin-top: 10px;
+        width: 500px;
+        height: 110px;
+        overflow: hidden;
+        position: relative;
+
+        > span {
+          font-size: 1.2rem;
+          font-weight: 300;
+        }
+
+        .possible-items-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          gap: 50px;
+          padding-left: 20px;
+          margin-top: 20px;
+          width: fit-content;
+          padding-bottom: 50px;
+          animation: possible-items-animation 8s linear infinite;
+        }
+
+        @keyframes possible-items-animation {
+          from {
+            left: 0;
+          }
+          to {
+            left: -540px;
+          }
+        }
+      }
+
+      .col-price {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row-reverse;
+
+        .col-price-container {
+          padding: 10px 10px 10px 16px;
+          background: #1e1d2f;
+          border-radius: 10px;
+          border: 1px solid #302f3f;
+          box-shadow: 0 10px 30px -10px rgba(0,0,0,.5);
+          width: fit-content;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          .price {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 3px;
+          }
+
+          .show {
+            background: rgba(67, 234, 128, 0.22);
+            color: #43EA80;
+            font-weight: 500;
+            padding: 6px 10px 3px 10px;
+            border-radius: 6px;
+            border: 2px solid #43EA80;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+
+    .card-container {
+      display: flex;
+      align-items: center;
+      perspective: 800px;
+
+      .card {
+        transform: rotate3d(0, 1, 0, 20deg);
+        transition: transform 0.5s ease;
+
+        &:nth-child(1) {
+          transform: scale(0.8) rotate3d(0, 1, 0, 20deg);
+        }
+
+        &:nth-child(2) {
+          transform: scale(0.9) rotate3d(0, 1, 0, 20deg);
+        }
+
+        &:not(:first-child) {
+          margin-left: -180px;
+        }
+
+        &:last-child {
+          &:hover {
+            transform: rotate3d(0, 1, 0, 5deg) scale(1.1);
+
+            img {
+              box-shadow: -20px 0 30px -10px rgba(0, 0, 0, .3);
+            }
+          }
+        }
+
+        img {
+          transition: box-shadow 0.5s ease;
+          width: 230px;
+          border-radius: 10px;
+          box-shadow: -20px 0 30px 0px rgba(0, 0, 0, .3);
+        }
+      }
+    }
+  }
+}

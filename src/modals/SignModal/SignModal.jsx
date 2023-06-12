@@ -32,7 +32,7 @@ function SignModal({toggleModal}) {
                         <img src={'/godroppromocode.jpg'}/>
                     </div>
                     <div className="content">
-                        {signContent === '#login' && <Login switchSignContent={switchSignContent}/>}
+                        {signContent === '#login' && <Login switchSignContent={switchSignContent} toggleModal={toggleModal}/>}
                         {signContent === '#signup' && <SignUp switchSignContent={switchSignContent}/>}
                     </div>
                     <div className="close-modal" onClick={toggleModal}>

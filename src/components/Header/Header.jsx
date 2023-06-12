@@ -7,32 +7,36 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun, faDatabase, faBoxesStacked, faCaretDown, faMagnifyingGlass, faGear, faUser, faRightToBracket
+    faGift, faGun, faDatabase, faMagnifyingGlass, faGear
 } from '@fortawesome/free-solid-svg-icons'
-import {formatPrice} from "../../utils/priceUtils.js";
 import SignModal from "../../modals/SignModal/SignModal.jsx";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import SettingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
+import AuthContext from "../../contexts/AuthContext.jsx";
+import HeaderAccount from "./HeaderAccount.jsx";
+import HeaderAccountLogin from "./HeaderAccountLogin.jsx";
 
 function Header() {
     const [showSignModal, setShowSignModal] = useState(
         window.location.hash.includes('login') || window.location.hash.includes('signup')
     );
-    const [showSettingsModal, setShowSettingsModal] = useState(
-        window.location.hash.includes('settings')
-    );
-    const location = useLocation();
-
     function toggleShowSignModal() {
         if(showSignModal)
             window.location.hash = '';
         setShowSignModal(prevState => !prevState);
     }
+
+    const [showSettingsModal, setShowSettingsModal] = useState(
+        window.location.hash.includes('settings')
+    );
     function toggleShowSettingsModal() {
         if(showSettingsModal)
             window.location.hash = '';
         setShowSettingsModal(prevState => !prevState);
     }
+
+    const location = useLocation();
+    const { user } = useContext(AuthContext);
 
     const [scrollPosition, setScrollPosition] = useState(0);
     useEffect(() => {
@@ -92,12 +96,7 @@ function Header() {
                             </div>
                         </div>
                         <div className="header-right">
-                            <Link to={`#login`} className="login-button" onClick={toggleShowSignModal}>
-                                <FontAwesomeIcon icon={faUser} /> Login
-                            </Link>
-                            <Link to={`#signup`} className="sign-up-button" onClick={toggleShowSignModal}>
-                                <FontAwesomeIcon icon={faRightToBracket} /> Sign Up
-                            </Link>
+                            { user ? <HeaderAccount/> : <HeaderAccountLogin toggleModal={toggleShowSignModal}/>}
                         </div>
                     </div>
                     <div className='header-games container'>

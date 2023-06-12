@@ -66,5 +66,92 @@
 
   .actions {
     color: #fff;
+    position: relative;
+
+    > svg {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+
+      &.active {
+        transform: rotate(180deg);
+      }
+    }
+
+    .actions-container{
+      position: absolute;
+      top: 20px;
+      right: 0;
+      background: $background-light;
+      padding: 14px 18px;
+      width: 240px;
+      z-index: 1;
+      border: 1px solid $border-color;
+      border-radius: 12px 0 12px 12px;
+      box-shadow: $box-shadow-1;
+      transform-origin: center top;
+      transform: scaleY(0);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+
+      &.active {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+
+      .actions-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 40px;
+          border-radius: 100%;
+        }
+
+        .username {
+          font-weight: 600;
+        }
+
+        .balance {
+          font-size: 0.8rem;
+          color: #aaa;
+          font-weight: 300;
+        }
+      }
+
+      .actions-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+        border-top: 1px solid $border-color;
+        padding-top: 14px;
+
+        .action {
+          font-size: 1rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          cursor: pointer;
+
+          &:hover {
+            .icon {
+              color: $primary;
+            }
+          }
+
+          .icon {
+            color: #818181;
+            transition: color 0.3s ease;
+            min-width: 20px;
+            text-align: center;
+          }
+
+          .name {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
   }
 }

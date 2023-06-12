@@ -1,0 +1,11 @@
+.home-collections {
+  padding-top: 20px;
+  margin-top: -80px;
+  padding-bottom: 100px;
+  position: relative;
+  z-index: 2;
+  .collections-list {
+    display: flex;
+    gap: 30px;
+  }
+}

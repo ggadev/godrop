@@ -79,6 +79,14 @@ $wears: (
   }
 }
 
+.rarity-border-bot-20 {
+  @each $rarity, $color in $rarities {
+    &.#{$rarity} {
+      @include rarity-gradient($color, 0.20, 0deg, 0%, 90%);
+    }
+  }
+}
+
 .wear-color {
   @each $wear, $color in $wears {
     &.#{$wear} {

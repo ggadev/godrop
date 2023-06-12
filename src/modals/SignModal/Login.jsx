@@ -1,15 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash, faRightToBracket, faUser} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
+import AuthContext from "../../contexts/AuthContext.jsx";
 
-function Login({switchSignContent}) {
+function Login({switchSignContent, toggleModal}) {
     const searchParams = new URLSearchParams(location.search);
     const verifyCode = searchParams.get('verify');
     const addNotification = useAddNotification();
+
+    const { login } = useContext(AuthContext);
+
     useEffect(() => {
         if(verifyCode) {
             axios.post(`${API_URL}/auth/verify`, {verificationCode: verifyCode})
@@ -46,8 +50,10 @@ function Login({switchSignContent}) {
 
         axios.post(`${API_URL}/auth/signin`, formData)
             .then(res => {
-                console.log(res.data);
                 addNotification({title: 'Welcome back!', desc: "You've signed in successfully.", status: 'success'});
+                toggleModal();
+                console.log(res.data);
+                login(res.data);
             })
             .catch(err => {
                 console.error(err);
