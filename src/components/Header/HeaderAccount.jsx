@@ -6,7 +6,7 @@ import {
     faBarcode,
     faBoxesStacked,
     faCaretDown,
-    faCreditCard,
+    faCreditCard, faReceipt,
     faRightFromBracket,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
@@ -79,6 +79,14 @@ function HeaderAccount() {
                                 </div>
                                 <div className="name">
                                     Promo Code
+                                </div>
+                            </div>
+                            <div className="action">
+                                <div className="icon">
+                                    <FontAwesomeIcon icon={faReceipt} />
+                                </div>
+                                <div className="name">
+                                    Transactions
                                 </div>
                             </div>
                         </div>

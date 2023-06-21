@@ -15,11 +15,13 @@ import SettingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import HeaderAccount from "./HeaderAccount.jsx";
 import HeaderAccountLogin from "./HeaderAccountLogin.jsx";
+import useScrollPosition from "../../hooks/useScrollPosition.jsx";
 
 function Header() {
     const [showSignModal, setShowSignModal] = useState(
         window.location.hash.includes('login') || window.location.hash.includes('signup')
     );
+
     function toggleShowSignModal() {
         if(showSignModal)
             window.location.hash = '';
@@ -38,18 +40,8 @@ function Header() {
     const location = useLocation();
     const { user } = useContext(AuthContext);
 
-    const [scrollPosition, setScrollPosition] = useState(0);
-    useEffect(() => {
-        function handleScroll() {
-            const position = window.scrollY > 44 ? 44 : window.scrollY;
-            setScrollPosition(position);
-        }
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    const scrollY = useScrollPosition();
+    const newPos = scrollY*0.5*-1 > -44 ? scrollY*0.5*-1 : -44;
 
     const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -58,7 +50,7 @@ function Header() {
             {showSignModal && <SignModal toggleModal={toggleShowSignModal}></SignModal>}
             {showSettingsModal && <SettingsModal toggleModal={toggleShowSettingsModal}></SettingsModal>}
             <div className="header-filler"></div>
-            <header style={{ marginTop: `${scrollPosition*-1}px` }}>
+            <header style={{ marginTop: `${newPos}px` }}>
                 <div className='header-top'>
                     <div className='header-top-wrapper container'>
                         <ul>

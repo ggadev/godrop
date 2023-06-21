@@ -1,0 +1,194 @@
+@import '../../variables';
+
+.drop-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background: rgba(7, 6, 16, 0.9);
+  border-radius: 15px;
+  box-shadow: $box-shadow-1;
+  animation: modal-animate-in 0.5s ease;
+
+  @keyframes modal-animate-in {
+    from {
+      transform: translate(-50%, -50%) skewY(10deg) scale(0.7);
+      opacity: 0;
+    }
+    to {
+      transform: translate(-50%, -50%) skewY(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  .drop-modal-wrapper {
+    position: relative;
+    display: flex;
+
+    .drop-modal-content {
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 15px;
+      padding: 30px 30px 30px 30px;
+
+      .drop-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .drop-verify {
+          font-size: 0.7rem;
+
+          svg {
+            margin-right: 2px;
+          }
+        }
+
+        .drop-chance {
+          font-size: 0.7rem;
+          font-weight: 400;
+          color: #ddd;
+          text-align: right;
+        }
+      }
+
+      .drop-actions {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 28px;
+        gap: 8px;
+
+        .drop-sell {
+          width: 100%;
+        }
+      }
+
+      .drop-detail {
+        font-size: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: -20px;
+
+        .weapon {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #fff;
+        }
+
+        .skin {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #fff;
+          background: #1e1d2f;
+          display: block;
+          width: fit-content;
+          padding: 8px 16px;
+          border-radius: 5px;
+          margin-top: -4px;
+        }
+
+        .wear {
+          font-size: 0.9rem;
+          font-weight: 300;
+          color: #aaa;
+          margin-top: 6px;
+        }
+
+        .price {
+          color: #6ea95a;
+          margin-top: 10px;
+          font-weight: 600;
+        }
+      }
+
+      .drop-image {
+        width: 280px;
+        aspect-ratio: 1/1;
+        position: relative;
+        transform: scale(1);
+        margin-top: -20px;
+        pointer-events: none;
+
+        img {
+          position: absolute;
+          width: 92%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          filter: $filter-shadow;
+        }
+
+        .gradient {
+          width: 100%;
+          height: 100%;
+          opacity: 0.05;
+          animation: gradient 4s infinite ease;
+        }
+
+        @keyframes gradient {
+          0% {
+            opacity: 0.1;
+          }
+          50% {
+            opacity: 0.2;
+          }
+          100% {
+            opacity: 0.1;
+          }
+        }
+      }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid $border-color;
+      width: 100%;
+    }
+
+    p {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: #ddd;
+    }
+  }
+
+  .modal-cover {
+    position: fixed;
+    width: 100%;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    background: rgba(7, 6, 16, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 99;
+    animation: modal-cover-animate-in 0.3s ease;
+  }
+
+  @keyframes modal-cover-animate-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .close-modal {
+    position: absolute;
+    background: $background-light;
+    border: 1px solid rgba(255,255,255,.2);
+    color: $primary;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    right: -16px;
+    top: -16px;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+}

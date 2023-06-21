@@ -66,6 +66,36 @@ a {
   color: #fff;
 }
 
+.button-primary {
+  padding: 10px 12px 8px 12px;
+  border-radius: 8px;
+  color: $primary;
+  border: 1px solid $primary;
+  background: rgba(30, 29, 47, 0.3);
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+
+  svg {
+    margin-right: 3px;
+  }
+}
+
+.button-gray {
+  padding: 10px 12px 8px 12px;
+  border-radius: 8px;
+  color: #ddd;
+  border: 1px solid $border-color;
+  background: rgba(30, 29, 47, 0.3);
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+
+  svg {
+    margin-right: 3px;
+  }
+}
+
 .go-back-link {
   color: #bbb;
   text-decoration: none;

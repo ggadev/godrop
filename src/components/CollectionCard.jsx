@@ -9,7 +9,7 @@ function CollectionCard({data}) {
     console.log(data);
 
     return (
-        <Link to={'/collection/howling-furry'} className={'collection-card'}>
+        <Link to={`/collection/${data['collection_url']}`} className={'collection-card'}>
             <div className="collection-img">
                 <img src={data['collection_img_card']}/>
             </div>

@@ -4,10 +4,9 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer/Footer.jsx";
 import SiteLoader from "./SiteLoader.jsx";
 import Notifications from "./Notifications/Notifications.jsx";
-import SettingsModal from "../modals/SettingsModal/SettingsModal.jsx";
+import DropModal from "../modals/DropModal/DropModal.jsx";
 
 function Layout() {
-
     return (
         <>
             <SiteLoader/>

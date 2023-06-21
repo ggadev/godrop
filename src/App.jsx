@@ -15,6 +15,7 @@ import SkinBaseSkin from "./pages/SkinBase/SkinBaseSkin.jsx";
 import Collection from "./pages/Collection/Collection.jsx";
 import {NotificationProvider} from "./contexts/NotificationContext.jsx";
 import {AuthProvider} from "./contexts/AuthContext.jsx";
+import Account from "./pages/Account/Account.jsx";
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
                           <Route path="/lucky-shot" element={<LuckyShot/>}></Route>
                           <Route path="/daily-free" element={<DailyFree/>}></Route>
                           <Route path="/giveaways" element={<Giveaways/>}></Route>
+                          <Route path="/account" element={<Account/>}></Route>
                       </Route>
                   </Routes>
               </BrowserRouter>

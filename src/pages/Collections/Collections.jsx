@@ -5,8 +5,23 @@ import '../../styles/pages/Collections/Collections.scss';
 import {Helmet} from "react-helmet";
 import CollectionCard from "../../components/CollectionCard.jsx";
 import '../../styles/pages/Collections/Collections.scss';
+import React, {useEffect, useState} from "react";
+import axios from "axios";
+import {API_URL} from "../../data/variables.js";
 
 function Collections() {
+    const [collections, setCollections] = useState(null);
+
+    useEffect(() => {
+        axios.get(`${API_URL}/collections/all`)
+            .then(res => {
+                setCollections(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, [])
+
     return (
         <div className={'collections'}>
             <main>
@@ -18,11 +33,9 @@ function Collections() {
                     <Link className={'go-back-link'} to={'/'}><FontAwesomeIcon icon={faAngleLeft} /> Go back</Link>
                     <h1 className={'page-header'}><FontAwesomeIcon icon={faKhanda} /> Collections</h1>
                     <div className="collections-list">
-                        <CollectionCard/>
-                        <CollectionCard/>
-                        <CollectionCard/>
-                        <CollectionCard/>
-                        <CollectionCard/>
+                        { collections && collections.map(col => (
+                            <CollectionCard key={col['collection_id']} data={col}/>
+                        ))}
                     </div>
                 </div>
             </main>

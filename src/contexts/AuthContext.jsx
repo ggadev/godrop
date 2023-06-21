@@ -26,6 +26,16 @@ export function AuthProvider({children}) {
         return null;
     }
 
+    function updateBalance(newBalance) {
+        console.log(newBalance);
+        if(user && user['user_balance']) {
+            setUser(prevState => ({
+                ...prevState,
+                user_balance: newBalance
+            }))
+        }
+    }
+
     function login(userData) {
         const userObject = {
             ...userData.result,
@@ -48,7 +58,7 @@ export function AuthProvider({children}) {
     }
 
     return (
-        <AuthContext.Provider value={{user, login, logout, getToken}}>
+        <AuthContext.Provider value={{user, login, logout, getToken, updateBalance}}>
             {children}
         </AuthContext.Provider>
     );

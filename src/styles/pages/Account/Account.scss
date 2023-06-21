@@ -1,0 +1,15 @@
+@import '../../variables';
+
+.account-page {
+
+  main {
+    background-image: url('public/backgrounds/m4howl.jpg');
+    position: relative;
+  }
+
+  .collections-list {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+  }
+}
