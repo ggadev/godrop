@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../styles/components/LiveDrop/LiveDrop.scss';
 import {faAngleLeft, faCrown, faCubesStacked, faSatelliteDish, faUser} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import LiveDropItem from "./LiveDropItem.jsx";
+import io from 'socket.io-client';
+import {SOCKET_URL} from "../../data/variables.js";
+
+const socket = io(SOCKET_URL);
 
 function LiveDrop() {
     const [showLiveDrop, setShowLiveDrop] = useState(localStorage.getItem('showLiveDrop') || true);
+    const [onlineCount, setOnlineCount] = useState(0);
 
     function toggleShowLiveDrop() {
         setShowLiveDrop(prevState => {
@@ -19,6 +24,17 @@ function LiveDrop() {
         })
     }
 
+
+    useEffect(() => {
+        socket.on('onlineCount', (count) => {
+            setOnlineCount(count);
+        });
+
+        return () => {
+            socket.disconnect();
+        }
+    }, []);
+
     return (
         <div className={'livedrop'} style={!showLiveDrop ? {marginLeft: '-160px'} : undefined}>
             <div className="livedrop-wrapper">
@@ -26,7 +42,11 @@ function LiveDrop() {
                     <FontAwesomeIcon icon={faAngleLeft} style={!showLiveDrop ? {transform: 'scaleX(-1)'} : undefined}/>
                 </div>
                 <div className="livedrop-header">
-                    <h4><FontAwesomeIcon icon={faSatelliteDish} /> LIVEDROP</h4>
+                    <div className="title">LIVEDROP</div>
+                    <div className="separator"></div>
+                    <div className="online">
+                        <FontAwesomeIcon icon={faSatelliteDish} /> <span className={'online-count'}>{onlineCount}</span>
+                    </div>
                 </div>
                 <div className="livedrop-options">
                     <div className="livedrop-option selected">

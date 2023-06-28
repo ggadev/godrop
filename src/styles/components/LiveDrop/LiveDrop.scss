@@ -29,32 +29,50 @@
 
     .livedrop-header {
       background: $background-light;
-      text-align: center;
-      padding-block: 7px 12px;
+      text-align: left;
+      padding: 12px 14px;
       border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      h4 {
+      .title {
         color: $primary;
-        margin-top: 4px;
         font-weight: 700;
         font-size: 0.9rem;
+      }
+
+      .separator {
+        width: 2px;
+        border-radius: 2px;
+        height: 14px;
+        background: $border-color;
+      }
+
+      .online {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #ddd;
 
         > svg {
-          margin-right: 4px;
+          font-size: 0.7rem;
+          color: $primary;
+          margin-right: 2px;
+          animation: online-icon-animation 3s ease-in-out infinite;
+          filter: drop-shadow(0 0 6px $primary)
         }
-      }
 
-      .online-count {
-        font-size: 1rem;
-        margin-top: 6px;
-        font-weight: 600;
-      }
-
-      .online-text {
-        color: #ddd;
-        text-transform: uppercase;
-        font-size: 0.5rem;
-        margin-top: 2px;
+        @keyframes online-icon-animation {
+          0% {
+            opacity: 0.4;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0.4;
+          }
+        }
       }
     }
 
