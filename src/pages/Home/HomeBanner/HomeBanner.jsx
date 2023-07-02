@@ -10,7 +10,7 @@ function HomeBanner() {
     return (
         <section className={'home-banner'}>
             <div className={'background'}>
-                <img src="/public/howling-fury-background.jpg" alt="howling" style={{ transform: `translateY(${scrollY * 0.5}px)` }}/>
+                <img src="/howling-fury-background.jpg" alt="howling" style={{ transform: `translateY(${scrollY * 0.5}px)` }}/>
             </div>
             <div className="cover"></div>
             <div className="separator"></div>

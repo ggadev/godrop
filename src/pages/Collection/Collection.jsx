@@ -19,14 +19,15 @@ function Collection() {
     const { collectionUrl } = useParams();
 
     useEffect(() => {
-        axios.get(`${API_URL}/collections/single/${collectionUrl}`)
+        axios.get(`${API_URL}/collections?detail=true&url=${collectionUrl}`)
             .then(res => {
-                setCollectionData(res.data);
+                setCollectionData(res.data[0]);
             })
             .catch(err => {
                 console.error(err);
             });
     }, [collectionUrl])
+
 
     return (
         <>
@@ -71,7 +72,7 @@ function Collection() {
                     <div className="container collection-items-content">
                         <h2>Collection Contents</h2>
                         <div className="skin-list collection-items-list">
-                            {collectionData && collectionData['items'].map(item => {
+                            {collectionData && collectionData['skins'].map(item => {
                                 const chance = (
                                     parseInt(item['collection_item_range_to'])
                                     -parseInt(item['collection_item_range_from']))/1000;

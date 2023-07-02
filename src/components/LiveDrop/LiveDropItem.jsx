@@ -8,8 +8,8 @@ function LiveDropItem({item}) {
     if(!item) return;
 
     return (
-        <div className={`livedrop-item rarity-border-color ${item.rarity_name || ''}`}>
-            <div className={`cover rarity-border-left-15 ${item.rarity_name || ''}`}></div>
+        <div className={`livedrop-item rarity-border-color ${item.rarity_code || ''}`}>
+            <div className={`cover rarity-border-left-15 ${item.rarity_code || ''}`}></div>
             <div className="godrop-mark">
                 <img src={'./logo/mark_white.png'}/>
             </div>

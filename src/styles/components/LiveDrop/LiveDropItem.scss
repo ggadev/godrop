@@ -8,6 +8,16 @@
   border-left: 2px solid #d32ee6;
   border-radius: 5px;
   position: relative;
+  animation: livedrop-item-in 0.8s ease;
+
+  @keyframes livedrop-item-in {
+    from {
+      transform: translateX(-200px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
 
   .cover {
     width: 100%;

@@ -4,12 +4,14 @@ import {faAngleLeft, faCrown, faCubesStacked, faSatelliteDish, faUser} from "@fo
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import LiveDropItem from "./LiveDropItem.jsx";
 import io from 'socket.io-client';
-import {SOCKET_URL} from "../../data/variables.js";
+import {API_URL, SOCKET_URL} from "../../data/variables.js";
+import axios from "axios";
 
 const socket = io(SOCKET_URL);
 
 function LiveDrop() {
     const [showLiveDrop, setShowLiveDrop] = useState(localStorage.getItem('showLiveDrop') || true);
+    const [liveDropItems, setLiveDropItems] = useState(null);
     const [onlineCount, setOnlineCount] = useState(0);
 
     function toggleShowLiveDrop() {
@@ -29,6 +31,19 @@ function LiveDrop() {
         socket.on('onlineCount', (count) => {
             setOnlineCount(count);
         });
+
+        socket.on('livedrop', (data) => {
+            setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
+            console.log(data);
+        })
+
+        axios.get(`${API_URL}/livedrop/all`)
+            .then(res => {
+                setLiveDropItems(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
 
         return () => {
             socket.disconnect();
@@ -63,68 +78,16 @@ function LiveDrop() {
                     </div>
                 </div>
                 <div className="livedrop-items">
+                    {
+                        liveDropItems &&
+                        liveDropItems.map(item => (<LiveDropItem item={item} key={item['user_item_id']}/>))
+                    }
                     <LiveDropItem item={{
                         rarity_name: "mil-spec",
                         weapon_name: "Galil AR",
                         skin_name: "Black Sand",
                         wear_abbr: "MW",
                         item_image: "https://data.gadev.pl/godrop/img/galil-ar/galil-ar-black-sand-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "mil-spec",
-                        weapon_name: "Tec-9",
-                        skin_name: "Isaac",
-                        wear_abbr: "WW",
-                        item_image: "https://data.gadev.pl/godrop/img/tec-9/tec-9-isaac-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "classified",
-                        weapon_name: "Desert Eagle",
-                        skin_name: "Fennec Fox",
-                        wear_abbr: "FT",
-                        item_image: "https://data.gadev.pl/godrop/img/desert-eagle/desert-eagle-fennec-fox-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "covert",
-                        weapon_name: "Ak-47",
-                        skin_name: "Wild Rift",
-                        wear_abbr: "MW",
-                        item_image: "https://data.gadev.pl/godrop/img/ak-47/ak-47-wild-lotus-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "mil-spec",
-                        weapon_name: "Famas",
-                        skin_name: "Survivor Z",
-                        wear_abbr: "FN",
-                        item_image: "https://data.gadev.pl/godrop/img/famas/famas-survivor-z-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "restricted",
-                        weapon_name: "AUG",
-                        skin_name: "Torque",
-                        wear_abbr: "MW",
-                        item_image: "https://data.gadev.pl/godrop/img/aug/aug-torque-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "mil-spec",
-                        weapon_name: "Tec-9",
-                        skin_name: "Isaac",
-                        wear_abbr: "WW",
-                        item_image: "https://data.gadev.pl/godrop/img/tec-9/tec-9-isaac-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "rare",
-                        weapon_name: "Karambit",
-                        skin_name: "Marble Fade",
-                        wear_abbr: "MW",
-                        item_image: "https://data.gadev.pl/godrop/img/karambit/karambit-marble-fade-icon.png"
-                    }}/>
-                    <LiveDropItem item={{
-                        rarity_name: "mil-spec",
-                        weapon_name: "PP-Bizon",
-                        skin_name: "Lumen",
-                        wear_abbr: "FT",
-                        item_image: "https://data.gadev.pl/godrop/img/pp-bizon/pp-bizon-lumen-icon.png"
                     }}/>
                 </div>
             </div>

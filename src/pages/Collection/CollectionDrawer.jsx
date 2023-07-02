@@ -14,7 +14,7 @@ function CollectionDrawer({collectionData, open}) {
     const [showDropModal, setShowDropModal] = useState(false);
     const [drawResult, setDrawResult] = useState(null);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [collectionItems, setCollectionItems] = useState(collectionData?.items);
+    const [collectionItems, setCollectionItems] = useState(collectionData?.skins);
 
     const addNotification = useAddNotification();
 
@@ -24,7 +24,7 @@ function CollectionDrawer({collectionData, open}) {
         let tempItems = [];
         if(collectionData) {
             for (let i = 0; i < 100; i++) {
-                tempItems[i] = Math.floor(Math.random() * collectionData['items'].length);
+                tempItems[i] = Math.floor(Math.random() * collectionData['skins'].length);
             }
         }
         setRandomItems(tempItems);
@@ -40,7 +40,7 @@ function CollectionDrawer({collectionData, open}) {
         let tempItems = [];
         if(collectionData) {
             for (let i = 0; i < 100; i++) {
-                tempItems[i] = Math.floor(Math.random() * collectionData['items'].length);
+                tempItems[i] = Math.floor(Math.random() * collectionData['skins'].length);
             }
         }
         setRandomItems(tempItems);
