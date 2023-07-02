@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import '../../styles/components/LiveDrop/LiveDrop.scss';
-import {faAngleLeft, faCrown, faCubesStacked, faSatelliteDish, faUser} from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleLeft,
+    faCrown,
+    faCubesStacked,
+    faPause,
+    faSatelliteDish,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import LiveDropItem from "./LiveDropItem.jsx";
 import io from 'socket.io-client';
@@ -11,8 +18,12 @@ const socket = io(SOCKET_URL);
 
 function LiveDrop() {
     const [showLiveDrop, setShowLiveDrop] = useState(localStorage.getItem('showLiveDrop') || true);
+    const [pauseLiveDrop, setPauseLiveDrop] = useState(false);
     const [liveDropItems, setLiveDropItems] = useState(null);
     const [onlineCount, setOnlineCount] = useState(0);
+    const [liveDropOption, setLiveDropOption] = useState('all');
+
+    console.log(pauseLiveDrop);
 
     function toggleShowLiveDrop() {
         setShowLiveDrop(prevState => {
@@ -28,33 +39,42 @@ function LiveDrop() {
 
 
     useEffect(() => {
-        socket.on('onlineCount', (count) => {
-            setOnlineCount(count);
-        });
-
-        socket.on('livedrop', (data) => {
-            setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
-            console.log(data);
-        })
-
-        axios.get(`${API_URL}/livedrop/all`)
+        axios.get(`${API_URL}/livedrop?option=${liveDropOption}`)
             .then(res => {
                 setLiveDropItems(res.data);
             })
             .catch(err => {
                 console.error(err);
             });
+    }, [liveDropOption]);
+
+    useEffect(() => {
+        socket.on('onlineCount', (count) => {
+            setOnlineCount(count);
+        });
+
+        socket.on(`livedrop`, (data) => {
+            console.log(!(liveDropOption === 'best' && data['item_price'] < 100));
+            console.log(!pauseLiveDrop);
+            if(!(liveDropOption === 'best' && data['item_price'] < 100) && !pauseLiveDrop) {
+                setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
+            }
+            console.log(data);
+        })
 
         return () => {
             socket.disconnect();
         }
-    }, []);
+    }, [])
 
     return (
         <div className={'livedrop'} style={!showLiveDrop ? {marginLeft: '-160px'} : undefined}>
             <div className="livedrop-wrapper">
                 <div className="livedrop-switch" onClick={toggleShowLiveDrop}>
                     <FontAwesomeIcon icon={faAngleLeft} style={!showLiveDrop ? {transform: 'scaleX(-1)'} : undefined}/>
+                </div>
+                <div className={`livedrop-pause ${pauseLiveDrop && 'paused'}`}>
+                    <span><FontAwesomeIcon icon={faPause} /> Paused</span>
                 </div>
                 <div className="livedrop-header">
                     <div className="title">LIVEDROP</div>
@@ -64,31 +84,28 @@ function LiveDrop() {
                     </div>
                 </div>
                 <div className="livedrop-options">
-                    <div className="livedrop-option selected">
+                    <div className={`livedrop-option ${liveDropOption === 'all' && 'selected'}`}
+                         onClick={() => setLiveDropOption('all')}>
                         <FontAwesomeIcon icon={faCubesStacked} />
                         <span>All</span>
                     </div>
-                    <div className="livedrop-option">
+                    <div className={`livedrop-option ${liveDropOption === 'best' && 'selected'}`}
+                         onClick={() => setLiveDropOption('best')}>
                         <FontAwesomeIcon icon={faCrown} />
                         <span>Best</span>
                     </div>
-                    <div className="livedrop-option">
+                    <div className={`livedrop-option ${liveDropOption === 'mine' && 'selected'}`}>
                         <FontAwesomeIcon icon={faUser} />
                         <span>My</span>
                     </div>
                 </div>
-                <div className="livedrop-items">
+                <div className="livedrop-items"
+                     onMouseEnter={() => {setPauseLiveDrop(true)}}
+                     onMouseLeave={() => {setPauseLiveDrop(false)}}>
                     {
                         liveDropItems &&
                         liveDropItems.map(item => (<LiveDropItem item={item} key={item['user_item_id']}/>))
                     }
-                    <LiveDropItem item={{
-                        rarity_name: "mil-spec",
-                        weapon_name: "Galil AR",
-                        skin_name: "Black Sand",
-                        wear_abbr: "MW",
-                        item_image: "https://data.gadev.pl/godrop/img/galil-ar/galil-ar-black-sand-icon.png"
-                    }}/>
                 </div>
             </div>
         </div>
