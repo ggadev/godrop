@@ -16,6 +16,7 @@ import AuthContext from "../../contexts/AuthContext.jsx";
 import HeaderAccount from "./HeaderAccount.jsx";
 import HeaderAccountLogin from "./HeaderAccountLogin.jsx";
 import useScrollPosition from "../../hooks/useScrollPosition.jsx";
+import HeaderSearch from "./HeaderSearch.jsx";
 
 function Header() {
     const [showSignModal, setShowSignModal] = useState(
@@ -80,12 +81,7 @@ function Header() {
                             <Link to={`/`}>
                                 <img className='logo' src={'/logo/logo.png'} alt='godrop logo'/>
                             </Link>
-                            <div className="search">
-                                <input type="text" placeholder="Search"/>
-                                <button className="search-button">
-                                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                                </button>
-                            </div>
+                            <HeaderSearch/>
                         </div>
                         <div className="header-right">
                             { user ? <HeaderAccount/> : <HeaderAccountLogin toggleModal={toggleShowSignModal}/>}

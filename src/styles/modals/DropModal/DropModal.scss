@@ -72,6 +72,11 @@
         gap: 8px;
         margin-top: -20px;
 
+        .float {
+          left: 0;
+          transition: left 2s ease 0.5s;
+        }
+
         .weapon {
           font-size: 1.1rem;
           font-weight: 700;
@@ -101,6 +106,10 @@
           color: #6ea95a;
           margin-top: 10px;
           font-weight: 600;
+        }
+
+        .float-range {
+          width: 100%;
         }
       }
 

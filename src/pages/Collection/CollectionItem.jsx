@@ -1,0 +1,28 @@
+import {formatPrice} from "../../utils/priceUtils.js";
+import '../../styles/pages/Collection/CollectionItem.scss';
+function CollectionItem({item}) {
+    const chance = (
+        parseInt(item['collection_item_range_to'])
+        -parseInt(item['collection_item_range_from']))/1000;
+
+    return (
+        <div className="skin">
+            <div className={`cover rarity-border-top-10 ${item['rarity_code']}`}></div>
+            <div className="skin-data">
+                <div className={`skin-rarity rarity-background ${item['rarity_code']}`}></div>
+                <div className="skin-weapon">{item['weapon_name']}</div>
+                <div className="skin-name">{item['skin_name']}</div>
+                <div className="skin-collections">{chance}%</div>
+                <div className="skin-image">
+                    <img src={item['skin_img']}/>
+                </div>
+                <div className="skin-price">{formatPrice(item['skin_price_min'])} - {formatPrice(item['skin_price_max'])}</div>
+            </div>
+            <div className="wear-details">
+
+            </div>
+        </div>
+    );
+}
+
+export default CollectionItem;

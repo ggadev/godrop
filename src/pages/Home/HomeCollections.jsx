@@ -8,7 +8,7 @@ function HomeCollections() {
     const [collections, setCollections] = useState(null);
 
     useEffect(() => {
-        axios.get(`${API_URL}/collections?limit=4&latest=true`)
+        axios.get(`${API_URL}/collections?limit=5&latest=true`)
             .then(res => {
                 setCollections(res.data);
             })

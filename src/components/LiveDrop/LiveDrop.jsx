@@ -54,8 +54,6 @@ function LiveDrop() {
         });
 
         socket.on(`livedrop`, (data) => {
-            console.log(!(liveDropOption === 'best' && data['item_price'] < 100));
-            console.log(!pauseLiveDrop);
             if(!(liveDropOption === 'best' && data['item_price'] < 100) && !pauseLiveDrop) {
                 setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
             }
@@ -65,7 +63,7 @@ function LiveDrop() {
         return () => {
             socket.disconnect();
         }
-    }, [])
+    }, [liveDropOption, pauseLiveDrop])
 
     return (
         <div className={'livedrop'} style={!showLiveDrop ? {marginLeft: '-160px'} : undefined}>

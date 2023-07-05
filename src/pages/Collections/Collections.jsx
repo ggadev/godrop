@@ -13,7 +13,7 @@ function Collections() {
     const [collections, setCollections] = useState(null);
 
     useEffect(() => {
-        axios.get(`${API_URL}/collections/all`)
+        axios.get(`${API_URL}/collections`)
             .then(res => {
                 setCollections(res.data);
             })

@@ -63,28 +63,6 @@ header {
         display: flex;
         align-items: center;
         gap: 40px;
-
-        .search {
-          position: relative;
-
-          input {
-            padding: 8px 28px 8px 12px;
-            background: #1e1d2f;
-            border: 1px solid #302f3f;
-            border-radius: 8px;
-            color: #fff;
-            width: 250px;
-          }
-
-          button {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 0.8rem;
-            color: #aaa;
-          }
-        }
       }
 
       .header-right {

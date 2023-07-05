@@ -41,6 +41,24 @@
     top: 0;
     left: 0;
     transition: top 0.3s ease;
+
+    .godrop-mark {
+      width: 80%;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: blur(3px);
+      mix-blend-mode: overlay;
+
+      img {
+        width: 60%;
+        opacity: 0.2;
+      }
+    }
   }
 
   &:hover .item-content {
@@ -94,24 +112,6 @@
       .skin-name {
         color: #fff;
         font-size: 0.7rem;
-      }
-    }
-
-    .godrop-mark {
-      width: 80%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      filter: blur(3px);
-      mix-blend-mode: overlay;
-
-      img {
-        width: 60%;
-        opacity: 0.2;
       }
     }
 
@@ -184,5 +184,25 @@
     height: 50%;
     top: 0;
     left: 0;
+    flex-direction: column;
+    gap: 6px;
+
+    .user-image {
+      height: 40%;
+      border-radius: 100%;
+      filter: $filter-shadow;
+    }
+
+    .username {
+      font-size: 0.8rem;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .time {
+      font-size: 0.6rem;
+      color: #ccc;
+      font-weight: 400;
+    }
   }
 }

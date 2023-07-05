@@ -3,12 +3,13 @@ import '../../styles/pages/Collection/Collection.scss';
 import {Helmet} from "react-helmet";
 import {Link, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faBolt, faEye, faRepeat} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faBolt, faCrown, faEye, faRepeat} from "@fortawesome/free-solid-svg-icons";
 import {formatPrice} from "../../utils/priceUtils.js";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import CollectionDrawer from "./CollectionDrawer.jsx";
 import useScrollPosition from "../../hooks/useScrollPosition.jsx";
+import CollectionItem from "./CollectionItem.jsx";
 
 function Collection() {
     const [collectionData, setCollectionData] = useState();
@@ -68,28 +69,19 @@ function Collection() {
                         }
                     </div>
                 </section>
+                <section className={'collection-best'}>
+                    <div className="container collection-best-content collection-section-header">
+                        <h2><FontAwesomeIcon icon={faCrown} /> 72h Best Drop</h2>
+                        <hr/>
+                    </div>
+                </section>
                 <section className={'collection-items'}>
                     <div className="container collection-items-content">
                         <h2>Collection Contents</h2>
                         <div className="skin-list collection-items-list">
                             {collectionData && collectionData['skins'].map(item => {
-                                const chance = (
-                                    parseInt(item['collection_item_range_to'])
-                                    -parseInt(item['collection_item_range_from']))/1000;
                                 return (
-                                    <div className="skin" key={item['skin_id']}>
-                                        <div className={`cover rarity-border-top-10 ${item['rarity_code']}`}></div>
-                                        <div className="skin-data">
-                                            <div className={`skin-rarity rarity-background ${item['rarity_code']}`}></div>
-                                            <div className="skin-weapon">{item['weapon_name']}</div>
-                                            <div className="skin-name">{item['skin_name']}</div>
-                                            <div className="skin-collections">{chance}%</div>
-                                            <div className="skin-image">
-                                                <img src={item['skin_img']}/>
-                                            </div>
-                                            <div className="skin-price">{formatPrice(item['skin_price_min'])} - {formatPrice(item['skin_price_max'])}</div>
-                                        </div>
-                                    </div>
+                                    <CollectionItem item={item} key={item['skin_id']}/>
                                 )
                             })}
                         </div>

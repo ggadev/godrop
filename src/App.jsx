@@ -16,6 +16,7 @@ import Collection from "./pages/Collection/Collection.jsx";
 import {NotificationProvider} from "./contexts/NotificationContext.jsx";
 import {AuthProvider} from "./contexts/AuthContext.jsx";
 import Account from "./pages/Account/Account.jsx";
+import Admin from "./pages/Admin/Admin.jsx";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
                           <Route path="/daily-free" element={<DailyFree/>}></Route>
                           <Route path="/giveaways" element={<Giveaways/>}></Route>
                           <Route path="/account" element={<Account/>}></Route>
+                          <Route path="/admin" element={<Admin/>}></Route>
                       </Route>
                   </Routes>
               </BrowserRouter>

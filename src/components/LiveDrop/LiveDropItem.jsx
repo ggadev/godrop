@@ -12,10 +12,10 @@ function LiveDropItem({item}) {
             <div className={`cover rarity-border-left-15 ${item.rarity_code || ''}`}></div>
             <div className="item-content-container">
                 <div className="item-content">
+                    <div className="godrop-mark">
+                        <img src={'/logo/mark_white.png'}/>
+                    </div>
                     <div className="main-content">
-                        <div className="godrop-mark">
-                            <img src={'./logo/mark_white.png'}/>
-                        </div>
                         {/*<div className="shape">*/}
                         {/*    <svg x="0px" y="0px" viewBox="0 0 90.1 78">*/}
                         {/*        <polygon className={`triangle ${item.rarity_name || ''}`} points="45,2 1.7,77 88.3,77 "/>*/}
@@ -36,7 +36,9 @@ function LiveDropItem({item}) {
                         </div>
                     </div>
                     <div className="detail-content">
-                        <span>xdd</span>
+                        <img className={'user-image'} src={'https://data.gadev.pl/godrop/img/avatars/3.jpg'}/>
+                        <span className={'username'}>reziplaygames</span>
+                        <span className={'time'}>5 minutes ago</span>
                     </div>
                 </div>
             </div>
