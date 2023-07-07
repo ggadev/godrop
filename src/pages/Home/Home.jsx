@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet} from "react-helmet";
 import HomeBanner from "./HomeBanner/HomeBanner.jsx";
 import HomeCollections from "./HomeCollections.jsx";
+import HomeStats from "./HomeStats.jsx";
 
 function Home() {
     return (
@@ -13,6 +14,7 @@ function Home() {
             <main>
                 <HomeBanner/>
                 <HomeCollections/>
+                <HomeStats/>
             </main>
         </>
     );

@@ -9,7 +9,7 @@ import DropModal from "../modals/DropModal/DropModal.jsx";
 function Layout() {
     return (
         <>
-            <SiteLoader/>
+            {/*<SiteLoader/>*/}
             <Notifications/>
             <LiveDrop/>
             <Header/>
