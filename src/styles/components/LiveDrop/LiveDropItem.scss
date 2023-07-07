@@ -185,12 +185,18 @@
     top: 0;
     left: 0;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
 
     .user-image {
-      height: 40%;
+      height: 35%;
       border-radius: 100%;
       filter: $filter-shadow;
+      border: 2px solid transparent;
+      transition: border-color 0.3s ease;
+
+      &:hover {
+        border-color: #aaa;
+      }
     }
 
     .username {
@@ -203,6 +209,7 @@
       font-size: 0.6rem;
       color: #ccc;
       font-weight: 400;
+      margin-top: 1px;
     }
   }
 }

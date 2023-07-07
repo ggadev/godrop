@@ -13,9 +13,21 @@ function Account() {
                     <title>GOdrop - Daily Free</title>
                     <meta name="description" content="My page description" />
                 </Helmet>
-                <div className={'lucky-shot-wrapper container content'}>
+                <div className={'account-wrapper container content'}>
                     <Link className={'go-back-link'} to={'/'}><FontAwesomeIcon icon={faAngleLeft} /> Go back</Link>
-                    <h1 className={'page-header'}><img src={'https://data.gadev.pl/godrop/img/avatars/2.jpg'}/> Account</h1>
+                    <div className="account-header">
+                        <div className="account-header-block account-block">
+                            <img className={'account-avatar'} src={'https://data.gadev.pl/godrop/img/avatars/2.jpg'}/>
+                            <div className="details">
+                                <div className="username">Gadziu</div>
+                                <div className="level-value">Level 1</div>
+                                <div className="level-stripes">
+                                    <div className="level-stripe-dark"></div>
+                                    <div className="level-stripe-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

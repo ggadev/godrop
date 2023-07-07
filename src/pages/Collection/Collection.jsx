@@ -3,17 +3,19 @@ import '../../styles/pages/Collection/Collection.scss';
 import {Helmet} from "react-helmet";
 import {Link, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faBolt, faCrown, faEye, faRepeat} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faBolt, faCrown, faEye, faGun, faRepeat} from "@fortawesome/free-solid-svg-icons";
 import {formatPrice} from "../../utils/priceUtils.js";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import CollectionDrawer from "./CollectionDrawer.jsx";
 import useScrollPosition from "../../hooks/useScrollPosition.jsx";
 import CollectionItem from "./CollectionItem.jsx";
+import CollectionBestItem from "./CollectionBestItem.jsx";
 
 function Collection() {
     const [collectionData, setCollectionData] = useState();
     const [collectionOpen, setCollectionOpen] = useState();
+    const [collectionBest, setCollectionBest] = useState(null);
 
     const scrollY = useScrollPosition();
 
@@ -23,6 +25,14 @@ function Collection() {
         axios.get(`${API_URL}/collections?detail=true&url=${collectionUrl}`)
             .then(res => {
                 setCollectionData(res.data[0]);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+        axios.get(`${API_URL}/collections/best/${collectionUrl}`)
+            .then(res => {
+                setCollectionBest(res.data);
             })
             .catch(err => {
                 console.error(err);
@@ -70,14 +80,25 @@ function Collection() {
                     </div>
                 </section>
                 <section className={'collection-best'}>
-                    <div className="container collection-best-content collection-section-header">
-                        <h2><FontAwesomeIcon icon={faCrown} /> 72h Best Drop</h2>
-                        <hr/>
+                    <div className="container collection-best-content">
+                        <div className="collection-section-header">
+                            <h2><FontAwesomeIcon icon={faCrown} style={{color: '#EAB043'}}/> 72h Best Drop</h2>
+                        </div>
+                        <div className="collection-best-list">
+                            {
+                                collectionBest &&
+                                collectionBest.map(item => (
+                                    <CollectionBestItem item={item} key={item['user_item_id']}/>
+                                ))
+                            }
+                        </div>
                     </div>
                 </section>
                 <section className={'collection-items'}>
                     <div className="container collection-items-content">
-                        <h2>Collection Contents</h2>
+                        <div className="collection-section-header">
+                            <h2><FontAwesomeIcon icon={faGun} /> Collection Contains</h2>
+                        </div>
                         <div className="skin-list collection-items-list">
                             {collectionData && collectionData['skins'].map(item => {
                                 return (

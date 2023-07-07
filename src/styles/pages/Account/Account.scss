@@ -12,4 +12,27 @@
     display: flex;
     gap: 30px;
   }
+
+  .account-wrapper {
+    .account-header {
+      display: flex;
+
+      .account-header-block {
+        padding: 20px;
+        background: rgba(30, 29, 47, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+
+        &.account-block {
+          display: flex;
+
+          .account-avatar {
+            width: 96px;
+            aspect-ratio: 1/1;
+            border-radius: 100%;
+          }
+        }
+      }
+    }
+  }
 }

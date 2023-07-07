@@ -62,7 +62,7 @@ function DropModal({toggleModal, dropResult}) {
                                 </div>
                                 <div className="indicator float" ref={floatIndicator}>
                                     <div className="stripe"></div>
-                                    <div className="value">{(dropResult.float).toString()+"41..."}</div>
+                                    {/*<div className="value">{(dropResult.float).toString()+"41..."}</div>*/}
                                 </div>
                                 <div className="float-range-stripe-dark">
                                     <div className={'wear-background FN'}></div>

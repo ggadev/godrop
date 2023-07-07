@@ -10,6 +10,14 @@ footer {
     font-weight: 400;
     text-align: left;
 
+    .copyright {
+      font-size: 0.8rem;
+
+      img {
+        height: 0.8rem;
+      }
+    }
+
     .footer-disclaimer {
       font-weight: 300;
       font-size: 0.8rem;

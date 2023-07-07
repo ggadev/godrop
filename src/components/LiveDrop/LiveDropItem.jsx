@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../../styles/components/LiveDrop/LiveDropItem.scss';
 import '../../styles/rarities.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSuitcase} from "@fortawesome/free-solid-svg-icons";
+import moment from 'moment';
 
 function LiveDropItem({item}) {
-    if(!item) return;
+    const dropDate = item['user_item_drop_date'];
+    const [timeElapsed, setTimeElapsed] = useState(moment(dropDate).fromNow());
+
+    function itemMouseEnter() {
+        setTimeElapsed(moment(dropDate).fromNow());
+    }
 
     return (
-        <div className={`livedrop-item rarity-border-color ${item.rarity_code || ''}`}>
+        <div className={`livedrop-item rarity-border-color ${item.rarity_code || ''}`}
+             onMouseEnter={itemMouseEnter}>
             <div className={`cover rarity-border-left-15 ${item.rarity_code || ''}`}></div>
             <div className="item-content-container">
                 <div className="item-content">
@@ -38,7 +45,7 @@ function LiveDropItem({item}) {
                     <div className="detail-content">
                         <img className={'user-image'} src={'https://data.gadev.pl/godrop/img/avatars/3.jpg'}/>
                         <span className={'username'}>reziplaygames</span>
-                        <span className={'time'}>5 minutes ago</span>
+                        <span className={'time'}>{timeElapsed}</span>
                     </div>
                 </div>
             </div>

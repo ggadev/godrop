@@ -54,9 +54,7 @@ function LiveDrop() {
         });
 
         socket.on(`livedrop`, (data) => {
-            if(!(liveDropOption === 'best' && data['item_price'] < 100) && !pauseLiveDrop) {
-                setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
-            }
+            setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
             console.log(data);
         })
 
