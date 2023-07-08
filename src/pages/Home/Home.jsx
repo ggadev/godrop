@@ -3,6 +3,8 @@ import {Helmet} from "react-helmet";
 import HomeBanner from "./HomeBanner/HomeBanner.jsx";
 import HomeCollections from "./HomeCollections.jsx";
 import HomeStats from "./HomeStats.jsx";
+import HomeBestDrops from "./HomeBestDrops.jsx";
+import HomePopularCollections from "./HomePopularCollections.jsx";
 
 function Home() {
     return (
@@ -14,7 +16,9 @@ function Home() {
             <main>
                 <HomeBanner/>
                 <HomeCollections/>
+                <HomeBestDrops/>
                 <HomeStats/>
+                <HomePopularCollections/>
             </main>
         </>
     );

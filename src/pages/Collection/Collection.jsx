@@ -10,7 +10,7 @@ import {API_URL} from "../../data/variables.js";
 import CollectionDrawer from "./CollectionDrawer.jsx";
 import useScrollPosition from "../../hooks/useScrollPosition.jsx";
 import CollectionItem from "./CollectionItem.jsx";
-import CollectionBestItem from "./CollectionBestItem.jsx";
+import BestDropItem from "../../components/BestDropItem.jsx";
 
 function Collection() {
     const [collectionData, setCollectionData] = useState();
@@ -84,11 +84,11 @@ function Collection() {
                         <div className="collection-section-header">
                             <h2><FontAwesomeIcon icon={faCrown} style={{color: '#EAB043'}}/> 72h Best Drop</h2>
                         </div>
-                        <div className="collection-best-list">
+                        <div className="best-drops-list">
                             {
                                 collectionBest &&
                                 collectionBest.map(item => (
-                                    <CollectionBestItem item={item} key={item['user_item_id']}/>
+                                    <BestDropItem item={item} key={item['user_item_id']}/>
                                 ))
                             }
                         </div>

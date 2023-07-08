@@ -4,6 +4,7 @@
   width: 100%;
   background: rgba(255,255,255,.02);
   padding-block: 50px;
+  margin-top: 80px;
 
   .home-stats-container {
     display: flex;
@@ -14,9 +15,19 @@
       display: flex;
       gap: 14px;
 
+      &:hover {
+        .icon {
+          transform: translateY(-6px);
+        }
+        .value {
+          color: $primary;
+        }
+      }
+
       .icon {
         font-size: 2.8rem;
         color: $primary;
+        transition: transform 0.3s ease;
       }
 
       .details {
@@ -26,6 +37,7 @@
         .value {
           font-size: 2rem;
           font-weight: 700;
+          transition: color 0.3s ease;
         }
 
         .name {

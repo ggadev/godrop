@@ -1,14 +1,14 @@
 import React from 'react';
-import {formatPrice} from "../../utils/priceUtils.js";
+import {formatPrice} from "../utils/priceUtils.js";
 import moment from "moment/moment.js";
 
-function CollectionBestItem({item}) {
+function BestDropItem({item}) {
     const chance = (
         parseInt(item['collection_item_range_to'])
         -parseInt(item['collection_item_range_from']))/1000;
 
     return (
-        <div className={`collection-best-item rarity-border-bottom ${item['rarity_code']}`}>
+        <div className={`best-drop-item rarity-border-bottom ${item['rarity_code']}`}>
             <div className={`cover rarity-border-bot-20 ${item['rarity_code']}`}></div>
             <div className="godrop-mark">
                 <img src="/logo/mark_white.png"/>
@@ -39,4 +39,4 @@ function CollectionBestItem({item}) {
     );
 }
 
-export default CollectionBestItem;
+export default BestDropItem;

@@ -176,6 +176,26 @@ button, input[type=submit], input[type=reset] {
   }
 }
 
+.section-header {
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid $border-color;
+
+  h2 {
+    font-size: 1rem;
+    padding: 12px 20px;
+    border-radius: 10px 10px 0 0;
+    color: #eee;
+    font-weight: 600;
+    background: $background-light;
+
+    svg {
+      color: $primary;
+      margin-right: 2px;
+    }
+  }
+}
+
 @font-face {
   font-family: 'Cobane';
   font-weight: 400;
