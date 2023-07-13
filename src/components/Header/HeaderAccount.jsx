@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {formatPrice} from "../../utils/priceUtils.js";
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -15,6 +15,9 @@ import {AuthContext, AuthProvider} from "../../contexts/AuthContext.jsx";
 
 function HeaderAccount() {
     const { user, logout } = useContext(AuthContext);
+    const prevBalance = useRef(user['user_balance']);
+    const balanceEl = useRef(null);
+    const balance = user['user_balance'];
 
     const [showActions, setShowActions] = useState(false)
 
@@ -22,12 +25,27 @@ function HeaderAccount() {
         setShowActions(prevState => !prevState);
     }
 
+    useEffect(() => {
+        const animColor = balance > prevBalance.current ? '#43ea80' : '#ff4444';
+        const initialColor = getComputedStyle(balanceEl.current).color;
+        balanceEl.current.animate(
+            {
+                color: [animColor, initialColor],
+            },
+            {
+                duration: 1000,
+            }
+        );
+
+        prevBalance.current = balance;
+    }, [balance]);
+
     return (
         <>
             <div className="wallet">
                 <div className="col">
                     <div className="row wallet-text">Your wallet</div>
-                    <div className="row wallet-balance">💸 {formatPrice(user['user_balance'])}</div>
+                    <div className="row wallet-balance" ref={balanceEl}>💸 {formatPrice(balance)}</div>
                 </div>
                 <div className="col">
                     <Link to={'/'} className={'refil-link'}>Refill</Link>
