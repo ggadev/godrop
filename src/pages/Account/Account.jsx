@@ -1,7 +1,7 @@
 import {
     faAngleLeft,
     faCircleNotch,
-    faCopy, faGift,
+    faCopy, faGift, faHandHoldingDollar,
     faRankingStar,
     faSuitcase,
     faUnlock
@@ -12,8 +12,35 @@ import '../../styles/pages/Account/Account.scss';
 import {Helmet} from "react-helmet";
 import UnderConstruction from "../../components/UnderConstruction/UnderConstruction.jsx";
 import {formatPrice} from "../../utils/priceUtils.js";
+import {useContext, useEffect, useState} from "react";
+import axios from "axios";
+import {API_URL} from "../../data/variables.js";
+import AuthContext from "../../contexts/AuthContext.jsx";
+import {useAddNotification} from "../../contexts/NotificationContext.jsx";
+import InventoryItem from "./InventoryItem.jsx";
 
 function Account() {
+    const [userItems, setUserItems] = useState(null);
+
+    const addNotification = useAddNotification();
+
+    const { getToken } = useContext(AuthContext);
+
+    useEffect(() => {
+        axios.get(`${API_URL}/account/items`, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-access-token': getToken()
+            }})
+            .then(res => {
+                console.log(res.data);
+                setUserItems(res.data);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, [getToken])
+
     return (
         <div className={'account-page'}>
             <main>
@@ -125,6 +152,12 @@ function Account() {
                         </div>
                     </div>
                     <div className="account-inventory">
+                        <div className="account-inventory-list">
+                            {
+                                userItems &&
+                                userItems.map(item => (<InventoryItem item={item} key={item['user_item_id']}/>))
+                            }
+                        </div>
                     </div>
                 </div>
             </main>

@@ -233,11 +233,123 @@
 
     .account-inventory {
       width: 100%;
-      height: 300px;
-      background: rgba(30, 29, 47, 0.8);
-      margin-top: 15px;
-      border-radius: 15px;
-      border: 1px solid $border-color;
+      margin-top: 30px;
+      //background: rgba(30, 29, 47, 0.5);
+      //border-radius: 15px;
+      //border: 1px solid $border-color;
+
+      .account-inventory-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px;
+
+        .inventory-item {
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          height: 300px;
+          background: #0d0c1d;
+          width: 100%;
+          border-radius: 10px;
+          position: relative;
+          box-shadow: $box-shadow-1;
+          opacity: 1;
+
+
+          .cover {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 10px;
+          }
+
+          .godrop-mark {
+            position: absolute;
+            width: 50%;
+            top: 43%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: blur(4px);
+            mix-blend-mode: overlay;
+
+            img {
+              width: 100%;
+              opacity: 0.2;
+            }
+          }
+
+          .image {
+            position: absolute;
+            top: 43%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+
+            img {
+              width: 100%;
+              filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.3));
+            }
+          }
+
+          .top {
+            padding: 12px;
+            display: flex;
+            gap: 8px;
+
+            > div {
+              padding: 0;
+              padding-block: 8px;
+            }
+
+            .sell-button {
+              background: rgba(67, 234, 128, 0.22);
+              border-width: 2px;
+              font-weight: 600;
+              font-size: 0.9rem;
+              flex: 1;
+            }
+
+            .upgrade-button {
+              flex: 1;
+              font-size: 0.8rem;
+              font-weight: 600;
+              padding-top: 10px;
+
+              svg {
+                color: $upgrader-color;
+              }
+            }
+          }
+
+          .bottom {
+            text-align: center;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            bottom: 20px;
+
+            .weapon {
+              color: #aaa;
+              font-size: 0.8rem;
+            }
+
+            .skin {
+              font-weight: 600;
+              font-size: 1rem;
+              margin-top: 2px;
+            }
+
+            .wear {
+              font-size: 0.8rem;
+              color: #aaa;
+              margin-top: 4px;
+            }
+
+            .price {
+              font-weight: 600;
+              margin-top: 6px;
+            }
+          }
+        }
+      }
     }
   }
 }
