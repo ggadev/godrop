@@ -1,20 +1,38 @@
-import React, {useContext, useEffect, useRef, useState} from 'react';
-import '../../styles/pages/Collection/CollectionDrawer.scss';
+import {useContext, useEffect, useRef, useState} from "react";
+import "../../styles/pages/Collection/CollectionDrawer.scss";
 import axios from "axios";
-import {API_URL} from "../../data/variables.js";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 import {formatPrice} from "../../utils/priceUtils.js";
-import SignModal from "../../modals/SignModal/SignModal.jsx";
-import SettingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
 import DropModal from "../../modals/DropModal/DropModal.jsx";
+import PropTypes from "prop-types";
 
-function CollectionDrawer({collectionData, open, drawOptions}) {
+CollectionDrawer.propTypes = {
+    collectionData: PropTypes.shape({
+        collection_url: PropTypes.string,
+        skins: PropTypes.arrayOf(
+            PropTypes.shape({
+                skin_id: PropTypes.number,
+                rarity_code: PropTypes.string,
+                skin_img: PropTypes.string,
+                weapon_name: PropTypes.string,
+                skin_name: PropTypes.string,
+            })
+        ),
+        collection_price: PropTypes.number,
+    }),
+    drawOptions: PropTypes.shape({
+        fast: PropTypes.bool,
+    }),
+};
+
+function CollectionDrawer({collectionData, drawOptions}) {
     const [randomItems, setRandomItems] = useState(null);
     const [showDropModal, setShowDropModal] = useState(false);
     const [drawResult, setDrawResult] = useState(null);
     const [isDrawing, setIsDrawing] = useState(false);
-    const [collectionItems, setCollectionItems] = useState(collectionData?.skins);
+
+    const collectionItems = collectionData?.skins;
 
     const addNotification = useAddNotification();
 
@@ -52,7 +70,9 @@ function CollectionDrawer({collectionData, open, drawOptions}) {
                 setDrawResult(res.data);
                 displayDraw(res.data);
                 console.log(res.data);
-                updateBalance(parseFloat(res.data.userBalance));
+                if ('userBalance' in res.data) {
+                    updateBalance(parseFloat(res.data.userBalance));
+                }
             })
             .catch(err => {
                 const errorMessage = err.response.data.error;
@@ -113,7 +133,7 @@ function CollectionDrawer({collectionData, open, drawOptions}) {
                     { randomItems && collectionItems && randomItems.map((i, index) => (
                         <div key={index} className={`item ${collectionItems[i].rarity_code} rarity-border-bot-20 rarity-border-color`}>
                             <div className="img">
-                                <img src={collectionItems[i].skin_img}/>
+                                <img src={collectionItems[i].skin_img || ''} alt={`${collectionItems[i].weapon_name} ${collectionItems[i].skin_name}`}/>
                             </div>
                             <div className="details">
                                 <div className="weapon">
