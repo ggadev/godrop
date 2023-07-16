@@ -1,11 +1,17 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faGear, faHandHoldingDollar, faShieldHalved, faXmark} from "@fortawesome/free-solid-svg-icons";
 import '../../styles/modals/DropModal/DropModal.scss';
 import {formatPrice} from "../../utils/priceUtils.js";
+import axios from "axios";
+import {API_URL} from "../../data/variables.js";
+import AuthContext from "../../contexts/AuthContext.jsx";
+import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 
 function DropModal({toggleModal, dropResult}) {
     const floatIndicator = useRef(null);
+    const { getToken, updateBalance } = useContext(AuthContext);
+    const addNotification = useAddNotification();
 
     const chance = (
         parseInt(dropResult['collection_item_range_to'])
@@ -27,6 +33,25 @@ function DropModal({toggleModal, dropResult}) {
             );
         }
     }, [floatIndicator, dropResult]);
+
+    function sellItem() {
+        axios.post(`${API_URL}/account/sell`, { userItem: dropResult['userItem'] }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-access-token': getToken()
+            }
+        })
+            .then(res => {
+                console.log(res.data);
+                updateBalance(parseFloat(res.data.userBalance));
+                addNotification({title: 'Item Sold', desc: `${formatPrice(res.data['itemPrice'])} has been added to your balance.`, status: 'success'});
+                toggleModal();
+            })
+            .catch(err => {
+                const errorMessage = err.response.data.error;
+                addNotification({title: 'Error', desc: errorMessage, status: 'error'});
+            });
+    }
 
     return (
         <div className={'modal'}>
@@ -84,7 +109,7 @@ function DropModal({toggleModal, dropResult}) {
                             </div>
                         </div>
                         <div className="drop-actions">
-                            <div className="drop-sell button-primary">
+                            <div className="drop-sell button-primary" onClick={sellItem}>
                                 <FontAwesomeIcon icon={faHandHoldingDollar} /> Sell for {formatPrice(dropResult?.item_price)}
                             </div>
                         </div>

@@ -55,9 +55,9 @@ function HeaderAccount() {
                 <FontAwesomeIcon icon={faBoxesStacked}  />
             </div>
             <div className="account">
-                <div className="avatar">
+                <Link to={'/account'} className="avatar">
                     <img src={user['user_avatar'].toString()}/>
-                </div>
+                </Link>
                 <div className="actions" onClick={toggleShowActions}>
                     <FontAwesomeIcon icon={faCaretDown} className={`${showActions && 'active'}`} />
                     <div className={`actions-container ${showActions && 'active'}`}>

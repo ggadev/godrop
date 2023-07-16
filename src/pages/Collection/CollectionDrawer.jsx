@@ -9,7 +9,7 @@ import SignModal from "../../modals/SignModal/SignModal.jsx";
 import SettingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
 import DropModal from "../../modals/DropModal/DropModal.jsx";
 
-function CollectionDrawer({collectionData, open}) {
+function CollectionDrawer({collectionData, open, drawOptions}) {
     const [randomItems, setRandomItems] = useState(null);
     const [showDropModal, setShowDropModal] = useState(false);
     const [drawResult, setDrawResult] = useState(null);
@@ -32,25 +32,23 @@ function CollectionDrawer({collectionData, open}) {
 
     const carousel = useRef(null);
 
-    if(open) draw();
-
     function draw() {
         setIsDrawing(true);
         setShowDropModal(false);
         let tempItems = [];
-        if(collectionData) {
-            for (let i = 0; i < 100; i++) {
-                tempItems[i] = Math.floor(Math.random() * collectionData['skins'].length);
-            }
-        }
-        setRandomItems(tempItems);
-        axios.post(`http://localhost:3001/collections/draw/${collectionData['collection_url']}`, null, {
+        axios.post(`http://localhost:3001/collections/draw/${collectionData['collection_url']}`, { optionFast: drawOptions.fast }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'x-access-token': getToken()
             }
         })
             .then(res => {
+                if(collectionData) {
+                    for (let i = 0; i < 100; i++) {
+                        tempItems[i] = Math.floor(Math.random() * collectionData['skins'].length);
+                    }
+                }
+                setRandomItems(tempItems);
                 setDrawResult(res.data);
                 displayDraw(res.data);
                 console.log(res.data);
@@ -83,7 +81,7 @@ function CollectionDrawer({collectionData, open}) {
                     left: ['0px', `${cPosition*-1}px`]
                 },
                 {
-                    duration: 5000,
+                    duration: drawOptions.fast ? 2500 : 5000,
                     easing: 'cubic-bezier(.17,1,0,1)',
                     fill: 'forwards'
                 }
@@ -103,11 +101,9 @@ function CollectionDrawer({collectionData, open}) {
                     setShowDropModal(true);
                     setIsDrawing(false);
                 }, 300)
-            }, 4800)
+            }, (drawOptions.fast ? 2500 : 5000) - 200)
         }
     }
-
-
 
     return (
         <>

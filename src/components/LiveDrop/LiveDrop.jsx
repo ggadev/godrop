@@ -37,7 +37,6 @@ function LiveDrop() {
         })
     }
 
-
     useEffect(() => {
         axios.get(`${API_URL}/livedrop?option=${liveDropOption}`)
             .then(res => {
@@ -53,15 +52,24 @@ function LiveDrop() {
             setOnlineCount(count);
         });
 
-        socket.on(`livedrop`, (data) => {
-            setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
-            console.log(data);
-        })
-
         return () => {
             socket.disconnect();
         }
-    }, [liveDropOption, pauseLiveDrop])
+    }, [])
+
+    useEffect(() => {
+        function addLiveDropItem(data) {
+            if((liveDropOption === 'best' && data['item_price'] < 200) || pauseLiveDrop) return;
+            setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
+        }
+
+        socket.on(`livedrop`, addLiveDropItem)
+
+        return () => {
+            socket.off('livedrop', addLiveDropItem);
+        };
+    }, [liveDropOption, pauseLiveDrop]);
+
 
     return (
         <div className={'livedrop'} style={!showLiveDrop ? {marginLeft: '-160px'} : undefined}>

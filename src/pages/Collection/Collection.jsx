@@ -17,6 +17,11 @@ function Collection() {
     const [collectionOpen, setCollectionOpen] = useState();
     const [collectionBest, setCollectionBest] = useState(null);
 
+    const [drawOptions, setDrawOptions] = useState({
+        fast: false,
+        auto: false
+    })
+
     const scrollY = useScrollPosition();
 
     const { collectionUrl } = useParams();
@@ -39,6 +44,14 @@ function Collection() {
             });
     }, [collectionUrl])
 
+    function toggleFastOption() {
+        setDrawOptions(prevState => ({
+            ...prevState,
+            fast: !prevState.fast
+        }));
+    }
+
+    console.log(drawOptions);
 
     return (
         <>
@@ -67,7 +80,8 @@ function Collection() {
                                     <div className="option">
                                         <FontAwesomeIcon icon={faRepeat} />
                                     </div>
-                                    <div className="option">
+                                    <div className={`option fast ${drawOptions.fast ? 'active' : ''}`}
+                                         onClick={toggleFastOption}>
                                         <FontAwesomeIcon icon={faBolt} />
                                     </div>
                                 </div>
@@ -75,7 +89,7 @@ function Collection() {
                         </div>
                         {
                             collectionData &&
-                            <CollectionDrawer collectionData={collectionData} open={collectionOpen}/>
+                            <CollectionDrawer collectionData={collectionData} open={collectionOpen} drawOptions={drawOptions}/>
                         }
                     </div>
                 </section>
