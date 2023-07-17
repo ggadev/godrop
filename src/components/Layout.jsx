@@ -5,11 +5,13 @@ import Footer from "./Footer/Footer.jsx";
 import SiteLoader from "./SiteLoader.jsx";
 import Notifications from "./Notifications/Notifications.jsx";
 import DropModal from "../modals/DropModal/DropModal.jsx";
+import ClientSeedModal from "../modals/ProvablyFair/ClientSeedModal.jsx";
 
 function Layout() {
     return (
         <>
             {/*<SiteLoader/>*/}
+            {/*<ClientSeedModal/>*/}
             <Notifications/>
             <LiveDrop/>
             <Header/>

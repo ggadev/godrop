@@ -8,6 +8,7 @@ import '../../styles/pages/Collections/Collections.scss';
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
+import StatsSection from "../../components/StatsSection.jsx";
 
 function Collections() {
     const [collections, setCollections] = useState(null);
@@ -38,6 +39,7 @@ function Collections() {
                         ))}
                     </div>
                 </div>
+                <StatsSection/>
             </main>
         </div>
     );

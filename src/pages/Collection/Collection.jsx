@@ -11,6 +11,7 @@ import CollectionDrawer from "./CollectionDrawer.jsx";
 import useScrollPosition from "../../hooks/useScrollPosition.jsx";
 import CollectionItem from "./CollectionItem.jsx";
 import BestDropItem from "../../components/BestDropItem.jsx";
+import StatsSection from "../../components/StatsSection.jsx";
 
 function Collection() {
     const [collectionData, setCollectionData] = useState();
@@ -122,6 +123,7 @@ function Collection() {
                         </div>
                     </div>
                 </section>
+                <StatsSection/>
             </main>
         </>
     );

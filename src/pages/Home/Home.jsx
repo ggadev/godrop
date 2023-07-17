@@ -2,7 +2,7 @@ import React from 'react';
 import {Helmet} from "react-helmet";
 import HomeBanner from "./HomeBanner/HomeBanner.jsx";
 import HomeCollections from "./HomeCollections.jsx";
-import HomeStats from "./HomeStats.jsx";
+import StatsSection from "../../components/StatsSection.jsx";
 import HomeBestDrops from "./HomeBestDrops.jsx";
 import HomePopularCollections from "./HomePopularCollections.jsx";
 
@@ -17,7 +17,7 @@ function Home() {
                 <HomeBanner/>
                 <HomeCollections/>
                 <HomeBestDrops/>
-                <HomeStats/>
+                <StatsSection/>
                 <HomePopularCollections/>
             </main>
         </>
