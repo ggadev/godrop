@@ -6,12 +6,14 @@ import SiteLoader from "./SiteLoader.jsx";
 import Notifications from "./Notifications/Notifications.jsx";
 import DropModal from "../modals/DropModal/DropModal.jsx";
 import ClientSeedModal from "../modals/ProvablyFair/ClientSeedModal.jsx";
+import Modals from "../modals/Modals.jsx";
 
 function Layout() {
     return (
         <>
-            {/*<SiteLoader/>*/}
+            <SiteLoader/>
             {/*<ClientSeedModal/>*/}
+            <Modals/>
             <Notifications/>
             <LiveDrop/>
             <Header/>

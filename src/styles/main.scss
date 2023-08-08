@@ -180,8 +180,9 @@ button, input[type=submit], input[type=reset] {
   display: flex;
   justify-content: center;
   border-bottom: 2px solid $border-color;
+  gap: 10px;
 
-  h2 {
+  h2, a {
     font-size: 1rem;
     padding: 12px 20px;
     border-radius: 10px 10px 0 0;
@@ -192,6 +193,29 @@ button, input[type=submit], input[type=reset] {
     svg {
       color: $primary;
       margin-right: 2px;
+    }
+  }
+
+  a {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+
+    svg {
+      color: #fff;
+      transition: color 0.2s ease;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &.active {
+      opacity: 1;
+
+      svg {
+        color: $primary;
+      }
     }
   }
 }

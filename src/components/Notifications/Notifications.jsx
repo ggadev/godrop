@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import Notification from "./Notification.jsx";
 import '../../styles/components/Notifications/Notifications.scss';
-import notificationContext, { useNotification } from "../../contexts/NotificationContext.jsx";
+import { useNotification } from "../../contexts/NotificationContext.jsx";
 
 function Notifications() {
     const [notifications, setNotifications] = useState(null);

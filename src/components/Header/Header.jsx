@@ -7,7 +7,7 @@ import {
     faCircleNotch,
     faCopy,
     faSuitcase,
-    faGift, faGun, faDatabase, faMagnifyingGlass, faGear
+    faGift, faGun, faDatabase, faMagnifyingGlass, faGear, faFileContract
 } from '@fortawesome/free-solid-svg-icons'
 import SignModal from "../../modals/SignModal/SignModal.jsx";
 import {useContext, useEffect, useState} from "react";
@@ -17,25 +17,21 @@ import HeaderAccount from "./HeaderAccount.jsx";
 import HeaderAccountLogin from "./HeaderAccountLogin.jsx";
 import useScrollPosition from "../../hooks/useScrollPosition.jsx";
 import HeaderSearch from "./HeaderSearch.jsx";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
+import settingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
+import modalsContext from "../../contexts/ModalsContext.jsx";
 
 function Header() {
     const [showSignModal, setShowSignModal] = useState(
         window.location.hash.includes('login') || window.location.hash.includes('signup')
     );
 
+    const { displayModal } = useContext(ModalsContext);
+
     function toggleShowSignModal() {
         if(showSignModal)
             window.location.hash = '';
         setShowSignModal(prevState => !prevState);
-    }
-
-    const [showSettingsModal, setShowSettingsModal] = useState(
-        window.location.hash.includes('settings')
-    );
-    function toggleShowSettingsModal() {
-        if(showSettingsModal)
-            window.location.hash = '';
-        setShowSettingsModal(prevState => !prevState);
     }
 
     const location = useLocation();
@@ -49,7 +45,6 @@ function Header() {
     return (
         <>
             {showSignModal && <SignModal toggleModal={toggleShowSignModal}></SignModal>}
-            {showSettingsModal && <SettingsModal toggleModal={toggleShowSettingsModal}></SettingsModal>}
             <div className="header-filler"></div>
             <header style={{ marginTop: `${newPos}px` }}>
                 <div className='header-top'>
@@ -68,7 +63,7 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`#settings`} title={'Settings'} onClick={toggleShowSettingsModal}>
+                                <Link to={`#settings`} title={'Settings'} onClick={() => {displayModal(<SettingsModal/>)}}>
                                     <FontAwesomeIcon icon={faGear} />
                                 </Link>
                             </li>
@@ -100,7 +95,7 @@ function Header() {
                         <div className="separator"></div>
                         <Link to={'/scratch-cards'}
                               className={`header-game game-scratch-cards ${isActive('/scratch-cards')}`}>
-                            <FontAwesomeIcon icon={faCopy}  /> Scratch Cards
+                            <FontAwesomeIcon icon={faFileContract} /> Contracts
                         </Link>
                         <div className="separator"></div>
                         <Link to={'/lucky-shot'}

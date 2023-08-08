@@ -8,10 +8,10 @@ import {
     faShieldHalved
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Link} from "react-router-dom";
-import '../../styles/pages/ProvablyFair/provablyfair.scss';
+import {Link, NavLink, Outlet} from "react-router-dom";
+import '../../styles/pages/ProvablyFair/ProvablyFair.scss';
 import {Helmet} from "react-helmet";
-import {useState} from "react";
+import React, {useState} from "react";
 import ProvablyFairConfiguration from "./ProvablyFairConfiguration.jsx";
 import StatsSection from "../../components/StatsSection.jsx";
 
@@ -52,17 +52,20 @@ function ProvablyFair() {
                     </section>
                     <section className={'provably-fair-options'}>
                         <div className="section-header">
-                            <h2 className={provablyFairPage === 'configuration' ? 'active' : ''}
-                                onClick={() => setProvablyFairPage('configuration')}><FontAwesomeIcon icon={faGear} /> Configuration</h2>
-                            <h2 className={provablyFairPage === 'verify' ? 'active' : ''}
-                                onClick={() => setProvablyFairPage('verify')}><FontAwesomeIcon icon={faCheck} /> Verify Roll</h2>
-                            <h2 className={provablyFairPage === 'algorithm' ? 'active' : ''}
-                                onClick={() => setProvablyFairPage('algorithm')}><FontAwesomeIcon icon={faCode} /> Algorithm</h2>
+                            <NavLink to={'/provably-fair'}
+                                     className={`section-header-link`} end>
+                                <FontAwesomeIcon icon={faGear} /> Configuration
+                            </NavLink>
+                            <NavLink to={'/provably-fair/verify-roll'}
+                                     className={`section-header-link`}>
+                                <FontAwesomeIcon icon={faCheck} /> Verify Roll
+                            </NavLink>
+                            <NavLink to={'/provably-fair/algorithm'}
+                                     className={`section-header-link`}>
+                                <FontAwesomeIcon icon={faCode} /> Algorithm
+                            </NavLink>
                         </div>
-                        {
-                            provablyFairPage === 'configuration' &&
-                            <ProvablyFairConfiguration/>
-                        }
+                        <Outlet></Outlet>
                     </section>
                 </div>
                 <StatsSection/>

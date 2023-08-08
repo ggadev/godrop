@@ -1,18 +1,18 @@
 import {
-    faAngleLeft,
-    faCircleNotch,
-    faCopy, faGift, faHandHoldingDollar,
-    faRankingStar,
+    faAngleLeft, faBoxesStacked, faCheck,
+    faCircleNotch, faCode,
+    faCopy, faGear, faGift, faHandHoldingDollar,
+    faRankingStar, faReceipt,
     faSuitcase,
     faUnlock
 } from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Link} from "react-router-dom";
+import {Link, NavLink, Outlet} from "react-router-dom";
 import '../../styles/pages/Account/Account.scss';
 import {Helmet} from "react-helmet";
 import UnderConstruction from "../../components/UnderConstruction/UnderConstruction.jsx";
 import {formatPrice} from "../../utils/priceUtils.js";
-import {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import AuthContext from "../../contexts/AuthContext.jsx";
@@ -151,6 +151,23 @@ function Account() {
                             </div>
                         </div>
                     </div>
+                    <section className={'provably-fair-options'}>
+                        <div className="section-header">
+                            <NavLink to={'/account'}
+                                     className={`section-header-link`} end>
+                                <FontAwesomeIcon icon={faBoxesStacked} /> Inventory
+                            </NavLink>
+                            <NavLink to={'/account/transactions'}
+                                     className={`section-header-link`}>
+                                <FontAwesomeIcon icon={faReceipt} /> Transactions
+                            </NavLink>
+                            <NavLink to={'/account/settings'}
+                                     className={`section-header-link`}>
+                                <FontAwesomeIcon icon={faGear} /> Settings
+                            </NavLink>
+                        </div>
+                        <Outlet></Outlet>
+                    </section>
                     <div className="account-inventory">
                         <div className="account-inventory-list">
                             {

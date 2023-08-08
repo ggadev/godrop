@@ -4,7 +4,7 @@ import {useAddNotification} from "./NotificationContext.jsx";
 import axios from "axios";
 import {API_URL} from "../data/variables.js";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext(null);
 
 export function AuthProvider({children}) {
     const [cookies, setCookie, removeCookie] = useCookies('token');

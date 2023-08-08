@@ -1,11 +1,16 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import '../../../styles/pages/Home/HomeBanner/HomeBanner.scss';
 import HomeBannerPossibleItem from "./HomeBannerPossibleItem.jsx";
 import {formatPrice} from "../../../utils/priceUtils.js";
 import useScrollPosition from "../../../hooks/useScrollPosition.jsx";
+import ModalsContext from "../../../contexts/ModalsContext.jsx";
+import SettingsModal from "../../../modals/SettingsModal/SettingsModal.jsx";
+import SignModal from "../../../modals/SignModal/SignModal.jsx";
 
 function HomeBanner() {
     const scrollY = useScrollPosition();
+
+    const { displayModal } = useContext(ModalsContext);
 
     return (
         <section className={'home-banner'}>
@@ -21,7 +26,7 @@ function HomeBanner() {
                     <div className="card"><img src="/howling-fury-card.jpg" alt="howling fury"/></div>
                 </div>
                 <div className="details">
-                    <div className="title">Latest Arrival</div>
+                    <div className="title" onClick={() => displayModal('modal')}>Latest Arrival</div>
                     <div className="name">Howling Fury</div>
                     <div className="possible-items">
                         <div className="possible-items-container">

@@ -6,6 +6,7 @@ import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 import {formatPrice} from "../../utils/priceUtils.js";
 import DropModal from "../../modals/DropModal/DropModal.jsx";
 import PropTypes from "prop-types";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
 
 CollectionDrawer.propTypes = {
     collectionData: PropTypes.shape({
@@ -28,13 +29,14 @@ CollectionDrawer.propTypes = {
 
 function CollectionDrawer({collectionData, drawOptions}) {
     const [randomItems, setRandomItems] = useState(null);
-    const [showDropModal, setShowDropModal] = useState(false);
     const [drawResult, setDrawResult] = useState(null);
     const [isDrawing, setIsDrawing] = useState(false);
 
     const collectionItems = collectionData?.skins;
 
     const addNotification = useAddNotification();
+
+    const { displayModal } = useContext(ModalsContext);
 
     const { getToken, updateBalance } = useContext(AuthContext);
 
@@ -52,7 +54,6 @@ function CollectionDrawer({collectionData, drawOptions}) {
 
     function draw() {
         setIsDrawing(true);
-        setShowDropModal(false);
         let tempItems = [];
         axios.post(`http://localhost:3001/collections/draw/${collectionData['collection_url']}`, { optionFast: drawOptions.fast }, {
             headers: {
@@ -118,7 +119,7 @@ function CollectionDrawer({collectionData, drawOptions}) {
                     }
                 );
                 setTimeout(() => {
-                    setShowDropModal(true);
+                    displayModal(<DropModal dropResult={drawResult}></DropModal>, true);
                     setIsDrawing(false);
                 }, 300)
             }, (drawOptions.fast ? 2500 : 5000) - 200)
@@ -127,24 +128,27 @@ function CollectionDrawer({collectionData, drawOptions}) {
 
     return (
         <>
-            {showDropModal && <DropModal toggleModal={() => setShowDropModal(false)} dropResult={drawResult}></DropModal>}
             <div className="drawer">
-                <div className="drawer-carousel" ref={carousel}>
-                    { randomItems && collectionItems && randomItems.map((i, index) => (
-                        <div key={index} className={`item ${collectionItems[i].rarity_code} rarity-border-bot-20 rarity-border-color`}>
-                            <div className="img">
-                                <img src={collectionItems[i].skin_img || ''} alt={`${collectionItems[i].weapon_name} ${collectionItems[i].skin_name}`}/>
-                            </div>
-                            <div className="details">
-                                <div className="weapon">
-                                    {collectionItems[i].weapon_name}
+                <div className="drawer-positioner">
+                    <div className="drawer-container">
+                        <div className="drawer-carousel" ref={carousel}>
+                            { randomItems && collectionItems && randomItems.map((i, index) => (
+                                <div key={index} className={`item ${collectionItems[i].rarity_code} rarity-border-bot-20 rarity-border-color`}>
+                                    <div className="img">
+                                        <img src={collectionItems[i].skin_img || ''} alt={`${collectionItems[i].weapon_name} ${collectionItems[i].skin_name}`}/>
+                                    </div>
+                                    <div className="details">
+                                        <div className="weapon">
+                                            {collectionItems[i].weapon_name}
+                                        </div>
+                                        <div className="skin">
+                                            {collectionItems[i].skin_name}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="skin">
-                                    {collectionItems[i].skin_name}
-                                </div>
-                            </div>
+                            ))}
                         </div>
-                    ))}
+                    </div>
                 </div>
                 <div className="cover"></div>
                 <div className="arrow-bot"></div>

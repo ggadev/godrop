@@ -7,7 +7,7 @@ import {
     faBoxesStacked,
     faCaretDown,
     faCreditCard, faReceipt,
-    faRightFromBracket,
+    faRightFromBracket, faShield, faShieldHalved,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 import '../../styles/components/Header/HeaderAccount.scss';
@@ -75,14 +75,14 @@ function HeaderAccount() {
                             </div>
                         </div>
                         <div className="actions-list">
-                            <div className="action">
+                            <Link to={'/account'} className="action">
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faUser} />
                                 </div>
                                 <div className="name">
                                     My Account
                                 </div>
-                            </div>
+                            </Link>
                             <div className="action">
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faCreditCard} />
@@ -105,6 +105,14 @@ function HeaderAccount() {
                                 </div>
                                 <div className="name">
                                     Transactions
+                                </div>
+                            </div>
+                            <div className="action">
+                                <div className="icon">
+                                    <FontAwesomeIcon icon={faShieldHalved} />
+                                </div>
+                                <div className="name">
+                                    Provably Fair
                                 </div>
                             </div>
                         </div>
