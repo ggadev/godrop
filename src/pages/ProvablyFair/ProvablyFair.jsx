@@ -45,10 +45,9 @@ function ProvablyFair() {
                         </p>
                         <p>The result is calculated based on these values immediately prior to the start of each draw,
                             so the player can check the fairness of the draw immediately after opening a case.</p>
-                        <p>When opening a case skin float is generated with reversed server seed hash.</p>
+                        <p>When opening a case skin float is generated based on reversed server seed hash.</p>
                         <p>Secret Salt is an additional value used only in encrypting the public hash.</p>
-                        <p>You will receive an encrypted server seed hash before opening a case. The initial and final hash
-                            values will be identical, which will prove that the website has no influence on the final results of the draw.</p>
+                        <p>You will receive an encrypted server seed hash before opening a case as a prove that the website has no influence on the final results of the draw.</p>
                     </section>
                     <section className={'provably-fair-options'}>
                         <div className="section-header">

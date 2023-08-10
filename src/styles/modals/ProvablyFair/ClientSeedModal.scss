@@ -1,174 +1,95 @@
 @import '../../variables';
 
 .client-seed-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 105;
-  background: rgba(7, 6, 16, 0.9);
+  border: 1px solid rgba(255, 255, 255, .2);
+  flex: 1;
   border-radius: 15px;
-  box-shadow: $box-shadow-1;
-  animation: modal-animate-in 0.5s ease;
+  padding: 30px 40px;
+  text-align: center;
 
-  @keyframes modal-animate-in {
-    from {
-      transform: translate(-50%, -50%) skewY(10deg) scale(0.7) ;
-      opacity: 0;
-    }
-    to {
-      transform: translate(-50%, -50%) skewY(0deg) scale(1);
-      opacity: 1;
-    }
-  }
-
-  .client-seed-modal-wrapper {
-    position: relative;
-    width: 300px;
+  .content-wrapper {
     display: flex;
-
-    .content {
-      border: 1px solid rgba(255, 255, 255, .2);
-      flex: 1;
-      border-radius: 15px;
-      padding: 30px 40px;
-      text-align: center;
-
-      .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        height: 100%;
-        animation: modal-content-animate-in 0.3s ease;
-
-        @keyframes modal-content-animate-in {
-          from {
-            transform: translateX(20px);
-          }
-          to {
-            transform: translateY(0);
-          }
-        }
-      }
-
-      .content-header {
-        text-align: center;
-        justify-content: center;
-        display: flex;
-        gap: 10px;
-        width: 100%;
-
-        h2 {
-          color: #fff;
-          font-size: 1.8rem;
-
-          svg {
-            color: $primary;
-            font-size: 1.4rem;
-            margin-bottom: 1px;
-          }
-        }
-
-        p {
-          font-size: 0.8rem;
-          font-weight: 300;
-          margin-top: 4px;
-          color: #ddd;
-
-          .switch-sign-in {
-            color: $primary;
-            cursor: pointer;
-            font-weight: 400;
-          }
-        }
-      }
-
-      .client-seed-container {
-        margin-top: 20px;
-
-        input {
-          background: $background-light;
-          outline: none;
-          border: none;
-          padding: 10px 12px;
-          border-radius: 8px;
-          font-family: Cobane, sans-serif;
-          font-size: 0.9rem;
-          color: #fff;
-          width: 100%;
-          border: 1px solid $border-color;
-        }
-      }
-
-      button {
-        display: block;
-        background: rgba(67, 234, 128, 0.22);
-        color: #43EA80;
-        width: 100%;
-        font-weight: 500;
-        padding: 10px 12px 8px 12px;
-        border-radius: 6px;
-        border: 1px solid #43EA80;
-        margin-top: 20px;
-
-        &.inactive {
-          pointer-events: none;
-          cursor: default;
-          opacity: 0.5;
-        }
-      }
-    }
-
-    .close-modal {
-      position: absolute;
-      background: $background-light;
-      border: 1px solid rgba(255,255,255,.2);
-      color: $primary;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      right: -16px;
-      top: -16px;
-      border-radius: 100%;
-      cursor: pointer;
-    }
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid $border-color;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
+    height: 100%;
+    animation: modal-content-animate-in 0.3s ease;
+
+    @keyframes modal-content-animate-in {
+      from {
+        transform: translateX(20px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
   }
 
-  p {
-    font-size: 0.8rem;
-    font-weight: 300;
-    color: #ddd;
-  }
-}
+  .content-header {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    width: 100%;
 
-.modal-cover {
-  position: fixed;
-  width: 100%;
-  height: 100dvh;
-  top: 0;
-  left: 0;
-  background: rgba(7, 6, 16, 0.5);
-  backdrop-filter: blur(3px);
-  z-index: 99;
-  animation: modal-cover-animate-in 0.3s ease;
-}
+    h2 {
+      color: #fff;
+      font-size: 1.8rem;
 
-@keyframes modal-cover-animate-in {
-  from {
-    opacity: 0;
+      svg {
+        color: $primary;
+        font-size: 1.4rem;
+        margin-bottom: 1px;
+      }
+    }
+
+    p {
+      font-size: 0.8rem;
+      font-weight: 300;
+      margin-top: 4px;
+      color: #ddd;
+
+      .switch-sign-in {
+        color: $primary;
+        cursor: pointer;
+        font-weight: 400;
+      }
+    }
   }
-  to {
-    opacity: 1;
+
+  .client-seed-container {
+    margin-top: 20px;
+
+    input {
+      background: $background-light;
+      outline: none;
+      border: none;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-family: Cobane, sans-serif;
+      font-size: 0.9rem;
+      color: #fff;
+      width: 100%;
+      border: 1px solid $border-color;
+    }
+  }
+
+  button {
+    display: block;
+    background: rgba(67, 234, 128, 0.22);
+    color: #43EA80;
+    width: 100%;
+    font-weight: 500;
+    padding: 10px 12px 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #43EA80;
+    margin-top: 20px;
+
+    &.inactive {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.5;
+    }
   }
 }

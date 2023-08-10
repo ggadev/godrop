@@ -23,8 +23,6 @@ function Collection() {
         auto: false
     })
 
-    const scrollY = useScrollPosition();
-
     const { collectionUrl } = useParams();
 
     useEffect(() => {
@@ -63,7 +61,7 @@ function Collection() {
             <main>
                 <section className={'collection'}>
                     <div className="collection-background">
-                        <img src={collectionData?.collection_img_bg} style={{ transform: `translateY(${scrollY * 0.5}px)` }}/>
+                        <img src={collectionData?.collection_img_bg}/>
                     </div>
                     <div className="cover"></div>
                     <div className="separator"></div>

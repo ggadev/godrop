@@ -58,8 +58,9 @@ function HeaderAccount() {
                 <Link to={'/account'} className="avatar">
                     <img src={user['user_avatar'].toString()}/>
                 </Link>
-                <div className="actions" onClick={toggleShowActions}>
-                    <FontAwesomeIcon icon={faCaretDown} className={`${showActions && 'active'}`} />
+                <div className={`actions-cover ${!showActions && 'inactive'}`} onClick={toggleShowActions}></div>
+                <div className="actions">
+                    <FontAwesomeIcon icon={faCaretDown} className={`${showActions && 'active'}`} onClick={toggleShowActions}/>
                     <div className={`actions-container ${showActions && 'active'}`}>
                         <div className="actions-header">
                             <div className="col">

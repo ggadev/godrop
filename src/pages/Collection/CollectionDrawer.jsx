@@ -29,7 +29,6 @@ CollectionDrawer.propTypes = {
 
 function CollectionDrawer({collectionData, drawOptions}) {
     const [randomItems, setRandomItems] = useState(null);
-    const [drawResult, setDrawResult] = useState(null);
     const [isDrawing, setIsDrawing] = useState(false);
 
     const collectionItems = collectionData?.skins;
@@ -68,9 +67,7 @@ function CollectionDrawer({collectionData, drawOptions}) {
                     }
                 }
                 setRandomItems(tempItems);
-                setDrawResult(res.data);
                 displayDraw(res.data);
-                console.log(res.data);
                 if ('userBalance' in res.data) {
                     updateBalance(parseFloat(res.data.userBalance));
                 }
@@ -89,11 +86,10 @@ function CollectionDrawer({collectionData, drawOptions}) {
             temp[92] = index;
             return temp;
         })
-        console.log(randomItems);
-        animateCarousel();
+        animateCarousel(data);
     }
 
-    function animateCarousel() {
+    function animateCarousel(data) {
         const c = carousel.current;
         if(c) {
             const cPosition = Math.floor(Math.random() * (16231 - 16056) + 16056);
@@ -119,7 +115,7 @@ function CollectionDrawer({collectionData, drawOptions}) {
                     }
                 );
                 setTimeout(() => {
-                    displayModal(<DropModal dropResult={drawResult}></DropModal>, true);
+                    displayModal(<DropModal dropResult={data}></DropModal>, true);
                     setIsDrawing(false);
                 }, 300)
             }, (drawOptions.fast ? 2500 : 5000) - 200)

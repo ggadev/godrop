@@ -13,6 +13,7 @@ export function ModalsProvider({children}) {
         setCurrentModals(prevState =>
             priority ? [modal, ...prevState] : [...prevState, modal]
         )
+        console.log(modal);
     }
 
     function closeModal() {

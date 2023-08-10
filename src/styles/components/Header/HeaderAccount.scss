@@ -64,6 +64,22 @@
     }
   }
 
+  .actions-cover {
+    position: fixed;
+    width: 100%;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    background: rgba(7, 6, 16, 0.5);
+    z-index: 1;
+    transition: background-color 0.3s ease;
+
+    &.inactive {
+      background: none;
+      pointer-events: none;
+    }
+  }
+
   .actions {
     color: #fff;
     position: relative;

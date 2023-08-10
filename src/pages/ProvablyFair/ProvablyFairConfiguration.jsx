@@ -6,11 +6,15 @@ import {API_URL} from "../../data/variables.js";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import moment from "moment";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
+import ClientSeedModal from "../../modals/ProvablyFair/ClientSeedModal.jsx";
 
 function ProvablyFairConfiguration() {
     const [currentSeeds, setCurrentSeeds] = useState(null);
 
     const addNotification = useAddNotification();
+
+    const { displayModal } = useContext(ModalsContext);
 
     const { getToken } = useContext(AuthContext);
 
@@ -44,7 +48,8 @@ function ProvablyFairConfiguration() {
                 addNotification({title: 'Success', desc: 'Your new server seed has been generated.', status: 'success'});
             })
             .catch(err => {
-                console.error(err);
+                const errorMessage = err.response.data.error;
+                addNotification({title: 'Wait!', desc: errorMessage, status: 'error'});
             });
     }
 
@@ -62,7 +67,7 @@ function ProvablyFairConfiguration() {
                         <span className={'created'}>Created {moment(currentSeeds['client_seed_date']).format('YYYY-MM-DD HH:mm:ss')}</span>
                         <div className="config-options">
                             <div className="config-option">
-                                <div className="button-gray"><FontAwesomeIcon icon={faPenToSquare} /> Edit</div>
+                                <div className="button-gray" onClick={() => displayModal(<ClientSeedModal currentClientSeed={currentSeeds['client_seed']}></ClientSeedModal>)}><FontAwesomeIcon icon={faPenToSquare} /> Edit</div>
                             </div>
                             <div className="config-option">
                                 <div className="button-gray"><FontAwesomeIcon icon={faClockRotateLeft} /> History</div>
@@ -97,13 +102,18 @@ function ProvablyFairConfiguration() {
                     This server seed will be visible after generating a new one. You may generate a new server seed every 3 hours.
                 </div>
             </div>
-            <div className="config">
-                <div className="config-name">
-                    <span>Nonce</span>
+            <div className="config-wrapper">
+                <div className="config">
+                    <div className="config-name">
+                        <span>Nonce</span>
+                    </div>
+                    <div className="config-value">
+                        <span className={'value'} style={{fontSize: '1rem'}}>{currentSeeds['server_seed_nonce']}</span>
+                        <span className={'created'}>This nonce number will be used in your next roll.</span>
+                    </div>
                 </div>
-                <div className="config-value">
-                    <span className={'value'} style={{fontSize: '1rem'}}>{currentSeeds['server_seed_nonce']}</span>
-                    <span className={'created'}>This nonce number will be used in your next roll.</span>
+                <div className={'config-definition'}>
+                    Nonce number resets with generation of new server seed.
                 </div>
             </div>
         </div>

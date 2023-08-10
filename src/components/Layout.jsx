@@ -11,8 +11,7 @@ import Modals from "../modals/Modals.jsx";
 function Layout() {
     return (
         <>
-            <SiteLoader/>
-            {/*<ClientSeedModal/>*/}
+            {/*<SiteLoader/>*/}
             <Modals/>
             <Notifications/>
             <LiveDrop/>

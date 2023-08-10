@@ -16,6 +16,8 @@ function DropModal({dropResult}) {
 
     const { closeModal } = useContext(ModalsContext);
 
+    console.log(dropResult);
+
     const chance = (
         parseInt(dropResult['collection_item_range_to'])
         -parseInt(dropResult['collection_item_range_from']))/1000;
