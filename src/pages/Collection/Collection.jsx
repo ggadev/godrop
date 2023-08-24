@@ -1,22 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '../../styles/pages/Collection/Collection.scss';
 import {Helmet} from "react-helmet";
 import {Link, useParams} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faBolt, faCrown, faEye, faGun, faRepeat} from "@fortawesome/free-solid-svg-icons";
-import {formatPrice} from "../../utils/priceUtils.js";
+import {faAngleLeft, faBolt, faCrown, faEye, faGun, faRepeat, faShieldHalved} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import CollectionDrawer from "./CollectionDrawer.jsx";
-import useScrollPosition from "../../hooks/useScrollPosition.jsx";
 import CollectionItem from "./CollectionItem.jsx";
 import BestDropItem from "../../components/BestDropItem.jsx";
 import StatsSection from "../../components/StatsSection.jsx";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
+import DrawRangesModal from "../../modals/DrawRangesModal.jsx";
 
 function Collection() {
     const [collectionData, setCollectionData] = useState();
     const [collectionOpen, setCollectionOpen] = useState();
-    const [collectionBest, setCollectionBest] = useState(null);
+    const [collectionBest, setCollectionBest] = useState([]);
 
     const [drawOptions, setDrawOptions] = useState({
         fast: false,
@@ -24,6 +24,8 @@ function Collection() {
     })
 
     const { collectionUrl } = useParams();
+
+    const { displayModal } = useContext(ModalsContext);
 
     useEffect(() => {
         axios.get(`${API_URL}/collections?detail=true&url=${collectionUrl}`)
@@ -50,12 +52,12 @@ function Collection() {
         }));
     }
 
-    console.log(drawOptions);
+    if(!collectionData) return;
 
     return (
         <>
             <Helmet>
-                <title>Howling Furry Collection | GOdrop</title>
+                <title>{collectionData?.collection_name} | GOdrop</title>
                 <meta name="description" content="My page description" />
             </Helmet>
             <main>
@@ -76,9 +78,9 @@ function Collection() {
                             </div>
                             <div className="col">
                                 <div className="collection-options">
-                                    <div className="option">
-                                        <FontAwesomeIcon icon={faRepeat} />
-                                    </div>
+                                    <Link to={'/provably-fair'} className="option">
+                                        <FontAwesomeIcon icon={faShieldHalved} />
+                                    </Link>
                                     <div className={`option fast ${drawOptions.fast ? 'active' : ''}`}
                                          onClick={toggleFastOption}>
                                         <FontAwesomeIcon icon={faBolt} />
@@ -92,25 +94,28 @@ function Collection() {
                         }
                     </div>
                 </section>
-                <section className={'collection-best'}>
-                    <div className="container collection-best-content">
-                        <div className="collection-section-header">
-                            <h2><FontAwesomeIcon icon={faCrown} style={{color: '#EAB043'}}/> 72h Best Drop</h2>
+                {
+                    collectionBest.length > 3 &&
+                    <section className={'collection-best'}>
+                        <div className="container collection-best-content">
+                            <div className="collection-section-header">
+                                <h2><FontAwesomeIcon icon={faCrown} style={{color: '#EAB043'}}/> 72h Best Drop</h2>
+                            </div>
+                            <div className="best-drops-list">
+                                {
+                                    collectionBest.map(item => (
+                                        <BestDropItem item={item} key={item['user_item_id']}/>
+                                    ))
+                                }
+                            </div>
                         </div>
-                        <div className="best-drops-list">
-                            {
-                                collectionBest &&
-                                collectionBest.map(item => (
-                                    <BestDropItem item={item} key={item['user_item_id']}/>
-                                ))
-                            }
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                }
                 <section className={'collection-items'}>
                     <div className="container collection-items-content">
                         <div className="collection-section-header">
                             <h2><FontAwesomeIcon icon={faGun} /> Collection Contains</h2>
+                            <div className={'draw-ranges'} onClick={() => displayModal(<DrawRangesModal collection={collectionData}/>)}><FontAwesomeIcon icon={faShieldHalved} /> Draw Ranges</div>
                         </div>
                         <div className="skin-list collection-items-list">
                             {collectionData && collectionData['skins'].map(item => {

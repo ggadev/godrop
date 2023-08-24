@@ -1,0 +1,57 @@
+@import '../variables';
+
+.restricted {
+
+  main {
+    background-image: url('/backgrounds/m4howl.jpg');
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    color: $red;
+    font-weight: 700;
+    font-size: 4rem;
+
+    svg {
+      color: $red;
+    }
+  }
+
+  h2 {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  p {
+    margin-top: 8px;
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+
+  a {
+    margin-top: 22px;
+    display: block;
+  }
+
+  .login-button {
+    margin-top: 24px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: rgba(67, 234, 128, 0.22);
+    }
+
+  }
+
+  .go-back-link {
+    margin-top: 16px;
+  }
+
+  .restricted-wrapper {
+    text-align: center;
+  }
+}

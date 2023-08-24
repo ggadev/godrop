@@ -37,7 +37,7 @@ function CollectionDrawer({collectionData, drawOptions}) {
 
     const { displayModal } = useContext(ModalsContext);
 
-    const { getToken, updateBalance } = useContext(AuthContext);
+    const { getToken, updateBalance, user } = useContext(AuthContext);
 
     useEffect(() => {
         let tempItems = [];
@@ -153,12 +153,13 @@ function CollectionDrawer({collectionData, drawOptions}) {
             <div className="open-button">
                 <div className="quantity-options">
                     <div className="option selected"><span>1</span></div>
-                    <div className="option"><span>2</span></div>
-                    <div className="option"><span>3</span></div>
-                    <div className="option"><span>4</span></div>
-
+                    {/*<div className="option"><span>2</span></div>*/}
+                    {/*<div className="option"><span>3</span></div>*/}
+                    {/*<div className="option"><span>4</span></div>*/}
                 </div>
-                <button onClick={draw} className={`${isDrawing && 'inactive'}`}>Open for {formatPrice(collectionData?.collection_price)}</button>
+                <button onClick={draw} className={`${(isDrawing || !user || user['user_balance'] < collectionData['collection_price']) && 'inactive'}`}>
+                    Open for {formatPrice(collectionData?.collection_price)}
+                </button>
             </div>
         </>
     );

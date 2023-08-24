@@ -59,10 +59,10 @@ function ProvablyFair() {
                                      className={`section-header-link`}>
                                 <FontAwesomeIcon icon={faCheck} /> Verify Roll
                             </NavLink>
-                            <NavLink to={'/provably-fair/algorithm'}
-                                     className={`section-header-link`}>
-                                <FontAwesomeIcon icon={faCode} /> Algorithm
-                            </NavLink>
+                            {/*<NavLink to={'/provably-fair/algorithm'}*/}
+                            {/*         className={`section-header-link`}>*/}
+                            {/*    <FontAwesomeIcon icon={faCode} /> Algorithm*/}
+                            {/*</NavLink>*/}
                         </div>
                         <Outlet></Outlet>
                     </section>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {formatPrice} from "../utils/priceUtils.js";
 import moment from "moment/moment.js";
+import {Link} from "react-router-dom";
 
 function BestDropItem({item}) {
     const chance = (
@@ -8,7 +9,7 @@ function BestDropItem({item}) {
         -parseInt(item['collection_item_range_from']))/1000;
 
     return (
-        <div className={`best-drop-item rarity-border-bottom ${item['rarity_code']}`}>
+        <Link to={`/collection/${item['collection_url']}`} className={`best-drop-item rarity-border-bottom ${item['rarity_code']}`}>
             <div className={`cover rarity-border-bot-20 ${item['rarity_code']}`}></div>
             <div className="godrop-mark">
                 <img src="/logo/mark_white.png"/>
@@ -35,7 +36,10 @@ function BestDropItem({item}) {
                 <div className="wear">{item['wear_name']}</div>
                 <div className="price">{formatPrice(item['item_price'])}</div>
             </div>
-        </div>
+            <div className="image-card">
+                <img src={item['collection_img_card']}/>
+            </div>
+        </Link>
     );
 }
 

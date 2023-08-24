@@ -6,6 +6,7 @@ import axios from "axios";
 import {API_URL} from "../../data/variables.js";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 import AuthContext from "../../contexts/AuthContext.jsx";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
 
 function Login({switchSignContent, toggleModal}) {
     const searchParams = new URLSearchParams(location.search);
@@ -13,6 +14,8 @@ function Login({switchSignContent, toggleModal}) {
     const addNotification = useAddNotification();
 
     const { login } = useContext(AuthContext);
+
+    const { closeModal } = useContext(ModalsContext);
 
     useEffect(() => {
         if(verifyCode) {
@@ -51,7 +54,7 @@ function Login({switchSignContent, toggleModal}) {
         axios.post(`${API_URL}/auth/signin`, formData)
             .then(res => {
                 addNotification({title: 'Welcome back!', desc: "You've signed in successfully.", status: 'success'});
-                toggleModal();
+                closeModal();
                 console.log(res.data);
                 login(res.data);
             })

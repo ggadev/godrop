@@ -4,7 +4,7 @@ import {faGear, faUser, faXmark} from "@fortawesome/free-solid-svg-icons";
 import '../../styles/modals/SettingsModal/SettingsModal.scss';
 import ModalsContext from "../../contexts/ModalsContext.jsx";
 
-function SettingsModal({toggleModal}) {
+function SettingsModal() {
     const initialCurrency = localStorage.getItem('currency') || 'PLN';
 
     const [showOptions, setShowOptions] = useState(false);

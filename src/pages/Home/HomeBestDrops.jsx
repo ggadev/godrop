@@ -19,6 +19,8 @@ function HomeBestDrops() {
             });
     }, [])
 
+    if(!bestDrops || bestDrops.length < 4) return;
+
     return (
         <section className={'home-best-drops'}>
             <div className="home-best-drops-container container">

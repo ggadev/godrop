@@ -1,5 +1,5 @@
 import {
-    faAngleLeft, faBoxesStacked, faCheck,
+    faAngleLeft, faBoxesStacked, faCheck, faChevronLeft, faChevronRight,
     faCircleNotch, faCode,
     faCopy, faGear, faGift, faHandHoldingDollar,
     faRankingStar, faReceipt,
@@ -21,13 +21,16 @@ import InventoryItem from "./InventoryItem.jsx";
 
 function Account() {
     const [userItems, setUserItems] = useState(null);
+    const [filters, setFilters] = useState({
+        page: 1
+    })
 
     const addNotification = useAddNotification();
 
     const { getToken } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`${API_URL}/account/items`, {
+        axios.get(`${API_URL}/account/items?page=${filters.page}`, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'x-access-token': getToken()
@@ -39,8 +42,18 @@ function Account() {
             .catch(err => {
                 console.error(err);
             });
-    }, [getToken])
+    }, [getToken, filters])
 
+    function changePage(x) {
+        if(filters.page + x < 1 || filters.page + x > userItems[0]['pages']) return;
+        setFilters(prevState => ({
+            ...prevState,
+            page: prevState.page + x
+        }))
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    if(!userItems) return;
     return (
         <div className={'account-page'}>
             <main>
@@ -157,23 +170,27 @@ function Account() {
                                      className={`section-header-link`} end>
                                 <FontAwesomeIcon icon={faBoxesStacked} /> Inventory
                             </NavLink>
-                            <NavLink to={'/account/transactions'}
-                                     className={`section-header-link`}>
-                                <FontAwesomeIcon icon={faReceipt} /> Transactions
-                            </NavLink>
-                            <NavLink to={'/account/settings'}
-                                     className={`section-header-link`}>
-                                <FontAwesomeIcon icon={faGear} /> Settings
-                            </NavLink>
+                            {/*<NavLink to={'/account/transactions'}*/}
+                            {/*         className={`section-header-link`}>*/}
+                            {/*    <FontAwesomeIcon icon={faReceipt} /> Transactions*/}
+                            {/*</NavLink>*/}
+                            {/*<NavLink to={'/account/settings'}*/}
+                            {/*         className={`section-header-link`}>*/}
+                            {/*    <FontAwesomeIcon icon={faGear} /> Settings*/}
+                            {/*</NavLink>*/}
                         </div>
                         <Outlet></Outlet>
                     </section>
                     <div className="account-inventory">
                         <div className="account-inventory-list">
                             {
-                                userItems &&
                                 userItems.map(item => (<InventoryItem item={item} key={item['user_item_id']}/>))
                             }
+                        </div>
+                        <div className="inventory-paging">
+                            <button onClick={() => changePage(-1)} className={filters.page - 1 < 1 && 'disabled'}><FontAwesomeIcon icon={faChevronLeft} /></button>
+                            <div className={'page-amount'}>{filters.page} / {userItems[0]['pages']}</div>
+                            <button onClick={() => changePage(1)} className={filters.page + 1 > userItems[0]['pages'] && 'disabled'}><FontAwesomeIcon icon={faChevronRight} /></button>
                         </div>
                     </div>
                 </div>

@@ -21,8 +21,8 @@ function HomeBanner() {
             <div className="separator"></div>
             <div className="container home-banner-content content">
                 <div className="card-container">
-                    <div className="card"><img src="/howling-fury-card.jpg" alt="howling fury"/></div>
-                    <div className="card"><img src="/ancient-predator-card.jpg" alt="ancient predator"/></div>
+                    <div className="card"><img src="https://data.gadev.pl/godrop/img/collections/wild-wrath-card.jpg" alt="howling fury"/></div>
+                    <div className="card"><img src="https://data.gadev.pl/godrop/img/collections/ancient-predator-card.jpg" alt="ancient predator"/></div>
                     <div className="card"><img src="/howling-fury-card.jpg" alt="howling fury"/></div>
                 </div>
                 <div className="details">

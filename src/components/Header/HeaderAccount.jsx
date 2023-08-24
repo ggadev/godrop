@@ -12,12 +12,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import '../../styles/components/Header/HeaderAccount.scss';
 import {AuthContext, AuthProvider} from "../../contexts/AuthContext.jsx";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
+import PromoCodeModal from "../../modals/PromoCodeModal.jsx";
 
 function HeaderAccount() {
     const { user, logout } = useContext(AuthContext);
     const prevBalance = useRef(user['user_balance']);
     const balanceEl = useRef(null);
     const balance = user['user_balance'];
+
+    const { displayModal } = useContext(ModalsContext);
 
     const [showActions, setShowActions] = useState(false)
 
@@ -48,7 +52,7 @@ function HeaderAccount() {
                     <div className="row wallet-balance" ref={balanceEl}>💸 {formatPrice(balance)}</div>
                 </div>
                 <div className="col">
-                    <Link to={'/'} className={'refil-link'}>Refill</Link>
+                    <div className={'refil-link'} onClick={() => displayModal(<PromoCodeModal></PromoCodeModal>)}>Refill</div>
                 </div>
             </div>
             <div className="inventory">
@@ -61,7 +65,7 @@ function HeaderAccount() {
                 <div className={`actions-cover ${!showActions && 'inactive'}`} onClick={toggleShowActions}></div>
                 <div className="actions">
                     <FontAwesomeIcon icon={faCaretDown} className={`${showActions && 'active'}`} onClick={toggleShowActions}/>
-                    <div className={`actions-container ${showActions && 'active'}`}>
+                    <div className={`actions-container ${showActions && 'active'}`} onClick={toggleShowActions}>
                         <div className="actions-header">
                             <div className="col">
                                 <img src={user['user_avatar'].toString()}/>
@@ -84,7 +88,7 @@ function HeaderAccount() {
                                     My Account
                                 </div>
                             </Link>
-                            <div className="action">
+                            <div className="action" onClick={() => displayModal(<PromoCodeModal></PromoCodeModal>)}>
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faCreditCard} />
                                 </div>
@@ -92,7 +96,7 @@ function HeaderAccount() {
                                     Refill Balance
                                 </div>
                             </div>
-                            <div className="action">
+                            <div className="action" onClick={() => displayModal(<PromoCodeModal></PromoCodeModal>)}>
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faBarcode} />
                                 </div>
@@ -100,29 +104,29 @@ function HeaderAccount() {
                                     Promo Code
                                 </div>
                             </div>
-                            <div className="action">
-                                <div className="icon">
-                                    <FontAwesomeIcon icon={faReceipt} />
-                                </div>
-                                <div className="name">
-                                    Transactions
-                                </div>
-                            </div>
-                            <div className="action">
+                            {/*<div className="action">*/}
+                            {/*    <div className="icon">*/}
+                            {/*        <FontAwesomeIcon icon={faReceipt} />*/}
+                            {/*    </div>*/}
+                            {/*    <div className="name">*/}
+                            {/*        Transactions*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+                            <Link to={'/provably-fair'} className="action">
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faShieldHalved} />
                                 </div>
                                 <div className="name">
                                     Provably Fair
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                         <div className="actions-list">
-                            <div className="action">
+                            <div className="action" onClick={logout}>
                                 <div className="icon">
                                     <FontAwesomeIcon icon={faRightFromBracket} />
                                 </div>
-                                <div className="name" onClick={logout}>
+                                <div className="name">
                                     Logout
                                 </div>
                             </div>

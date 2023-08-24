@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 function CollectionItem({item}) {
     const chance = (
         parseInt(item['collection_item_range_to'])
-        -parseInt(item['collection_item_range_from']))/1000;
+        -parseInt(item['collection_item_range_from'])+1)/1000;
 
     return (
         <Link to={`/skinbase/skin/${item['skin_url']}`} className="skin">

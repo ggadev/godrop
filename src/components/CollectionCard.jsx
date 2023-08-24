@@ -6,8 +6,6 @@ import {Link} from "react-router-dom";
 function CollectionCard({data}) {
     if(!data) return;
 
-    console.log(data);
-
     return (
         <Link to={`/collection/${data['collection_url']}`} className={'collection-card'}>
             <div className="collection-img">

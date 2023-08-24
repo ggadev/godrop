@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '../../styles/modals/SignModal/SignInModal.scss';
 import {faEye, faEyeSlash, faRightToBracket, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Login from "./Login.jsx";
 import SignUp from "./SignUp.jsx";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
 
 function SignModal({toggleModal}) {
     const [signContent, setSignContent] = useState(window.location.hash);
 
-    console.log(signContent);
+    const { closeModal } = useContext(ModalsContext);
 
     function switchSignContent(c) {
         setSignContent(c);
@@ -32,10 +33,10 @@ function SignModal({toggleModal}) {
                         <img src={'/godroppromocode.jpg'}/>
                     </div>
                     <div className="content">
-                        {signContent === '#login' && <Login switchSignContent={switchSignContent} toggleModal={toggleModal}/>}
+                        {signContent === '#login' && <Login switchSignContent={switchSignContent}/>}
                         {signContent === '#signup' && <SignUp switchSignContent={switchSignContent}/>}
                     </div>
-                    <div className="close-modal" onClick={toggleModal}>
+                    <div className="close-modal" onClick={closeModal}>
                         <FontAwesomeIcon icon={faXmark} />
                     </div>
                 </div>

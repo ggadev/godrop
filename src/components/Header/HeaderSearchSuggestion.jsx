@@ -1,9 +1,10 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 function HeaderSearchSuggestion({element}) {
 
     return (
-        <div className={'suggestion'}>
+        <Link to={element['link']} className={'suggestion'}>
             <div className="image">
                 <img src={element['image']}/>
             </div>
@@ -15,7 +16,7 @@ function HeaderSearchSuggestion({element}) {
                     {element['name']}
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

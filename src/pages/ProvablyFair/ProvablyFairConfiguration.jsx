@@ -69,9 +69,9 @@ function ProvablyFairConfiguration() {
                             <div className="config-option">
                                 <div className="button-gray" onClick={() => displayModal(<ClientSeedModal currentClientSeed={currentSeeds['client_seed']}></ClientSeedModal>)}><FontAwesomeIcon icon={faPenToSquare} /> Edit</div>
                             </div>
-                            <div className="config-option">
-                                <div className="button-gray"><FontAwesomeIcon icon={faClockRotateLeft} /> History</div>
-                            </div>
+                            {/*<div className="config-option">*/}
+                            {/*    <div className="button-gray"><FontAwesomeIcon icon={faClockRotateLeft} /> History</div>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
@@ -92,9 +92,9 @@ function ProvablyFairConfiguration() {
                             <div className="config-option">
                                 <div className="button-gray" onClick={generateServerSeed}><FontAwesomeIcon icon={faPlus} /> Generate New</div>
                             </div>
-                            <div className="config-option">
-                                <div className="button-gray"><FontAwesomeIcon icon={faClockRotateLeft} /> History</div>
-                            </div>
+                            {/*<div className="config-option">*/}
+                            {/*    <div className="button-gray"><FontAwesomeIcon icon={faClockRotateLeft} /> History</div>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>

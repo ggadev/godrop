@@ -22,17 +22,7 @@ import settingsModal from "../../modals/SettingsModal/SettingsModal.jsx";
 import modalsContext from "../../contexts/ModalsContext.jsx";
 
 function Header() {
-    const [showSignModal, setShowSignModal] = useState(
-        window.location.hash.includes('login') || window.location.hash.includes('signup')
-    );
-
     const { displayModal } = useContext(ModalsContext);
-
-    function toggleShowSignModal() {
-        if(showSignModal)
-            window.location.hash = '';
-        setShowSignModal(prevState => !prevState);
-    }
 
     const location = useLocation();
     const { user } = useContext(AuthContext);
@@ -44,7 +34,6 @@ function Header() {
 
     return (
         <>
-            {showSignModal && <SignModal toggleModal={toggleShowSignModal}></SignModal>}
             <div className="header-filler"></div>
             <header style={{ marginTop: `${newPos}px` }}>
                 <div className='header-top'>
@@ -63,7 +52,7 @@ function Header() {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`#settings`} title={'Settings'} onClick={() => {displayModal(<SettingsModal/>)}}>
+                                <Link to={`#settings`} title={'Settings'} onClick={() => displayModal(<SettingsModal/>)}>
                                     <FontAwesomeIcon icon={faGear} />
                                 </Link>
                             </li>
@@ -79,7 +68,7 @@ function Header() {
                             <HeaderSearch/>
                         </div>
                         <div className="header-right">
-                            { user ? <HeaderAccount/> : <HeaderAccountLogin toggleModal={toggleShowSignModal}/>}
+                            { user ? <HeaderAccount/> : <HeaderAccountLogin/>}
                         </div>
                     </div>
                     <div className='header-games container'>

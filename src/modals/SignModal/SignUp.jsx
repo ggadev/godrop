@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faRightToBracket} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import {API_URL} from "../../data/variables.js";
 import axios from "axios";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
+import ModalsContext from "../../contexts/ModalsContext.jsx";
 
 function SignUp({switchSignContent}) {
     const searchParams = new URLSearchParams(location.search);

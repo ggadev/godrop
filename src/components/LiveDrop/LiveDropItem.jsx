@@ -4,6 +4,7 @@ import '../../styles/rarities.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSuitcase} from "@fortawesome/free-solid-svg-icons";
 import moment from 'moment';
+import {Link} from "react-router-dom";
 
 function LiveDropItem({item}) {
     const dropDate = item['user_item_drop_date'];
@@ -14,7 +15,7 @@ function LiveDropItem({item}) {
     }
 
     return (
-        <div className={`livedrop-item rarity-border-color ${item.rarity_code || ''}`}
+        <Link to={`/collection/${item.collection_url}`} className={`livedrop-item rarity-border-color ${item.rarity_code || ''}`}
              onMouseEnter={itemMouseEnter}>
             <div className={`cover rarity-border-left-15 ${item.rarity_code || ''}`}></div>
             <div className="item-content-container">
@@ -43,13 +44,13 @@ function LiveDropItem({item}) {
                         </div>
                     </div>
                     <div className="detail-content">
-                        <img className={'user-image'} src={'https://data.gadev.pl/godrop/img/avatars/3.jpg'}/>
-                        <span className={'username'}>reziplaygames</span>
+                        <img className={'user-image'} src={item.user_avatar}/>
+                        <span className={'username'}>{item.user_name}</span>
                         <span className={'time'}>{timeElapsed}</span>
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 

@@ -1,11 +1,19 @@
 @import '../../variables';
 
 .home-popular-collections {
-  padding-block: 80px;
+  padding-block: 70px;
 
   &-list {
     margin-top: 25px;
     display: flex;
     gap: 30px;
+  }
+
+  .browse-collections {
+    margin-top: 25px;
+    display: block;
+    width: fit-content;
+    margin-inline: auto;
+    font-size: 0.9rem;
   }
 }

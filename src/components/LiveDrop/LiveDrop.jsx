@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '../../styles/components/LiveDrop/LiveDrop.scss';
 import {
     faAngleLeft,
@@ -13,17 +13,17 @@ import LiveDropItem from "./LiveDropItem.jsx";
 import io from 'socket.io-client';
 import {API_URL, SOCKET_URL} from "../../data/variables.js";
 import axios from "axios";
-
-const socket = io(SOCKET_URL);
+import SocketContext from "../../contexts/SocketContext.jsx";
 
 function LiveDrop() {
     const [showLiveDrop, setShowLiveDrop] = useState(localStorage.getItem('showLiveDrop') || true);
     const [pauseLiveDrop, setPauseLiveDrop] = useState(false);
     const [liveDropItems, setLiveDropItems] = useState(null);
-    const [onlineCount, setOnlineCount] = useState(0);
     const [liveDropOption, setLiveDropOption] = useState('all');
 
-    console.log(pauseLiveDrop);
+    const { socket, onlineCount } = useContext(SocketContext);
+
+    console.log('livedrop render');
 
     function toggleShowLiveDrop() {
         setShowLiveDrop(prevState => {
@@ -48,16 +48,6 @@ function LiveDrop() {
     }, [liveDropOption]);
 
     useEffect(() => {
-        socket.on('onlineCount', (count) => {
-            setOnlineCount(count);
-        });
-
-        return () => {
-            socket.disconnect();
-        }
-    }, [])
-
-    useEffect(() => {
         function addLiveDropItem(data) {
             if((liveDropOption === 'best' && data['item_price'] < 200) || pauseLiveDrop) return;
             setLiveDropItems(prevState => [data, ...prevState.slice(0, 10)]);
@@ -68,7 +58,7 @@ function LiveDrop() {
         return () => {
             socket.off('livedrop', addLiveDropItem);
         };
-    }, [liveDropOption, pauseLiveDrop]);
+    }, [socket, liveDropOption, pauseLiveDrop]);
 
 
     return (

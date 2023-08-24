@@ -12,6 +12,14 @@ ModalTemplate.propTypes = {
 function ModalTemplate({children}) {
     const { closeModal } = useContext(ModalsContext);
 
+    useEffect(() => {
+        document.body.classList.add('lock-scroll');
+
+        return (() => {
+            document.body.classList.remove('lock-scroll');
+        })
+    }, []);
+
     return (
         <div className={'modal'}>
             <div className="modal-cover" onClick={closeModal}></div>

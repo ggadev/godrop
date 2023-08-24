@@ -17,6 +17,17 @@ function Upgrader() {
                     <Link className={'go-back-link'} to={'/'}><FontAwesomeIcon icon={faAngleLeft} /> Go back</Link>
                     <h1 className={'page-header'}><FontAwesomeIcon icon={faCircleNotch} /> Upgrader</h1>
                     <UnderConstruction pageType={'game'}></UnderConstruction>
+                    {/*<div className="upgrader-game">*/}
+                    {/*    <div className="user-items">*/}
+
+                    {/*    </div>*/}
+                    {/*    <div className="game">*/}
+
+                    {/*    </div>*/}
+                    {/*    <div className="server-items">*/}
+
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </main>
         </div>

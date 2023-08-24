@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   border-bottom: 2px solid $border-color;
+  position: relative;
 
   h2 {
     font-size: 1rem;
@@ -16,6 +17,29 @@
     svg {
       color: $primary;
       margin-right: 2px;
+    }
+  }
+
+  .draw-ranges {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: #fff;
+    opacity: 0.8;
+    cursor: pointer;
+    background: $background-light;
+    padding: 7px 10px;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+
+    svg {
+      margin-right: 2px;
+    }
+
+    &:hover {
+      opacity: 1;
     }
   }
 }
@@ -213,11 +237,9 @@
 }
 
 .collection-items {
-  margin-top: 30px;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 
   .collection-items-content {
-    margin-top: 60px;
 
     .collection-items-list {
       display: grid;

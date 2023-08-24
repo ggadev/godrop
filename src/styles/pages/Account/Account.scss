@@ -238,6 +238,31 @@
       //border-radius: 15px;
       //border: 1px solid $border-color;
 
+      .inventory-paging {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        align-items: center;
+
+        button {
+          background: $background-light;
+          width: 40px;
+          aspect-ratio: 1/1;
+          border-radius: 10px;
+          border: 1px solid $border-color;
+
+          &.disabled {
+            cursor: default;
+            opacity: 0.5;
+          }
+        }
+
+        .page-amount {
+          font-weight: 600;
+          color: #ddd;
+        }
+      }
+
       .account-inventory-list {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

@@ -8,7 +8,9 @@
 
   .collections-list {
     margin-top: 40px;
-    display: flex;
+    display: grid;
     gap: 30px;
+    flex-wrap: wrap;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
