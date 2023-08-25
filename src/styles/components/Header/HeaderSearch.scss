@@ -18,6 +18,7 @@
 
       &~.suggestions {
         display: block;
+        visibility: visible;
       }
     }
   }
@@ -42,8 +43,10 @@
     border-radius: 8px 0 0 8px;
     max-height: 330px;
     overflow-y: scroll;
-    display: none;
+    display: block;
+    visibility: hidden;
     box-shadow: 0 0 15px rgba(0,0,0,.3);
+    transition: visibility 0.3s;
 
     .suggestions-list {
       display: flex;

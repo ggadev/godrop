@@ -43,6 +43,74 @@
     }
   }
 
+  .config {
+    background: $background;
+    display: flex;
+    height: 70px;
+    border-radius: 10px;
+    border: 1px solid $border-color;
+
+    .config-name {
+      height: 100%;
+      background: $background-light;
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 10px 0 0 10px;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-right: 1px solid $border-color;
+    }
+
+    .config-value {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 20px;
+      position: relative;
+      flex: 1;
+
+      .value {
+        font-size: 0.9rem;
+        padding-bottom: 4px;
+      }
+
+      .secured {
+        font-size: 0.6rem;
+        color: $primary;
+      }
+
+      .created {
+        font-size: 0.6rem;
+        color: #aaa;
+      }
+
+      .config-options {
+        position: absolute;
+        right: 15px;
+        display: flex;
+        gap: 6px;
+
+        .config-option {
+          svg {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .seed-history {
+    width: fit-content;
+    justify-self: end;
+
+    svg {
+      color: $primary;
+    }
+  }
+
   .provably-fair-options {
     margin-top: 40px;
 
@@ -58,74 +126,6 @@
         padding-right: 5px;
         font-weight: 400;
         color: #aaa;
-      }
-
-      .config {
-        background: $background;
-        display: flex;
-        height: 70px;
-        border-radius: 10px;
-        border: 1px solid $border-color;
-
-        .config-name {
-          height: 100%;
-          background: $background-light;
-          width: 200px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
-          border-radius: 10px 0 0 10px;
-          text-transform: uppercase;
-          font-weight: 600;
-          border-right: 1px solid $border-color;
-        }
-
-        .config-value {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          padding-left: 20px;
-          position: relative;
-          flex: 1;
-
-          .value {
-            font-size: 0.9rem;
-            padding-bottom: 4px;
-          }
-
-          .secured {
-            font-size: 0.6rem;
-            color: $primary;
-          }
-
-          .created {
-            font-size: 0.6rem;
-            color: #aaa;
-          }
-
-          .config-options {
-            position: absolute;
-            right: 15px;
-            display: flex;
-            gap: 6px;
-
-            .config-option {
-              svg {
-                color: $primary;
-              }
-            }
-          }
-        }
-      }
-
-      .seed-history {
-        width: fit-content;
-        justify-self: end;
-
-        svg {
-          color: $primary;
-        }
       }
     }
   }

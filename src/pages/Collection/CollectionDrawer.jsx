@@ -20,7 +20,7 @@ CollectionDrawer.propTypes = {
                 skin_name: PropTypes.string,
             })
         ),
-        collection_price: PropTypes.number,
+        collection_price: PropTypes.string,
     }),
     drawOptions: PropTypes.shape({
         fast: PropTypes.bool,
@@ -157,7 +157,7 @@ function CollectionDrawer({collectionData, drawOptions}) {
                     {/*<div className="option"><span>3</span></div>*/}
                     {/*<div className="option"><span>4</span></div>*/}
                 </div>
-                <button onClick={draw} className={`${(isDrawing || !user || user['user_balance'] < collectionData['collection_price']) && 'inactive'}`}>
+                <button onClick={draw} className={`${(isDrawing || !user || user['user_balance'] < parseFloat(collectionData['collection_price'])) && 'inactive'}`}>
                     Open for {formatPrice(collectionData?.collection_price)}
                 </button>
             </div>

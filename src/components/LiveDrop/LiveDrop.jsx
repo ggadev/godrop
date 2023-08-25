@@ -14,6 +14,7 @@ import io from 'socket.io-client';
 import {API_URL, SOCKET_URL} from "../../data/variables.js";
 import axios from "axios";
 import SocketContext from "../../contexts/SocketContext.jsx";
+import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 
 function LiveDrop() {
     const [showLiveDrop, setShowLiveDrop] = useState(localStorage.getItem('showLiveDrop') || true);
@@ -22,6 +23,8 @@ function LiveDrop() {
     const [liveDropOption, setLiveDropOption] = useState('all');
 
     const { socket, onlineCount } = useContext(SocketContext);
+
+    const addNotification = useAddNotification();
 
     console.log('livedrop render');
 
@@ -88,7 +91,8 @@ function LiveDrop() {
                         <FontAwesomeIcon icon={faCrown} />
                         <span>Best</span>
                     </div>
-                    <div className={`livedrop-option ${liveDropOption === 'mine' && 'selected'}`}>
+                    <div className={`livedrop-option ${liveDropOption === 'mine' && 'selected'}`}
+                    onClick={() => addNotification({title: 'Error', desc: 'Unavailable', status: 'error'})}>
                         <FontAwesomeIcon icon={faUser} />
                         <span>My</span>
                     </div>

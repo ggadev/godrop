@@ -18,16 +18,35 @@ import {API_URL} from "../../data/variables.js";
 import AuthContext from "../../contexts/AuthContext.jsx";
 import {useAddNotification} from "../../contexts/NotificationContext.jsx";
 import InventoryItem from "./InventoryItem.jsx";
+import moment from "moment/moment.js";
+import {calculateLevel} from "../../utils/levelUtils.js";
 
 function Account() {
     const [userItems, setUserItems] = useState(null);
+    const [userData, setUserData] = useState(null);
     const [filters, setFilters] = useState({
         page: 1
     })
 
     const addNotification = useAddNotification();
 
-    const { getToken } = useContext(AuthContext);
+    const { getToken, updateBalance } = useContext(AuthContext);
+
+    useEffect(() => {
+        axios.get(`${API_URL}/account/stats`, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-access-token': getToken()
+            }})
+            .then(res => {
+                console.log(res.data);
+                setUserData(res.data);
+                updateBalance(res.data.user.user_balance)
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }, [])
 
     useEffect(() => {
         axios.get(`${API_URL}/account/items?page=${filters.page}`, {
@@ -36,7 +55,6 @@ function Account() {
                 'x-access-token': getToken()
             }})
             .then(res => {
-                console.log(res.data);
                 setUserItems(res.data);
             })
             .catch(err => {
@@ -54,6 +72,10 @@ function Account() {
     }
 
     if(!userItems) return;
+    if(!userData) return;
+
+    const { level, currentExp, expEnd } = calculateLevel(userData.user.user_exp);
+
     return (
         <div className={'account-page'}>
             <main>
@@ -68,26 +90,26 @@ function Account() {
                             <div className="block-desc">
                                 Details
                             </div>
-                            <img className={'account-avatar'} src={'https://data.gadev.pl/godrop/img/avatars/2.jpg'}/>
+                            <img className={'account-avatar'} src={userData.user.user_avatar}/>
                             <div className="details">
-                                <div className="username">Gadziu</div>
+                                <div className="username">{userData.user.user_name}</div>
                                 <div className="level">
                                     <div className="level-values">
                                         <span className="level-value">
-                                            Level 2
+                                            Level {level}
                                         </span>
                                         <span className="exp-value">
-                                            432/1200
+                                            {currentExp}/{expEnd}
                                         </span>
                                     </div>
                                     <div className="level-stripes">
                                         <div className="level-stripe-dark"></div>
-                                        <div className="level-stripe"></div>
+                                        <div className="level-stripe" style={{width: `${currentExp/expEnd*100}%`}}></div>
                                     </div>
                                 </div>
                                 <div className="balance">
                                     Balance:
-                                    <span className={'balance-value'}>{formatPrice(2541.28)}</span>
+                                    <span className={'balance-value'}>{formatPrice(userData.user.user_balance)}</span>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +130,7 @@ function Account() {
                                         Rank Position
                                     </div>
                                     <div className="stat-value">
-                                        2nd
+                                        -
                                     </div>
                                 </div>
                                 <div className="stat">
@@ -119,7 +141,7 @@ function Account() {
                                         Cases Opened
                                     </div>
                                     <div className="stat-value">
-                                        1232
+                                        -
                                     </div>
                                 </div>
                                 <div className="stat">
@@ -130,7 +152,7 @@ function Account() {
                                         Upgrades Made
                                     </div>
                                     <div className="stat-value">
-                                        0
+                                        -
                                     </div>
                                 </div>
                                 <div className="stat">
@@ -141,27 +163,31 @@ function Account() {
                                         Giveaways Won
                                     </div>
                                     <div className="stat-value">
-                                        0
+                                        -
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className="account-header-block best-block">
-                            <div className="cover rarity-border-left-20 covert"></div>
-                            <div className="block-desc">
-                                All Time Best
-                            </div>
-                            <div className="skin-img">
-                                <div className="rarity-stripe rarity-background covert"></div>
-                                <img className={'skin-img'} src={'https://data.gadev.pl/godrop/img/ak-47/ak-47-nightwish-icon.png'}/>
-                            </div>
-                            <div className="details">
-                                <div className="weapon">Ak-47</div>
-                                <div className="skin">Nightwish</div>
-                                <div className="wear">Well-Worn</div>
-                                <div className="price">{formatPrice(85.45)}</div>
-                                <div className="date">2 months ago</div>
-                            </div>
+                            {
+                                userData.best && <div>
+                                    <div className={`cover rarity-border-left-20 ${userData.best.rarity_code}`}></div>
+                                    <div className="block-desc">
+                                        All Time Best
+                                    </div>
+                                    <div className="skin-img">
+                                        <div className={`rarity-stripe rarity-background ${userData.best.rarity_code}`}></div>
+                                        <img className={'skin-img'} src={userData.best.item_image}/>
+                                    </div>
+                                    <div className="details">
+                                        <div className="weapon">{userData.best.weapon_name}</div>
+                                        <div className="skin">{userData.best.skin_name}</div>
+                                        <div className="wear">{userData.best.rarity_name}</div>
+                                        <div className="price">{formatPrice(userData.best.item_price)}</div>
+                                        <div className="date">{moment(userData.best.user_item_drop_date).fromNow()}</div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                     <section className={'provably-fair-options'}>
@@ -187,11 +213,14 @@ function Account() {
                                 userItems.map(item => (<InventoryItem item={item} key={item['user_item_id']}/>))
                             }
                         </div>
-                        <div className="inventory-paging">
-                            <button onClick={() => changePage(-1)} className={filters.page - 1 < 1 && 'disabled'}><FontAwesomeIcon icon={faChevronLeft} /></button>
-                            <div className={'page-amount'}>{filters.page} / {userItems[0]['pages']}</div>
-                            <button onClick={() => changePage(1)} className={filters.page + 1 > userItems[0]['pages'] && 'disabled'}><FontAwesomeIcon icon={faChevronRight} /></button>
-                        </div>
+                        {
+                            userItems[0] &&
+                            <div className="inventory-paging">
+                                <button onClick={() => changePage(-1)} className={filters.page - 1 < 1 && 'disabled'}><FontAwesomeIcon icon={faChevronLeft} /></button>
+                                <div className={'page-amount'}>{filters.page} / {userItems[0]['pages']}</div>
+                                <button onClick={() => changePage(1)} className={filters.page + 1 > userItems[0]['pages'] && 'disabled'}><FontAwesomeIcon icon={faChevronRight} /></button>
+                            </div>
+                        }
                     </div>
                 </div>
             </main>

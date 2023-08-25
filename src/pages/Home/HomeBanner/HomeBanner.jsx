@@ -6,6 +6,7 @@ import useScrollPosition from "../../../hooks/useScrollPosition.jsx";
 import ModalsContext from "../../../contexts/ModalsContext.jsx";
 import SettingsModal from "../../../modals/SettingsModal/SettingsModal.jsx";
 import SignModal from "../../../modals/SignModal/SignModal.jsx";
+import {Link} from "react-router-dom";
 
 function HomeBanner() {
     const scrollY = useScrollPosition();
@@ -59,9 +60,9 @@ function HomeBanner() {
                     <div className="col-price">
                         <div className="col-price-container">
                             <span className="price">{formatPrice(29.90)}</span>
-                            <div className="show">
+                            <Link to={'/collection/howling-fury'} className="show">
                                 Open Now
-                            </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
